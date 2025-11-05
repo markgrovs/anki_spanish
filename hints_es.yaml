@@ -1,0 +1,29 @@
+---
+candidates:
+    "dog||":
+        - "perro"
+        - "perra (hembra)"
+    "water||noun":
+        - "agua"
+    "phone||noun":
+        - "teléfono"
+        - "celular"
+    "cell phone||":
+        - "celular"
+        - "móvil"
+    "back|body|":
+        - "espalda"
+    "back|direction|":
+        - "atrás"
+        - "de vuelta"
+    "light|/dark|adjective":
+        - "claro"
+    "light|/heavy|adjective":
+        - "ligero"
+    "light||noun":
+        - "luz"
+    "dog||noun":
+        - "perro"
+defaults:
+    "phone||noun": "teléfono"
+    "cell phone||": "celular"
