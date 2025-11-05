@@ -19,8 +19,6 @@ ARGOS_OK = False
 try:
     import argostranslate.package as argos_package  # type: ignore
     import argostranslate.translate as argos_translate  # type: ignore
-    # Check if en->es model is installed
-    ARGOS_OK = False
     for lang in argos_translate.get_installed_languages():
         if getattr(lang, "code", "") == "en":
             for t in getattr(lang, 'translations', []):
@@ -182,28 +180,23 @@ def build_candidates(eng, sense, pos, hints_candidates, defaults_map):
     seen = set()
     ordered = []
 
-    # 1) Hints first (your curated picks)
     default, hint_cands = suggest_from_hints({"english":eng, "sense":sense, "pos":pos}, hints_candidates, defaults_map)
     for c in hint_cands:
         if c and c not in seen:
             ordered.append(c); seen.add(c)
 
-    # 2) Common map (fast, common words)
     for c in suggest_from_common(eng):
         if c and c not in seen:
             ordered.append(c); seen.add(c)
 
-    # 3) Argos Translate (offline, if available)
     for c in argos_translate_suggest(eng, sense, pos):
         if c and c not in seen:
             ordered.append(c); seen.add(c)
 
-    # 4) deep-translator Google (no key)
     dt = deep_translate(eng)
     if dt and dt not in seen:
         ordered.append(dt); seen.add(dt)
 
-    # 5) LibreTranslate (optional local server)
     lt = libre_translate(eng)
     if lt:
         lt = strip_article(lt)
@@ -215,21 +208,13 @@ def build_candidates(eng, sense, pos, hints_candidates, defaults_map):
 # ------------------------ Gender detection ---------------------------------
 
 EXCEPTIONS = {
-    "mano": "f",
-    "día": "m",
-    "mapa": "m",
-    "planeta": "m",
-    "idioma": "m",
-    "tema": "m",
-    "poema": "m",
-    "programa": "m",
-    "sistema": "m",
-    "problema": "m",
+    "mano": "f", "día": "m", "mapa": "m", "planeta": "m",
+    "idioma": "m", "tema": "m", "poema": "m", "programa": "m",
+    "sistema": "m", "problema": "m",
 }
 
 FEM_SUFFIXES = ("ción","sión","dad","tad","tud","umbre","ie")
 MASC_SUFFIXES = ("aje","or","án","ambre")
-
 
 def heuristic_gender(word: str) -> str:
     w = word.lower()
@@ -243,7 +228,7 @@ def heuristic_gender(word: str) -> str:
         return "f"
     if w.endswith("o"):
         return "m"
-    return ""  # unknown
+    return ""
 
 
 def wiktionary_gender(word: str) -> str:
@@ -298,20 +283,19 @@ def read_rows(path: Path):
     with path.open("r", encoding="utf-8") as f:
         r = list(csv.DictReader(f))
     for row in r:
-        if "gender" not in row:
-            row["gender"] = ""
+        row.setdefault("gender", "")
+        row.setdefault("ipa", "")
+        row.setdefault("notes", "")
     return r
 
 
 def write_rows(path: Path, rows):
-    fieldnames = ["english","sense","pos","spanish","gender","notes"]
-    for row in rows:
-        for k in fieldnames:
-            row.setdefault(k, "")
+    fieldnames = ["english","sense","pos","spanish","gender","ipa","notes"]
     with path.open("w", newline="", encoding="utf-8") as out:
         w = csv.DictWriter(out, fieldnames=fieldnames)
         w.writeheader()
-        w.writerows(rows)
+        for row in rows:
+            w.writerow({k: row.get(k, "") for k in fieldnames})
 
 # ------------------------ Main loop ----------------------------------------
 
