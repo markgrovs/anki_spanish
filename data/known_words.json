@@ -1,0 +1,28 @@
+{
+  "count": 15,
+  "words": [
+    "negro",
+    "arcilla",
+    "enfermedad",
+    "ciego",
+    "limpiar",
+    "doctora",
+    "adjetivo",
+    "adulto",
+    "sangre",
+    "limpio",
+    "perro",
+    "tarde",
+    "azul",
+    "reloj",
+    "dólar"
+  ],
+  "query": "deck:\"My Spanish Deck::625\" is:review -is:new prop:ivl>=3 prop:reps>=1",
+  "diag": {
+    "notes": 15,
+    "notes_skipped_no_word": 0,
+    "models": {
+      "Picture Word": 15
+    }
+  }
+}

@@ -3,16 +3,20 @@
 Unified CLI for your Spanish→Anki workflow.
 
 Subcommands:
-  pick       Interactive Spanish selection (runs translate_pick.py)
-  enrich     Fill missing IPA in CSV (runs enrich_ipa.py)
-  build      Build/update Anki cards (wraps build_cards.py + forwards flags)
-  audit      Report missing counts (image/audio/ipa/gender)
+  pick                Interactive Spanish selection (translate_pick.py)
+  enrich              Fill missing IPA in CSV (enrich_ipa.py)
+  build               Build/update Picture Word cards (build_cards.py)
+  audit               Report missing counts (image/audio/ipa/gender)
+  sentences known     Export known words (flexible Anki filters)
+  sentences build     Build/Upsert Cloze sentence notes from JSON
 
 Usage examples:
   python anki_flow.py pick
   python anki_flow.py enrich
   python anki_flow.py build --only-missing --limit 25
   python anki_flow.py audit
+  python anki_flow.py sentences known --deck "My Spanish Deck::625" --model "*" --review-only --min-ivl 3 --use-notes --debug
+  python anki_flow.py sentences build --deck "My Spanish Deck::Sentences" --model "Cloze" --limit 20 --update-existing --debug
 """
 import argparse
 import subprocess
@@ -31,6 +35,7 @@ def run(cmd):
         print(f"[error] Command failed: {' '.join(cmd)}\n{e}")
         sys.exit(1)
 
+# ---------------- Core commands ----------------
 
 def cmd_pick(args):
     script = BASE / "translate_pick.py"
@@ -54,7 +59,6 @@ def cmd_build(args):
         print("build_cards.py not found")
         sys.exit(1)
     cmd = [sys.executable, str(script)]
-    # forward selected flags
     if args.only_missing: cmd.append("--only-missing")
     if args.regen_audio: cmd.append("--regen-audio")
     if args.recalc_ipa: cmd.append("--recalc-ipa")
@@ -82,7 +86,6 @@ def cmd_audit(args):
     print(f"  Missing Spanish:   {missing_es}")
     print(f"  Missing Gender:    {missing_gender}")
     print(f"  Missing IPA:       {missing_ipa}")
-    # Image/audio audit requires knowing slug and folders
     images_dir = BASE / "media" / "images"
     audio_dir = BASE / "media" / "audio"
     from unicodedata import normalize
@@ -104,6 +107,31 @@ def cmd_audit(args):
     print(f"  Missing images:    {miss_img}")
     print(f"  Missing audio:     {miss_aud}")
 
+# ---------------- Sentences subcommands ----------------
+
+def cmd_sentences_known(args):
+    script = BASE / "scripts" / "sentences_get_known_words.py"
+    cmd = [sys.executable, str(script), "--deck", args.deck, "--model", args.model]
+    if args.min_ivl: cmd += ["--min-ivl", str(args.min_ivl)]
+    if args.min_reps is not None: cmd += ["--min-reps", str(args.min_reps)]
+    if args.review_only: cmd.append("--review-only")
+    if not args.include_new: cmd.append("--exclude-new")
+    else: cmd.append("--include-new")
+    if args.limit: cmd += ["--limit", str(args.limit)]
+    if args.use_notes: cmd.append("--use-notes")
+    if args.debug: cmd.append("--debug")
+    run(cmd)
+
+
+def cmd_sentences_build(args):
+    script = BASE / "scripts" / "sentences_build.py"
+    cmd = [sys.executable, str(script), "--deck", args.deck, "--model", args.model]
+    if args.limit: cmd += ["--limit", str(args.limit)]
+    if args.update_existing: cmd.append("--update-existing")
+    if args.debug: cmd.append("--debug")
+    run(cmd)
+
+# ---------------- Parser ----------------
 
 def main():
     ap = argparse.ArgumentParser(description="Unified CLI for Spanish→Anki workflow")
@@ -115,7 +143,7 @@ def main():
     p2 = sub.add_parser("enrich", help="Fill IPA column using Wiktionary/phonemizer/epitran")
     p2.set_defaults(func=cmd_enrich)
 
-    p3 = sub.add_parser("build", help="Build/update Anki cards")
+    p3 = sub.add_parser("build", help="Build/update Picture Word cards")
     p3.add_argument("--only-missing", action="store_true")
     p3.add_argument("--regen-audio", action="store_true")
     p3.add_argument("--recalc-ipa", action="store_true")
@@ -129,6 +157,30 @@ def main():
 
     p4 = sub.add_parser("audit", help="Report what’s missing in CSV/media")
     p4.set_defaults(func=cmd_audit)
+
+    # Sentences group
+    ps = sub.add_parser("sentences", help="Sentences helpers (known/build)")
+    sub2 = ps.add_subparsers(dest="scmd", required=True)
+
+    pk = sub2.add_parser("known", help="Export known words to data/known_words.json")
+    pk.add_argument("--deck", default="My Spanish Deck::625")
+    pk.add_argument("--model", default="*")
+    pk.add_argument("--min-ivl", type=int, default=0)
+    pk.add_argument("--min-reps", type=int, default=1)
+    pk.add_argument("--review-only", action="store_true")
+    pk.add_argument("--include-new", action="store_true")
+    pk.add_argument("--limit", type=int, default=None)
+    pk.add_argument("--use-notes", action="store_true")
+    pk.add_argument("--debug", action="store_true")
+    pk.set_defaults(func=cmd_sentences_known)
+
+    pb = sub2.add_parser("build", help="Build/Upsert Cloze notes from data/sentences_generated.json")
+    pb.add_argument("--deck", default="My Spanish Deck::Sentences")
+    pb.add_argument("--model", default="Cloze")
+    pb.add_argument("--limit", type=int, default=None)
+    pb.add_argument("--update-existing", action="store_true")
+    pb.add_argument("--debug", action="store_true")
+    pb.set_defaults(func=cmd_sentences_build)
 
     args = ap.parse_args()
     args.func(args)

@@ -1,0 +1,22 @@
+[
+  {"text":"El perro es negro.","clozes":["perro","negro"],"english_gloss":"The dog is black","tags":["present","ser","colors"]},
+  {"text":"La doctora ve sangre.","clozes":["doctora","sangre"],"english_gloss":"The doctor sees blood","tags":["present","medical"]},
+  {"text":"El reloj es azul.","clozes":["reloj","azul"],"english_gloss":"The watch is blue","tags":["present","ser","colors"]},
+  {"text":"Quiero limpiar la arcilla.","clozes":["limpiar","arcilla"],"english_gloss":"I want to clean the clay","tags":["infinitive","present"]},
+  {"text":"El hombre está ciego.","clozes":["ciego"],"english_gloss":"The man is blind","tags":["present","estar","health"]},
+  {"text":"La casa está limpia.","clozes":["limpio"],"english_gloss":"The house is clean","tags":["present","estar","adjectives"]},
+  {"text":"Es un adulto.","clozes":["adulto"],"english_gloss":"He is an adult","tags":["present","ser"]},
+  {"text":"La enfermedad es grave.","clozes":["enfermedad"],"english_gloss":"The illness is serious","tags":["present","ser","medical"]},
+  {"text":"Llego tarde hoy.","clozes":["tarde"],"english_gloss":"I arrive late today","tags":["present","time"]},
+  {"text":"El perro tiene sangre.","clozes":["perro","sangre"],"english_gloss":"The dog has blood","tags":["present","tener"]},
+  {"text":"Necesito un dólar.","clozes":["dólar"],"english_gloss":"I need a dollar","tags":["present","money"]},
+  {"text":"La doctora llega tarde.","clozes":["doctora","tarde"],"english_gloss":"The doctor arrives late","tags":["present","time"]},
+  {"text":"El adjetivo es azul.","clozes":["adjetivo","azul"],"english_gloss":"The adjective is blue","tags":["present","ser","grammar"]},
+  {"text":"Veo arcilla negra.","clozes":["arcilla","negro"],"english_gloss":"I see black clay","tags":["present","colors"]},
+  {"text":"El adulto está ciego.","clozes":["adulto","ciego"],"english_gloss":"The adult is blind","tags":["present","estar","health"]},
+  {"text":"Quiero limpiar el reloj.","clozes":["limpiar","reloj"],"english_gloss":"I want to clean the watch","tags":["infinitive","present"]},
+  {"text":"Mi perro está limpio.","clozes":["perro","limpio"],"english_gloss":"My dog is clean","tags":["present","estar"]},
+  {"text":"La enfermedad es grave tarde.","clozes":["enfermedad","tarde"],"english_gloss":"The illness is serious late","tags":["present","medical"]},
+  {"text":"Tengo un dólar azul.","clozes":["dólar","azul"],"english_gloss":"I have a blue dollar","tags":["present","tener","money"]},
+  {"text":"La sangre está limpia.","clozes":["sangre","limpio"],"english_gloss":"The blood is clean","tags":["present","estar","medical"]}
+]
