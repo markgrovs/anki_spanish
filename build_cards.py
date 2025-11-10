@@ -5,13 +5,22 @@ Build or update Fluent Forever-style Picture Word cards for Anki.
 Key features:
 - Reentrant: add new notes or update existing ones.
 - Auto-generate audio (macOS say) with padding for clarity.
-- Overlay gender badge on image; also writes Gender field.
+- Gender badge overlay (via HTML) and dedicated Gender field.
 - Fills missing Gender and IPA automatically (and writes back to CSV).
-- NEW: IPA backends: Wiktionary -> phonemizer (espeak) -> epitran (fallback).
-- NEW: Friendly CLI with flags, graceful Ctrl+C handling, and summary.
+- POS + Article support:
+    - POS written to notes from CSV when present
+    - Article computed only for nouns with known Gender: el/la (with euphony for some feminine a-/ha- nouns)
+- IPA backends: Wiktionary -> phonemizer (espeak) -> epitran (fallback).
+- Friendly CLI with flags, graceful Ctrl+C handling, and summary.
+- NEW: Multi-image support for a word:
+    - animal.jpg (single)
+    - animal-1.jpg, animal-2.jpg, ... -> collage
+    - images/animal/ (folder) -> collage
+  Collage is generated (if Pillow is installed) and used as the Image. If Pillow is missing, falls back to the first image.
+- NEW: --recalc-pos to force recomputing Article/POS push even if nothing is "missing".
 
 Requires Anki + AnkiConnect running, and ffmpeg installed.
-Optional: requests (for Wiktionary IPA), phonemizer+espeak, epitran.
+Optional: requests (Wiktionary), phonemizer+espeak, epitran, Pillow (for collages).
 """
 import os
 import sys
@@ -29,7 +38,7 @@ from urllib.parse import quote
 # Optional deps
 try:
     import requests  # type: ignore
-except Exception:  # pragma: no cover
+except Exception:
     requests = None
 
 try:
@@ -42,18 +51,23 @@ try:
 except Exception:
     epitran = None
 
+try:
+    from PIL import Image  # type: ignore
+except Exception:
+    Image = None
+
 # ---------------------- Config (defaults; can be overridden by CLI) ---------
 BASE_DIR = Path(__file__).resolve().parent
-CSV_PATH = BASE_DIR / "625_structured.es.csv"  # must include at least 'spanish' column
+CSV_PATH = BASE_DIR / "625_structured.es.csv"
 DECK_NAME = "My Spanish Deck::625"
-MODEL_NAME = "Picture Word"  # expected fields: Word, Image, Audio, Notes, IPA, Gender
+MODEL_NAME = "Picture Word"  # fields expected: Word, Image, Audio, Notes, IPA, Gender, POS, Article
 
-VOICE = "Paulina"            # Preferred Spanish voice name (auto-fallback will try others)
-SPEAKING_RATE = 150          # say -r value (~140–160 natural for single words)
+VOICE = "Paulina"
+SPEAKING_RATE = 150
 
 IMAGES_DIR = BASE_DIR / "media" / "images"
 AUDIO_DIR = BASE_DIR / "media" / "audio"
-GENDER_DIR = BASE_DIR / "media" / "gender"  # put male.png / female.png (or .jpg/.jpeg/.webp)
+GENDER_DIR = BASE_DIR / "media" / "gender"
 
 ANKI = "http://127.0.0.1:8765"
 
@@ -63,6 +77,7 @@ DRY_RUN = False
 ONLY_MISSING = False
 LIMIT = None
 RECALC_IPA = False
+RECALC_POS = False
 DISABLE_WIKT = False
 DISABLE_PHON = False
 DISABLE_EPIT = False
@@ -77,13 +92,10 @@ def warn(msg: str):
 # ---------------------- Anki helpers ---------------------------------------
 def anki(action, **params):
     if DRY_RUN:
-        # Simulate result structures for dry run
-        if action == "findNotes":
+        if action in ("findNotes", "notesInfo", "modelFieldNames"):
             return []
         if action in ("storeMediaFile", "updateNoteFields", "addTags", "addNote"):
             return True
-        if action == "modelFieldNames":
-            return ["Word", "Image", "Audio", "Notes", "IPA", "Gender"]
         return None
     if requests is None:
         raise RuntimeError("requests module not installed; needed for AnkiConnect HTTP calls")
@@ -94,7 +106,7 @@ def anki(action, **params):
         raise RuntimeError(f"Anki error: {data['error']}")
     return data["result"]
 
-EXPECTED_FIELDS = ["Word", "Image", "Audio", "Notes", "IPA", "Gender"]
+EXPECTED_FIELDS = ["Word", "Image", "Audio", "Notes", "IPA", "Gender", "POS", "Article"]
 
 def verify_model_fields():
     try:
@@ -140,6 +152,10 @@ GENDER_EX = {
     "idioma": "m", "tema": "m", "poema": "m", "programa": "m",
     "sistema": "m", "problema": "m",
 }
+# Common feminine nouns with "el" by euphony in singular
+FEM_EL_WHITELIST = {
+    "agua", "aguila", "águila", "arma", "alma", "aula", "hacha", "hada", "hambre", "area", "área", "ala",
+}
 
 def detect_gender(word: str, pos: str = "") -> str:
     head = (word or "").strip().split()[0].lower()
@@ -170,12 +186,8 @@ def find_gender_badge(gender: str) -> Path | None:
 
 # ---------------------- Voice selection & TTS -------------------------------
 PREFERRED_VOICES = [
-    VOICE,          # user preference
-    "Paulina",     # es-MX
-    "Luciana",     # es-AR
-    "Diego",       # es-AR
-    "Monica",      # es-ES
-    "Jorge",       # es-ES
+    VOICE,
+    "Paulina", "Luciana", "Diego", "Monica", "Jorge",
 ]
 _PICKED_VOICE = None
 
@@ -204,7 +216,6 @@ def pick_working_voice() -> str:
 
 
 def tts_to_mp3(text: str, out_mp3: Path):
-    """Generate MP3 via CLI 'say' to AIFF, then ffmpeg to MP3 with padding."""
     aiff = out_mp3.with_suffix(".aiff")
     voice = pick_working_voice()
     cmd = ["say", "-r", str(SPEAKING_RATE), text, "-o", str(aiff)]
@@ -309,32 +320,95 @@ def write_rows(path: Path, rows):
         for r in rows:
             w.writerow({k: r.get(k, "") for k in FIELDNAMES})
 
-# ---------------------- Image / audio discovery ----------------------------
+# ---------------------- Multi-image and collage -----------------------------
+IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 
-def ensure_audio(spanish: str) -> Path:
-    base = slugify(spanish)
-    mp3 = AUDIO_DIR / f"{base}.mp3"
-    if FORCE_REGENERATE_AUDIO and mp3.exists() and not DRY_RUN:
-        try: mp3.unlink()
-        except Exception: pass
-    if not mp3.exists() and not DRY_RUN:
-        info(f"Generating audio: {spanish}")
-        tts_to_mp3(spanish, mp3)
-    return mp3
 
+def collect_image_sources(slug: str) -> list[Path]:
+    sources = []
+    # numbered files
+    for ext in IMAGE_EXTS:
+        p = IMAGES_DIR / f"{slug}{ext}"
+        if p.exists():
+            sources.append(p)
+    for i in range(1, 10):
+        for ext in IMAGE_EXTS:
+            p = IMAGES_DIR / f"{slug}-{i}{ext}"
+            if p.exists():
+                sources.append(p)
+    # folder of images
+    folder = IMAGES_DIR / slug
+    if folder.exists() and folder.is_dir():
+        for p in sorted(folder.iterdir()):
+            if p.suffix.lower() in IMAGE_EXTS and p.is_file():
+                sources.append(p)
+    # dedupe while preserving order
+    uniq = []
+    seen = set()
+    for p in sources:
+        if p in seen:
+            continue
+        seen.add(p)
+        uniq.append(p)
+    return uniq
+
+
+def create_collage(images: list[Path], out_path: Path, max_cells: int = 4) -> Path | None:
+    if Image is None:
+        warn("Pillow is not installed; cannot create collages. Install with: pip install Pillow")
+        return None
+    if not images:
+        return None
+    imgs = images[:max_cells]
+    n = len(imgs)
+    # layout
+    if n == 1:
+        return imgs[0]
+    cols = 2 if n >= 2 else 1
+    rows = 2 if n >= 3 else 1
+    tile_w, tile_h = 600, 450  # 4:3 tiles look good
+    from math import ceil
+    if n > 4:
+        cols = 3
+        rows = ceil(n / cols)
+        tile_w, tile_h = 500, 375
+    W, H = cols * tile_w, rows * tile_h
+    canvas = Image.new("RGB", (W, H), (0, 0, 0))
+    idx = 0
+    for r in range(rows):
+        for c in range(cols):
+            if idx >= n:
+                break
+            im = Image.open(imgs[idx]).convert("RGB")
+            im.thumbnail((tile_w, tile_h))
+            # center within tile
+            x0 = c * tile_w + (tile_w - im.width) // 2
+            y0 = r * tile_h + (tile_h - im.height) // 2
+            canvas.paste(im, (x0, y0))
+            idx += 1
+    canvas.save(out_path)
+    return out_path
+
+# ---------------------- Image discovery ------------------------------------
 
 def find_base_image(spanish: str) -> Path | None:
-    base = slugify(spanish)
-    for ext in (".jpg", ".jpeg", ".png", ".webp"):
-        p = IMAGES_DIR / f"{base}{ext}"
-        if p.exists():
-            return p
-    return None
+    slug = slugify(spanish)
+    sources = collect_image_sources(slug)
+    if not sources:
+        return None
+    if len(sources) == 1:
+        return sources[0]
+    # create or reuse collage
+    collage = IMAGES_DIR / f"{slug}_collage.jpg"
+    if collage.exists():
+        return collage
+    out = create_collage(sources, collage)
+    return out or sources[0]
 
 
 def ensure_base_image(spanish: str) -> Path | None:
     img = find_base_image(spanish)
-    if img or DRY_RUN:
+    if img:
         return img
     if not OPEN_IMAGE_SEARCH_IF_MISSING:
         warn(f"No base image for '{spanish}'. Skipping.")
@@ -343,7 +417,7 @@ def ensure_base_image(spanish: str) -> Path | None:
     info(f"No base image for '{spanish}'. Opening image search:\n  {url}")
     webbrowser.open_new_tab(url)
     target_stem = slugify(spanish)
-    info(f"Save an image to {IMAGES_DIR}/{target_stem}.jpg (or .png/.jpeg/.webp). Waiting up to 3 minutes…")
+    info(f"Save images as {IMAGES_DIR}/{target_stem}.jpg or {target_stem}-1.jpg, {target_stem}-2.jpg, ... or into folder {IMAGES_DIR}/{target_stem}/. Waiting up to 3 minutes…")
     deadline = time.time() + 180
     while time.time() < deadline:
         img = find_base_image(spanish)
@@ -353,9 +427,10 @@ def ensure_base_image(spanish: str) -> Path | None:
     warn(f"Skipped: no image saved for '{spanish}'.")
     return None
 
-# ---------------------- Compose card fields --------------------------------
+# ---------------------- Image HTML composition (gender badge overlay) -------
 
 def compose_image_html(main_image_name: str, gender: str | None) -> str:
+    """Return HTML that shows the main image and overlays a gender badge if provided."""
     badge_path = find_gender_badge(gender or "")
     if not badge_path:
         return f'<img src="{main_image_name}">'
@@ -367,74 +442,49 @@ def compose_image_html(main_image_name: str, gender: str | None) -> str:
         "</div>"
     )
 
+# ---------------------- Articles (display + audio) --------------------------
 
-def get_existing_note_id_by_word(word: str) -> int | None:
-    ids = anki("findNotes", query=f'note:"{MODEL_NAME}" deck:"{DECK_NAME}" "{word}"')
-    if not ids:
-        return None
-    infos = anki("notesInfo", notes=ids)
-    for info in infos:
-        fields = info.get("fields", {})
-        w = fields.get("Word", {}).get("value", "").strip()
-        if w == word:
-            return info.get("noteId")
-    return None
+def compute_article(spanish: str, gender: str, pos: str) -> str:
+    """Return el/la for display & audio when appropriate.
+    Uses euphonic 'el' for some feminine nouns starting with stressed a-/ha-
+    via a conservative whitelist.
+    """
+    if pos != "noun" or gender not in ("m", "f"):
+        return ""
+    if gender == "m":
+        return "el"
+    # feminine
+    base = unicodedata.normalize("NFD", spanish).lower()
+    base = "".join(ch for ch in base if unicodedata.category(ch) != "Mn")
+    if base in FEM_EL_WHITELIST:
+        return "el"
+    return "la"
 
-
-def ensure_badges_uploaded():
-    for name in ("male", "female"):
-        for ext in (".png", ".jpg", ".jpeg", ".webp"):
-            p = GENDER_DIR / f"{name}{ext}"
-            if p.exists():
-                store_media(p.name, p)
-                break
-
-# ---------------------- CLI -------------------------------------------------
-
-def parse_args():
-    p = argparse.ArgumentParser(description="Build/Update Anki Picture Word cards with audio, IPA, and gender")
-    p.add_argument("--deck", default=DECK_NAME, help="Deck name (can include :: subdecks)")
-    p.add_argument("--model", default=MODEL_NAME, help="Model / Note Type name")
-    p.add_argument("--csv", default=str(CSV_PATH), help="Path to CSV source")
-    p.add_argument("--voice", default=VOICE, help="Preferred macOS TTS voice name")
-    p.add_argument("--rate", type=int, default=SPEAKING_RATE, help="Speaking rate for 'say'")
-    p.add_argument("--only-missing", action="store_true", help="Process only rows missing image/audio/ipa/gender")
-    p.add_argument("--regen-audio", action="store_true", help="Force regenerate audio MP3s")
-    p.add_argument("--recalc-ipa", action="store_true", help="Recompute IPA even if present (overwrite)")
-    p.add_argument("--no-open-image-search", action="store_true", help="Do not open browser when image missing")
-    p.add_argument("--limit", type=int, default=None, help="Process at most N rows")
-    p.add_argument("--dry-run", action="store_true", help="No writes to Anki or files")
-    p.add_argument("--check-voices", action="store_true", help="Print available Spanish voices and exit")
-    p.add_argument("--no-wikt", action="store_true", help="Disable Wiktionary for IPA")
-    p.add_argument("--no-phon", action="store_true", help="Disable phonemizer for IPA")
-    p.add_argument("--no-epit", action="store_true", help="Disable epitran for IPA")
-    return p.parse_args()
-
-
-def list_spanish_voices():
-    try:
-        out = subprocess.check_output(["say", "-v", "?"], text=True)
-        for line in out.splitlines():
-            if any(tok in line.lower() for tok in ["spanish", "es-", "mexican", "argentine"]):
-                print(line)
-    except Exception as e:
-        warn(f"Could not list voices: {e}")
-
-# ---------------------- Main -----------------------------------------------
-STOP = False
-
-def handle_sigint(signum, frame):
-    global STOP
-    STOP = True
-    info("\nStopping after current item… (Ctrl+C received)")
-
+# ---------------------- Main build loop ------------------------------------
 
 def main():
     global DECK_NAME, MODEL_NAME, CSV_PATH, VOICE, SPEAKING_RATE
     global OPEN_IMAGE_SEARCH_IF_MISSING, FORCE_REGENERATE_AUDIO, DRY_RUN, ONLY_MISSING, LIMIT
-    global RECALC_IPA, DISABLE_WIKT, DISABLE_PHON, DISABLE_EPIT
+    global RECALC_IPA, RECALC_POS, DISABLE_WIKT, DISABLE_PHON, DISABLE_EPIT
 
-    args = parse_args()
+    ap = argparse.ArgumentParser(description="Build/Update Anki Picture Word cards with audio, IPA, Gender, POS, and collages")
+    ap.add_argument("--deck", default=DECK_NAME)
+    ap.add_argument("--model", default=MODEL_NAME)
+    ap.add_argument("--csv", default=str(CSV_PATH))
+    ap.add_argument("--voice", default=VOICE)
+    ap.add_argument("--rate", type=int, default=SPEAKING_RATE)
+    ap.add_argument("--only-missing", action="store_true")
+    ap.add_argument("--regen-audio", action="store_true")
+    ap.add_argument("--recalc-ipa", action="store_true")
+    ap.add_argument("--recalc-pos", action="store_true", help="Force recompute Article for nouns and push POS even if nothing missing")
+    ap.add_argument("--no-open-image-search", action="store_true")
+    ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--no-wikt", action="store_true")
+    ap.add_argument("--no-phon", action="store_true")
+    ap.add_argument("--no-epit", action="store_true")
+    args = ap.parse_args()
+
     DECK_NAME = args.deck
     MODEL_NAME = args.model
     CSV_PATH = Path(args.csv)
@@ -443,6 +493,7 @@ def main():
     ONLY_MISSING = args.only_missing
     FORCE_REGENERATE_AUDIO = args.regen_audio
     RECALC_IPA = args.recalc_ipa
+    RECALC_POS = args.recalc_pos
     OPEN_IMAGE_SEARCH_IF_MISSING = not args.no_open_image_search
     DRY_RUN = args.dry_run
     DISABLE_WIKT = args.no_wikt
@@ -452,14 +503,7 @@ def main():
         global LIMIT
         LIMIT = args.limit
 
-    if args.check_voices:
-        list_spanish_voices()
-        return
-
     ensure_dirs()
-
-    # Graceful Ctrl+C
-    signal.signal(signal.SIGINT, handle_sigint)
 
     if not CSV_PATH.exists():
         warn(f"CSV not found: {CSV_PATH}")
@@ -475,25 +519,25 @@ def main():
     info(f"Processing {total} rows… (Keep Anki open)")
 
     processed = 0
-    for row in rows:
-        if STOP:
+    for r in rows:
+        if LIMIT and processed >= LIMIT:
             break
-        spanish = (row.get("spanish") or "").strip()
+        spanish = (r.get("spanish") or "").strip()
         if not spanish:
             skipped += 1
             continue
 
-        english = (row.get("english") or "").strip()
-        sense = (row.get("sense") or "").strip()
-        pos = (row.get("pos") or "").strip()
-        gender = (row.get("gender") or "").strip()
-        ipa_text = (row.get("ipa") or "").strip()
+        english = (r.get("english") or "").strip()
+        sense = (r.get("sense") or "").strip()
+        pos = (r.get("pos") or "").strip().lower()
+        gender = (r.get("gender") or "").strip().lower()
+        ipa_text = (r.get("ipa") or "").strip()
 
-        # Enrich missing gender/IPA on the fly (or recompute IPA if requested)
-        if not gender:
+        # Enrich missing gender/IPA
+        if not gender and pos == "noun":
             g = detect_gender(spanish, pos)
             if g:
-                row["gender"] = g
+                r["gender"] = g
                 gender = g
                 enriched_gender += 1
         if RECALC_IPA or not ipa_text:
@@ -505,20 +549,30 @@ def main():
             if not ip and not DISABLE_EPIT:
                 ip = ipa_from_epitran(spanish)
             if ip:
-                row["ipa"] = ip
+                r["ipa"] = ip
                 ipa_text = ip
                 enriched_ipa += 1
 
-        # Skip rows that already have everything when ONLY_MISSING
+        # Compute Article (for display and audio) only for nouns with gender m/f
+        article = compute_article(spanish, gender, pos)
+
+        # Decide if we should process this row
         needs = []
         img_path = find_base_image(spanish)
-        if img_path is None: needs.append("image")
-        base = slugify(spanish)
+        if img_path is None:
+            needs.append("image")
+        # Use article+word for audio text if applicable
+        audio_text = f"{article} {spanish}".strip() if article else spanish
+        base = slugify(audio_text)
         mp3_path = AUDIO_DIR / f"{base}.mp3"
-        if not mp3_path.exists(): needs.append("audio")
-        if not gender: needs.append("gender")
-        if not ipa_text: needs.append("ipa")
-        if ONLY_MISSING and not needs:
+        if not mp3_path.exists():
+            needs.append("audio")
+        if pos == "noun" and not gender:
+            needs.append("gender")
+        if not ipa_text:
+            needs.append("ipa")
+        # Process if something is missing OR we’re forcing POS/article recompute
+        if ONLY_MISSING and not needs and not RECALC_POS and not RECALC_IPA:
             skipped += 1
             continue
 
@@ -529,23 +583,26 @@ def main():
                 image_missing += 1
                 continue
 
-        # Ensure audio
+        # Ensure/regen audio
         try:
-            mp3_path = ensure_audio(spanish)
+            if FORCE_REGENERATE_AUDIO and mp3_path.exists():
+                try: mp3_path.unlink()
+                except Exception: pass
+            if not mp3_path.exists():
+                info(f"Generating audio: {audio_text}")
+                tts_to_mp3(audio_text, mp3_path)
         except Exception as e:
             warn(f"Audio generation failed for '{spanish}': {e}")
             audio_failed += 1
             continue
 
-        # Upload media (base + badges)
+        # Upload media
         store_media(img_path.name, img_path)
         store_media(mp3_path.name, mp3_path)
-        ensure_badges_uploaded()
 
         # Compose fields
         image_html = compose_image_html(img_path.name, gender)
         audio_field = f"[sound:{mp3_path.name}]"
-        # Keep Notes for reference (not displayed on card if your template omits it)
         notes_bits = []
         if english: notes_bits.append(f"EN: {english}")
         if sense: notes_bits.append(f"Sense: {sense}")
@@ -561,12 +618,25 @@ def main():
             "Notes": notes_text,
             "IPA": ipa_text,
             "Gender": gender,
+            "POS": pos,
+            "Article": article,
         }
 
-        existing_id = get_existing_note_id_by_word(spanish)
+        # Add or update note
+        # Find by exact Word match
+        ids = anki("findNotes", query=f'deck:"{DECK_NAME}" note:"{MODEL_NAME}" "{spanish}"')
+        existing_id = None
+        if ids:
+            infos = anki("notesInfo", notes=ids)
+            for ninfo in infos:
+                w = (ninfo.get("fields", {}).get("Word", {}).get("value") or "").strip()
+                if w == spanish:
+                    existing_id = ninfo.get("noteId")
+                    break
+
         tags = ["625:auto"]
-        if gender: tags.append(f"gender:{gender.lower()}")
-        if pos: tags.append(f"pos:{pos.lower()}")
+        if gender: tags.append(f"gender:{gender}")
+        if pos: tags.append(f"pos:{pos}")
 
         if existing_id:
             anki("updateNoteFields", note={"id": existing_id, "fields": fields})
@@ -587,16 +657,10 @@ def main():
             info(f"Added: {spanish}")
 
         processed += 1
-        if LIMIT and processed >= LIMIT:
-            break
 
-    # Write back enriched CSV (only if changes in ipa/gender)
-    try:
-        write_rows(CSV_PATH, rows)
-    except Exception as e:
-        warn(f"Could not write back CSV: {e}")
+    # Write back CSV (including any enriched POS/Gender/IPA changes)
+    write_rows(CSV_PATH, rows)
 
-    # Summary
     print("\nSummary:")
     print(f"  Added:    {added}")
     print(f"  Updated:  {updated}")

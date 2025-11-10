@@ -1,22 +1,17 @@
 #!/usr/bin/env python3
 """
 Unified CLI for your Spanish→Anki workflow.
+Now includes POS/Gender enrichment integration for Picture Word notes.
 
 Subcommands:
   pick                Interactive Spanish selection (translate_pick.py)
   enrich              Fill missing IPA in CSV (enrich_ipa.py)
-  build               Build/update Picture Word cards (build_cards.py)
+  enrich-pos          Fill POS in CSV (Wiktionary + hints + optional verb guess) and optionally push
+  enrich-gender       Fill Gender for nouns in CSV (Wiktionary) and optionally push
+  build               Build/update Picture Word cards (POS/Article aware; collages)
   audit               Report missing counts (image/audio/ipa/gender)
   sentences known     Export known words (flexible Anki filters)
   sentences build     Build/Upsert Cloze sentence notes from JSON
-
-Usage examples:
-  python anki_flow.py pick
-  python anki_flow.py enrich
-  python anki_flow.py build --only-missing --limit 25
-  python anki_flow.py audit
-  python anki_flow.py sentences known --deck "My Spanish Deck::625" --model "*" --review-only --min-ivl 3 --use-notes --debug
-  python anki_flow.py sentences build --deck "My Spanish Deck::Sentences" --model "Cloze" --limit 20 --update-existing --debug
 """
 import argparse
 import subprocess
@@ -53,6 +48,26 @@ def cmd_enrich(args):
     run([sys.executable, str(script)])
 
 
+def cmd_enrich_pos(args):
+    script = BASE / "scripts" / "enrich_pos_gender.py"
+    cmd = [sys.executable, str(script), "--pos-only"]
+    if args.hints_pos: cmd += ["--hints-pos", args.hints_pos]
+    if args.guess_verbs: cmd.append("--guess-verbs")
+    if args.push: cmd.append("--push")
+    if args.deck: cmd += ["--deck", args.deck]
+    if args.model: cmd += ["--model", args.model]
+    run(cmd)
+
+
+def cmd_enrich_gender(args):
+    script = BASE / "scripts" / "enrich_pos_gender.py"
+    cmd = [sys.executable, str(script), "--gender-nouns"]
+    if args.push: cmd.append("--push")
+    if args.deck: cmd += ["--deck", args.deck]
+    if args.model: cmd += ["--model", args.model]
+    run(cmd)
+
+
 def cmd_build(args):
     script = BASE / "build_cards.py"
     if not script.exists():
@@ -62,6 +77,7 @@ def cmd_build(args):
     if args.only_missing: cmd.append("--only-missing")
     if args.regen_audio: cmd.append("--regen-audio")
     if args.recalc_ipa: cmd.append("--recalc-ipa")
+    if args.recalc_pos: cmd.append("--recalc-pos")
     if args.no_open_image_search: cmd.append("--no-open-image-search")
     if args.limit is not None: cmd += ["--limit", str(args.limit)]
     if args.deck: cmd += ["--deck", args.deck]
@@ -128,6 +144,7 @@ def cmd_sentences_build(args):
     cmd = [sys.executable, str(script), "--deck", args.deck, "--model", args.model]
     if args.limit: cmd += ["--limit", str(args.limit)]
     if args.update_existing: cmd.append("--update-existing")
+    if args.regen_audio: cmd.append("--regen-audio")
     if args.debug: cmd.append("--debug")
     run(cmd)
 
@@ -143,10 +160,25 @@ def main():
     p2 = sub.add_parser("enrich", help="Fill IPA column using Wiktionary/phonemizer/epitran")
     p2.set_defaults(func=cmd_enrich)
 
-    p3 = sub.add_parser("build", help="Build/update Picture Word cards")
+    ppos = sub.add_parser("enrich-pos", help="Fill POS in CSV (Wiktionary + hints + optional verb guess) and optionally push")
+    ppos.add_argument("--push", action="store_true")
+    ppos.add_argument("--hints-pos", default=None, help="Path to hints file (key: value, e.g., 'dólar: noun')")
+    ppos.add_argument("--guess-verbs", action="store_true")
+    ppos.add_argument("--deck", default="My Spanish Deck::625")
+    ppos.add_argument("--model", default="Picture Word")
+    ppos.set_defaults(func=cmd_enrich_pos)
+
+    pgen = sub.add_parser("enrich-gender", help="Fill Gender for nouns in CSV (Wiktionary) and optionally push")
+    pgen.add_argument("--push", action="store_true")
+    pgen.add_argument("--deck", default="My Spanish Deck::625")
+    pgen.add_argument("--model", default="Picture Word")
+    pgen.set_defaults(func=cmd_enrich_gender)
+
+    p3 = sub.add_parser("build", help="Build/update Picture Word cards (POS/Article aware; collages)")
     p3.add_argument("--only-missing", action="store_true")
     p3.add_argument("--regen-audio", action="store_true")
     p3.add_argument("--recalc-ipa", action="store_true")
+    p3.add_argument("--recalc-pos", action="store_true")
     p3.add_argument("--no-open-image-search", action="store_true")
     p3.add_argument("--limit", type=int, default=None)
     p3.add_argument("--deck", default=None)
@@ -179,6 +211,7 @@ def main():
     pb.add_argument("--model", default="Cloze")
     pb.add_argument("--limit", type=int, default=None)
     pb.add_argument("--update-existing", action="store_true")
+    pb.add_argument("--regen-audio", action="store_true")
     pb.add_argument("--debug", action="store_true")
     pb.set_defaults(func=cmd_sentences_build)
 
