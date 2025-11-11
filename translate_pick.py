@@ -14,20 +14,67 @@ HINTS_PATH = BASE_DIR / "hints_es.yaml"
 # Optional services
 LIBRE_URL = os.getenv("LIBRETRANSLATE_URL", "")  # e.g., https://libretranslate.com
 
-# Try to import optional offline translator (Argos Translate)
+# --- Argos Translate detection (robust across versions) ---------------------
 ARGOS_OK = False
-try:
-    import argostranslate.package as argos_package  # type: ignore
-    import argostranslate.translate as argos_translate  # type: ignore
-    for lang in argos_translate.get_installed_languages():
-        if getattr(lang, "code", "") == "en":
-            for t in getattr(lang, 'translations', []):
-                to_code = getattr(getattr(t, 'to_lang', None), 'code', None) or getattr(t, 'code', None)
-                if to_code == "es":
-                    ARGOS_OK = True
-                    break
-except Exception:
-    ARGOS_OK = False
+
+def _argos_detect_en_es() -> bool:
+    # Try API-based detection first
+    try:
+        import argostranslate.translate as argos_translate  # type: ignore
+        langs = getattr(argos_translate, "get_installed_languages", lambda: [])()
+        for lang in langs:
+            code = getattr(lang, "code", None) or getattr(lang, "lang_code", None)
+            if code in ("en", "eng"):
+                for t in getattr(lang, "translations", []) or []:
+                    # Try multiple ways to get destination code depending on Argos version
+                    to_code = None
+                    to_obj = (
+                        getattr(t, "to_lang", None)
+                        or getattr(t, "to_language", None)
+                        or getattr(t, "to", None)
+                        or getattr(t, "tgt_lang", None)
+                    )
+                    if to_obj is not None:
+                        to_code = getattr(to_obj, "code", None)
+                    # Direct code attributes on the translation object
+                    to_code = (
+                        to_code
+                        or getattr(t, "to_code", None)
+                        or getattr(t, "tgt_code", None)
+                        or getattr(t, "code", None)
+                    )
+                    if to_code in ("es", "spa"):
+                        return True
+    except Exception:
+        pass
+    # Fallback: check installed packages metadata
+    try:
+        import argostranslate.package as argos_package  # type: ignore
+        pkgs = getattr(argos_package, "get_installed_packages", lambda: [])()
+        for p in pkgs or []:
+            name = (getattr(p, "name", "") or getattr(p, "id", "") or "").lower()
+            ptype = (getattr(p, "package_type", "") or getattr(p, "type", "") or "").lower()
+            from_code = getattr(p, "from_code", None) or getattr(p, "fromCode", None)
+            to_code = getattr(p, "to_code", None) or getattr(p, "toCode", None)
+            if (
+                ("translate" in name or ptype == "translate")
+                and ((from_code == "en" and to_code == "es") or ("en_es" in name) or ("en-es" in name) or ("translate-en_es" in name))
+            ):
+                return True
+    except Exception:
+        pass
+    # Last-chance: try a tiny translation call and see if it returns something plausible
+    try:
+        import argostranslate.translate as argos_translate  # type: ignore
+        text = "test"
+        res = argos_translate.translate(text, "en", "es")
+        if isinstance(res, str) and res and res != text:
+            return True
+    except Exception:
+        pass
+    return False
+
+ARGOS_OK = _argos_detect_en_es()
 
 # Optional online translator (no API key; scrapes web)
 HAS_DEEP = False
@@ -149,6 +196,7 @@ def argos_translate_suggest(eng: str, sense: str, pos: str) -> list[str]:
         return []
     out = []
     try:
+        import argostranslate.translate as argos_translate  # type: ignore
         t1 = strip_article(argos_translate.translate(eng, "en", "es").strip())
         if t1:
             out.append(t1)
@@ -170,6 +218,7 @@ def deep_translate(eng: str) -> str:
     if not HAS_DEEP:
         return ""
     try:
+        from deep_translator import GoogleTranslator  # local import for robustness
         t = GoogleTranslator(source="en", target="es").translate(eng)
         return strip_article(t)
     except Exception:
@@ -205,7 +254,7 @@ def build_candidates(eng, sense, pos, hints_candidates, defaults_map):
 
     return default, ordered
 
-# ------------------------ Gender detection ---------------------------------
+# ------------------------ POS & Gender detection ---------------------------
 
 EXCEPTIONS = {
     "mano": "f", "día": "m", "mapa": "m", "planeta": "m",
@@ -215,6 +264,13 @@ EXCEPTIONS = {
 
 FEM_SUFFIXES = ("ción","sión","dad","tad","tud","umbre","ie")
 MASC_SUFFIXES = ("aje","or","án","ambre")
+
+WIKT_POS_HEADERS = (
+    ("=== sustantivo ===", "noun"),
+    ("=== verbo ===", "verb"),
+    ("=== adjetivo ===", "adjective"),
+)
+
 
 def heuristic_gender(word: str) -> str:
     w = word.lower()
@@ -261,12 +317,54 @@ def wiktionary_gender(word: str) -> str:
 
 def detect_gender_if_noun(spanish: str, pos: str) -> str:
     head = spanish.strip().split()[0]
+    if pos and pos != "noun":
+        return ""
     if head.endswith(("ar","er","ir")):
         return ""
     g = wiktionary_gender(head)
     if g:
         return g
     return heuristic_gender(head)
+
+
+def wiktionary_pos(spanish: str) -> list[str]:
+    """Return ['noun','verb','adjective'] candidates by scanning Spanish section headers."""
+    try:
+        import requests  # type: ignore
+        url = "https://es.wiktionary.org/w/api.php"
+        r = requests.get(url, params={"action":"parse","prop":"wikitext","page":spanish,"format":"json"}, timeout=8)
+        if not (r.ok and "parse" in r.json()):
+            return []
+        text = r.json()["parse"]["wikitext"]["*"].lower()
+        # Ensure we're under the Spanish section
+        if "== español ==" not in text and "{{lengua|es}}" not in text:
+            return []
+        found = []
+        for hdr, tag in WIKT_POS_HEADERS:
+            if hdr in text:
+                found.append(tag)
+        # Also check templates when headers are missing
+        if ("{{es-sustantivo" in text or "{{sustantivo|es" in text) and "noun" not in found:
+            found.append("noun")
+        if ("{{es-verbo" in text or "{{verbo|es" in text) and "verb" not in found:
+            found.append("verb")
+        if ("{{es-adjetivo" in text or "{{adjetivo|es" in text) and "adjective" not in found:
+            found.append("adjective")
+        return found
+    except Exception:
+        return []
+
+
+def guess_pos(spanish: str, sense: str) -> list[str]:
+    # Use CSV sense as a weak hint; otherwise minimal heuristics
+    sense_low = (sense or "").lower()
+    if sense_low in ("noun","verb","adjective"):
+        return [sense_low]
+    w = spanish.lower()
+    if w.endswith(("ar","er","ir")):
+        return ["verb"]
+    # default none; user will choose
+    return []
 
 # ------------------------ References ---------------------------------------
 
@@ -305,7 +403,9 @@ def main():
         sys.exit(1)
 
     if not ARGOS_OK:
-        print("[Info] Argos Translate en→es model not detected. Using other sources for candidates.")
+        print("[Info] Argos Translate en→es model not detected (or not visible to Python). Using other sources for candidates.")
+    else:
+        print("[Info] Argos Translate en→es is available.")
 
     hints_candidates, defaults_map = load_hints(HINTS_PATH)
     rows = read_rows(SRC_CSV)
@@ -385,10 +485,65 @@ def main():
                 ans = re.sub(r"\s\b(m|f)\b\s*$", "", ans, flags=re.IGNORECASE).strip()
             row["spanish"] = ans
 
-        if row["spanish"] and not row.get("gender"):
-            row["gender"] = detect_gender_if_noun(row["spanish"], pos)
-            if row["gender"]:
-                print(f"Detected gender: {row['gender']}")
+        # POS selection step (immediate, interactive)
+        if row["spanish"]:
+            pos_cands = []
+            wikt_pos = wiktionary_pos(row["spanish"])  # ['noun','verb','adjective']
+            if wikt_pos:
+                pos_cands.extend(wikt_pos)
+            for gpos in guess_pos(row["spanish"], sense):
+                if gpos not in pos_cands:
+                    pos_cands.append(gpos)
+            # Unique and order: noun, adjective, verb
+            order = {"noun":0, "adjective":1, "verb":2}
+            pos_cands = sorted(dict.fromkeys(pos_cands), key=lambda x: order.get(x, 99))
+            if not pos_cands:
+                pos_cands = [p for p in ("noun","adjective","verb")]
+            # Default: if current pos matches, keep; else use first candidate
+            pos_default = row.get("pos") or (pos_cands[0] if pos_cands else "")
+            print("POS candidates:")
+            for k, tag in enumerate(pos_cands, 1):
+                print(f"  {k}) {tag}")
+            print(f"Default POS: {pos_default or '(none)'}   (enter number/tag, or Enter to accept)")
+            ans_pos = input("pos> ").strip().lower()
+            if ans_pos.isdigit():
+                k = int(ans_pos)
+                if 1 <= k <= len(pos_cands):
+                    row["pos"] = pos_cands[k-1]
+            elif ans_pos in ("noun","verb","adjective"):
+                row["pos"] = ans_pos
+            elif not row.get("pos"):
+                row["pos"] = pos_default
+
+            # Gender selection step if POS is noun
+            if row.get("pos") == "noun":
+                g_cands = []
+                g_wikt = detect_gender_if_noun(row["spanish"], "noun")
+                if g_wikt:
+                    g_cands.append(g_wikt)
+                # Always include both as options, and 'none' for nouns that shouldn't carry an article (e.g., numbers)
+                for gopt in ("m","f","none"):
+                    if gopt not in g_cands:
+                        g_cands.append(gopt)
+                # Default: keep existing, else Wiktionary guess, else 'none'
+                g_default = row.get("gender") or (g_wikt or "none")
+                print("Gender candidates (for noun):")
+                label = {"m":"m (el)", "f":"f (la)", "none":"none (no article)"}
+                for k, g in enumerate(g_cands, 1):
+                    print(f"  {k}) {label.get(g, g)}")
+                print(f"Default Gender: {label.get(g_default,g_default) or '(none)'}   (enter number/m/f/none, or Enter to accept)")
+                ans_g = input("gender> ").strip().lower()
+                if ans_g.isdigit():
+                    k = int(ans_g)
+                    if 1 <= k <= len(g_cands):
+                        row["gender"] = g_cands[k-1]
+                elif ans_g in ("m","f","none","n"):
+                    row["gender"] = ("none" if ans_g == "n" else ans_g)
+                elif not row.get("gender"):
+                    row["gender"] = g_default
+            else:
+                # Not a noun, clear gender
+                row["gender"] = ""
 
         write_rows(OUT_CSV, rows)
         i += 1
