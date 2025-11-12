@@ -5,6 +5,7 @@ Flexible filters so you can dial how "known" the words must be.
 If --model "*" is used, no note-type filter is applied; we then accept any note that has a 'Word' field.
 Includes a --debug flag to print diagnostics.
 Optionally use findNotes/notesInfo with --use-notes to better match Browser queries.
+Graceful error if Anki is not running.
 """
 import json
 import sys
@@ -24,12 +25,16 @@ ANKI = "http://127.0.0.1:8765"
 
 
 def anki(action, **params):
-    r = requests.post(ANKI, json={"action": action, "version": 6, "params": params}, timeout=60)
-    r.raise_for_status()
-    data = r.json()
-    if data.get("error"):
-        raise RuntimeError(data["error"]) 
-    return data["result"]
+    try:
+        r = requests.post(ANKI, json={"action": action, "version": 6, "params": params}, timeout=8)
+        r.raise_for_status()
+        data = r.json()
+        if data.get("error"):
+            raise RuntimeError(data["error"]) 
+        return data["result"]
+    except requests.exceptions.RequestException:
+        # Fail gracefully if Anki (AnkiConnect) isn’t running
+        raise SystemExit("[error] Could not reach AnkiConnect at 127.0.0.1:8765. Please open Anki and ensure the AnkiConnect add-on is enabled.")
 
 
 def build_query(deck: str, model: str, exclude_new: bool, min_ivl: int, min_reps: int, review_only: bool):
