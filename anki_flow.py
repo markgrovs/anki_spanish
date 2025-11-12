@@ -10,7 +10,8 @@ Subcommands:
   enrich-gender       Fill Gender for nouns in CSV (Wiktionary) and optionally push
   build               Build/update Picture Word cards (POS/Article aware; collages)
   audit               Report missing counts (image/audio/ipa/gender)
-  sentences known     Export known words (flexible Anki filters)
+  known               Export known words (flexible Anki filters) -> data/known_words.json
+  sentences known     Export known words (same as 'known')
   sentences build     Build/Upsert Cloze sentence notes from JSON
 """
 import argparse
@@ -123,6 +124,22 @@ def cmd_audit(args):
     print(f"  Missing images:    {miss_img}")
     print(f"  Missing audio:     {miss_aud}")
 
+# ---------------- Known words (top-level) -----------------------------------
+
+def cmd_known(args):
+    # Proxy to the sentences known exporter
+    script = BASE / "scripts" / "sentences_get_known_words.py"
+    cmd = [sys.executable, str(script), "--deck", args.deck, "--model", args.model]
+    if args.min_ivl: cmd += ["--min-ivl", str(args.min_ivl)]
+    if args.min_reps is not None: cmd += ["--min-reps", str(args.min_reps)]
+    if args.review_only: cmd.append("--review-only")
+    if not args.include_new: cmd.append("--exclude-new")
+    else: cmd.append("--include-new")
+    if args.limit: cmd += ["--limit", str(args.limit)]
+    if args.use_notes: cmd.append("--use-notes")
+    if args.debug: cmd.append("--debug")
+    run(cmd)
+
 # ---------------- Sentences subcommands ----------------
 
 def cmd_sentences_known(args):
@@ -189,6 +206,19 @@ def main():
 
     p4 = sub.add_parser("audit", help="Report what’s missing in CSV/media")
     p4.set_defaults(func=cmd_audit)
+
+    # Top-level known words export (alias of sentences known)
+    pk0 = sub.add_parser("known", help="Export known words to data/known_words.json")
+    pk0.add_argument("--deck", default="My Spanish Deck::625")
+    pk0.add_argument("--model", default="*")
+    pk0.add_argument("--min-ivl", type=int, default=0)
+    pk0.add_argument("--min-reps", type=int, default=1)
+    pk0.add_argument("--review-only", action="store_true")
+    pk0.add_argument("--include-new", action="store_true")
+    pk0.add_argument("--limit", type=int, default=None)
+    pk0.add_argument("--use-notes", action="store_true")
+    pk0.add_argument("--debug", action="store_true")
+    pk0.set_defaults(func=cmd_known)
 
     # Sentences group
     ps = sub.add_parser("sentences", help="Sentences helpers (known/build)")

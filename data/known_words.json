@@ -1,5 +1,5 @@
 {
-  "count": 15,
+  "count": 46,
   "words": [
     "negro",
     "arcilla",
@@ -15,14 +15,45 @@
     "tarde",
     "azul",
     "reloj",
-    "dólar"
+    "dólar",
+    "aire",
+    "bote",
+    "cerca",
+    "puerta",
+    "aeropuerto",
+    "cuerpo",
+    "ropa",
+    "actor",
+    "punto",
+    "vivo",
+    "club",
+    "abajo",
+    "animal",
+    "libro",
+    "dibujar",
+    "departamento",
+    "botella",
+    "café",
+    "sueño",
+    "manzana",
+    "frío",
+    "abril",
+    "color",
+    "beber",
+    "chico",
+    "computadora",
+    "conducir",
+    "cerebro",
+    "droga",
+    "arte",
+    "pan"
   ],
   "query": "deck:\"My Spanish Deck::625\" is:review -is:new prop:ivl>=3 prop:reps>=1",
   "diag": {
-    "notes": 15,
+    "notes": 46,
     "notes_skipped_no_word": 0,
     "models": {
-      "Picture Word": 15
+      "Picture Word": 46
     }
   }
 }
