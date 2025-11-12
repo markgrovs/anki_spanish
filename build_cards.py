@@ -9,15 +9,11 @@ Key features:
 - Fills missing Gender and IPA automatically (and writes back to CSV).
 - POS + Article support:
     - POS written to notes from CSV when present
-    - Article computed only for nouns with known Gender: el/la (with euphony for some feminine a-/ha- nouns)
+    - Article computed only when appropriate (nouns with m/f), with euphony and number exceptions
 - IPA backends: Wiktionary -> phonemizer (espeak) -> epitran (fallback).
 - Friendly CLI with flags, graceful Ctrl+C handling, and summary.
-- NEW: Multi-image support for a word:
-    - animal.jpg (single)
-    - animal-1.jpg, animal-2.jpg, ... -> collage
-    - images/animal/ (folder) -> collage
-  Collage is generated (if Pillow is installed) and used as the Image. If Pillow is missing, falls back to the first image.
-- NEW: --recalc-pos to force recomputing Article/POS push even if nothing is "missing".
+- Multi-image support: numbered files or a folder -> collage (if Pillow present)
+- --recalc-pos to push POS/Article even when nothing else is missing
 
 Requires Anki + AnkiConnect running, and ffmpeg installed.
 Optional: requests (Wiktionary), phonemizer+espeak, epitran, Pillow (for collages).
@@ -156,6 +152,14 @@ GENDER_EX = {
 FEM_EL_WHITELIST = {
     "agua", "aguila", "águila", "arma", "alma", "aula", "hacha", "hada", "hambre", "area", "área", "ala",
 }
+
+# Spanish number words (no article in isolation)
+NUMBER_WORDS = {
+    "cero","uno","una","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez",
+    "once","doce","trece","catorce","quince","dieciseis","dieciséis","diecisiete","dieciocho","diecinueve","veinte",
+    "treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa","cien","ciento","mil"
+}
+
 
 def detect_gender(word: str, pos: str = "") -> str:
     head = (word or "").strip().split()[0].lower()
@@ -446,16 +450,30 @@ def compose_image_html(main_image_name: str, gender: str | None) -> str:
 
 def compute_article(spanish: str, gender: str, pos: str) -> str:
     """Return el/la for display & audio when appropriate.
-    Uses euphonic 'el' for some feminine nouns starting with stressed a-/ha-
-    via a conservative whitelist.
+    - Only for nouns with m/f
+    - No article for number words (e.g., ocho)
+    - Avoid if looks like a verb
+    - Euphony 'el' for some feminine a-/ha- nouns
     """
-    if pos != "noun" or gender not in ("m", "f"):
+    g = (gender or "").lower()
+    p = (pos or "").lower()
+    if g not in ("m", "f"):
         return ""
-    if gender == "m":
-        return "el"
-    # feminine
+    # If POS is clearly not noun, skip
+    if p and p != "noun":
+        return ""
+    # Normalize to ASCII for checks
     base = unicodedata.normalize("NFD", spanish).lower()
     base = "".join(ch for ch in base if unicodedata.category(ch) != "Mn")
+    # Skip numbers
+    if base in NUMBER_WORDS:
+        return ""
+    # Skip obvious verbs
+    if base.endswith(("ar","er","ir")):
+        return ""
+    if g == "m":
+        return "el"
+    # feminine with euphony
     if base in FEM_EL_WHITELIST:
         return "el"
     return "la"
@@ -553,7 +571,7 @@ def main():
                 ipa_text = ip
                 enriched_ipa += 1
 
-        # Compute Article (for display and audio) only for nouns with gender m/f
+        # Compute Article (for display and audio) only when appropriate
         article = compute_article(spanish, gender, pos)
 
         # Decide if we should process this row
@@ -623,7 +641,6 @@ def main():
         }
 
         # Add or update note
-        # Find by exact Word match
         ids = anki("findNotes", query=f'deck:"{DECK_NAME}" note:"{MODEL_NAME}" "{spanish}"')
         existing_id = None
         if ids:
