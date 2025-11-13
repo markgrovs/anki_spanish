@@ -1,5 +1,5 @@
 {
-  "count": 46,
+  "count": 55,
   "words": [
     "negro",
     "arcilla",
@@ -37,7 +37,9 @@
     "sueño",
     "manzana",
     "frío",
+    "vestido",
     "abril",
+    "caja",
     "color",
     "beber",
     "chico",
@@ -46,14 +48,21 @@
     "cerebro",
     "droga",
     "arte",
-    "pan"
+    "pan",
+    "contrato",
+    "seco",
+    "artista",
+    "cocinar",
+    "polvo",
+    "ataque",
+    "agosto"
   ],
   "query": "deck:\"My Spanish Deck::625\" is:review -is:new prop:ivl>=3 prop:reps>=1",
   "diag": {
-    "notes": 46,
+    "notes": 56,
     "notes_skipped_no_word": 0,
     "models": {
-      "Picture Word": 46
+      "Picture Word": 56
     }
   }
 }

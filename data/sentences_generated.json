@@ -1,22 +1,242 @@
 [
-  {"text":"El perro es negro.","clozes":["perro","negro"],"english_gloss":"The dog is black","tags":["present","ser","colors"]},
-  {"text":"La doctora ve sangre.","clozes":["doctora","sangre"],"english_gloss":"The doctor sees blood","tags":["present","medical"]},
-  {"text":"El reloj es azul.","clozes":["reloj","azul"],"english_gloss":"The watch is blue","tags":["present","ser","colors"]},
-  {"text":"Quiero limpiar la arcilla.","clozes":["limpiar","arcilla"],"english_gloss":"I want to clean the clay","tags":["infinitive","present"]},
-  {"text":"El hombre está ciego.","clozes":["ciego"],"english_gloss":"The man is blind","tags":["present","estar","health"]},
-  {"text":"La casa está limpia.","clozes":["limpio"],"english_gloss":"The house is clean","tags":["present","estar","adjectives"]},
-  {"text":"Es un adulto.","clozes":["adulto"],"english_gloss":"He is an adult","tags":["present","ser"]},
-  {"text":"La enfermedad es grave.","clozes":["enfermedad"],"english_gloss":"The illness is serious","tags":["present","ser","medical"]},
-  {"text":"Llego tarde hoy.","clozes":["tarde"],"english_gloss":"I arrive late today","tags":["present","time"]},
-  {"text":"El perro tiene sangre.","clozes":["perro","sangre"],"english_gloss":"The dog has blood","tags":["present","tener"]},
-  {"text":"Necesito un dólar.","clozes":["dólar"],"english_gloss":"I need a dollar","tags":["present","money"]},
-  {"text":"La doctora llega tarde.","clozes":["doctora","tarde"],"english_gloss":"The doctor arrives late","tags":["present","time"]},
-  {"text":"El adjetivo es azul.","clozes":["adjetivo","azul"],"english_gloss":"The adjective is blue","tags":["present","ser","grammar"]},
-  {"text":"Veo arcilla negra.","clozes":["arcilla","negro"],"english_gloss":"I see black clay","tags":["present","colors"]},
-  {"text":"El adulto está ciego.","clozes":["adulto","ciego"],"english_gloss":"The adult is blind","tags":["present","estar","health"]},
-  {"text":"Quiero limpiar el reloj.","clozes":["limpiar","reloj"],"english_gloss":"I want to clean the watch","tags":["infinitive","present"]},
-  {"text":"Mi perro está limpio.","clozes":["perro","limpio"],"english_gloss":"My dog is clean","tags":["present","estar"]},
-  {"text":"La enfermedad es grave tarde.","clozes":["enfermedad","tarde"],"english_gloss":"The illness is serious late","tags":["present","medical"]},
-  {"text":"Tengo un dólar azul.","clozes":["dólar","azul"],"english_gloss":"I have a blue dollar","tags":["present","tener","money"]},
-  {"text":"La sangre está limpia.","clozes":["sangre","limpio"],"english_gloss":"The blood is clean","tags":["present","estar","medical"]}
+  {
+    "english_gloss": "I drink coffee in the afternoon",
+    "tags": ["present", "daily_life", "time"],
+    "clozes": ["beber", "café", "tarde"],
+    "text": "Bebo café por la tarde."
+  },
+  {
+    "english_gloss": "The dog sleeps near the door",
+    "tags": ["present", "location"],
+    "clozes": ["perro", "cerca", "puerta"],
+    "text": "El perro duerme cerca de la puerta."
+  },
+  {
+    "english_gloss": "We need to clean the apartment",
+    "tags": ["infinitive", "present", "daily_life"],
+    "clozes": ["limpiar", "departamento"],
+    "text": "Necesitamos limpiar el departamento."
+  },
+  {
+    "english_gloss": "My body is cold",
+    "tags": ["present", "estar", "physical_state"],
+    "clozes": ["cuerpo", "frío"],
+    "text": "Mi cuerpo está frío."
+  },
+  {
+    "english_gloss": "The boy draws in his book",
+    "tags": ["present", "activities"],
+    "clozes": ["chico", "dibujar", "libro"],
+    "text": "El chico dibuja en su libro."
+  },
+  {
+    "english_gloss": "She wants to drink a bottle of water",
+    "tags": ["infinitive", "present", "daily_life"],
+    "clozes": ["beber", "botella"],
+    "text": "Ella quiere beber una botella de agua."
+  },
+  {
+    "english_gloss": "The air is clean at the airport",
+    "tags": ["present", "estar", "location"],
+    "clozes": ["aire", "limpio", "aeropuerto"],
+    "text": "El aire está limpio en el aeropuerto."
+  },
+  {
+    "english_gloss": "I have a dream about a blue boat",
+    "tags": ["present", "tener"],
+    "clozes": ["sueño", "bote", "azul"],
+    "text": "Tengo un sueño con un bote azul."
+  },
+  {
+    "english_gloss": "The actor wears black clothes",
+    "tags": ["present", "clothing"],
+    "clozes": ["actor", "ropa", "negro"],
+    "text": "El actor lleva ropa negra."
+  },
+  {
+    "english_gloss": "We cook bread in April",
+    "tags": ["present", "food", "time"],
+    "clozes": ["cocinar", "pan", "abril"],
+    "text": "Cocinamos pan en abril."
+  },
+  {
+    "english_gloss": "The doctor works downstairs in the club",
+    "tags": ["present", "location"],
+    "clozes": ["doctora", "abajo", "club"],
+    "text": "La doctora trabaja abajo en el club."
+  },
+  {
+    "english_gloss": "I see a black animal near the box",
+    "tags": ["present", "location"],
+    "clozes": ["animal", "negro", "cerca", "caja"],
+    "text": "Veo un animal negro cerca de la caja."
+  },
+  {
+    "english_gloss": "The artist drinks coffee and eats an apple",
+    "tags": ["present", "food", "daily_life"],
+    "clozes": ["artista", "beber", "café", "manzana"],
+    "text": "El artista bebe café y come una manzana."
+  },
+  {
+    "english_gloss": "My computer is on the table downstairs",
+    "tags": ["present", "estar", "location"],
+    "clozes": ["computadora", "abajo"],
+    "text": "Mi computadora está en la mesa abajo."
+  },
+  {
+    "english_gloss": "The dress is a beautiful color",
+    "tags": ["present", "ser", "clothing"],
+    "clozes": ["vestido", "color"],
+    "text": "El vestido es de un color bonito."
+  },
+  {
+    "english_gloss": "I want to drive to the airport in August",
+    "tags": ["infinitive", "present", "travel", "time"],
+    "clozes": ["conducir", "aeropuerto", "agosto"],
+    "text": "Quiero conducir al aeropuerto en agosto."
+  },
+  {
+    "english_gloss": "The boy has a dry book",
+    "tags": ["present", "tener"],
+    "clozes": ["chico", "libro", "seco"],
+    "text": "El chico tiene un libro seco."
+  },
+  {
+    "english_gloss": "We live near the airport",
+    "tags": ["present", "location"],
+    "clozes": ["vivo", "cerca", "aeropuerto"],
+    "text": "Vivimos cerca del aeropuerto."
+  },
+  {
+    "english_gloss": "The contract is in the box",
+    "tags": ["present", "estar", "location"],
+    "clozes": ["contrato", "caja"],
+    "text": "El contrato está en la caja."
+  },
+  {
+    "english_gloss": "I need to clean the dust from the clock",
+    "tags": ["infinitive", "present"],
+    "clozes": ["limpiar", "polvo", "reloj"],
+    "text": "Necesito limpiar el polvo del reloj."
+  },
+  {
+    "english_gloss": "The doctor sees the brain on the computer",
+    "tags": ["present", "medical", "technology"],
+    "clozes": ["doctora", "cerebro", "computadora"],
+    "text": "La doctora ve el cerebro en la computadora."
+  },
+  {
+    "english_gloss": "I drink cold coffee in the afternoon",
+    "tags": ["present", "food", "time"],
+    "clozes": ["beber", "café", "frío", "tarde"],
+    "text": "Bebo café frío por la tarde."
+  },
+  {
+    "english_gloss": "The black dog is alive",
+    "tags": ["present", "estar"],
+    "clozes": ["perro", "negro", "vivo"],
+    "text": "El perro negro está vivo."
+  },
+  {
+    "english_gloss": "She draws art with clay",
+    "tags": ["present", "activities"],
+    "clozes": ["dibujar", "arte", "arcilla"],
+    "text": "Ella dibuja arte con arcilla."
+  },
+  {
+    "english_gloss": "The actor has a disease",
+    "tags": ["present", "tener", "medical"],
+    "clozes": ["actor", "enfermedad"],
+    "text": "El actor tiene una enfermedad."
+  },
+  {
+    "english_gloss": "I want to cook bread and drink coffee",
+    "tags": ["infinitive", "present", "food"],
+    "clozes": ["cocinar", "pan", "beber", "café"],
+    "text": "Quiero cocinar pan y beber café."
+  },
+  {
+    "english_gloss": "The blue bottle is on the table",
+    "tags": ["present", "estar", "location"],
+    "clozes": ["botella", "azul"],
+    "text": "La botella azul está en la mesa."
+  },
+  {
+    "english_gloss": "The boy wears a blue dress",
+    "tags": ["present", "clothing"],
+    "clozes": ["chico", "vestido", "azul"],
+    "text": "El chico lleva un vestido azul."
+  },
+  {
+    "english_gloss": "I have a dream about the airport",
+    "tags": ["present", "tener"],
+    "clozes": ["sueño", "aeropuerto"],
+    "text": "Tengo un sueño sobre el aeropuerto."
+  },
+  {
+    "english_gloss": "The air is cold in April",
+    "tags": ["present", "estar", "weather", "time"],
+    "clozes": ["aire", "frío", "abril"],
+    "text": "El aire está frío en abril."
+  },
+  {
+    "english_gloss": "The artist lives in the apartment downstairs",
+    "tags": ["present", "location"],
+    "clozes": ["artista", "departamento", "abajo"],
+    "text": "El artista vive en el departamento de abajo."
+  },
+  {
+    "english_gloss": "I see a boat near the door",
+    "tags": ["present", "location"],
+    "clozes": ["bote", "cerca", "puerta"],
+    "text": "Veo un bote cerca de la puerta."
+  },
+  {
+    "english_gloss": "The adult drinks from a clean bottle",
+    "tags": ["present", "daily_life"],
+    "clozes": ["adulto", "beber", "botella", "limpio"],
+    "text": "El adulto bebe de una botella limpia."
+  },
+  {
+    "english_gloss": "My body needs clean air",
+    "tags": ["present", "health"],
+    "clozes": ["cuerpo", "aire", "limpio"],
+    "text": "Mi cuerpo necesita aire limpio."
+  },
+  {
+    "english_gloss": "The contract is dry and clean",
+    "tags": ["present", "estar"],
+    "clozes": ["contrato", "seco", "limpio"],
+    "text": "El contrato está seco y limpio."
+  },
+  {
+    "english_gloss": "I want to drive to the club in August",
+    "tags": ["infinitive", "present", "travel", "time"],
+    "clozes": ["conducir", "club", "agosto"],
+    "text": "Quiero conducir al club en agosto."
+  },
+  {
+    "english_gloss": "The boy eats an apple and drinks coffee",
+    "tags": ["present", "food"],
+    "clozes": ["chico", "manzana", "beber", "café"],
+    "text": "El chico come una manzana y bebe café."
+  },
+  {
+    "english_gloss": "The black clothes are in the box",
+    "tags": ["present", "estar", "location"],
+    "clozes": ["ropa", "negro", "caja"],
+    "text": "La ropa negra está en la caja."
+  },
+  {
+    "english_gloss": "I see the clock on the computer",
+    "tags": ["present", "technology"],
+    "clozes": ["reloj", "computadora"],
+    "text": "Veo el reloj en la computadora."
+  },
+  {
+    "english_gloss": "The doctor cleans the blood from the body",
+    "tags": ["present", "medical"],
+    "clozes": ["doctora", "limpiar", "sangre", "cuerpo"],
+    "text": "La doctora limpia la sangre del cuerpo."
+  }
 ]

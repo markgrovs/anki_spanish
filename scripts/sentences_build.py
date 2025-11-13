@@ -5,8 +5,9 @@ Input: data/sentences_generated.json
 Each item: {"text": "Veo el perro.", "clozes": ["Veo"], "notes": "I see the dog", "tags": ["present","articles"]}
 
 Key features:
-- Detect target fields dynamically (Cloze/Text/Back Extra/Audio).
+- Detect target fields dynamically (Cloze/Text/Back Extra/Audio/Sentence IPA).
 - Create audio with macOS TTS, attach to Audio (or Back Extra if missing).
+- Optional sentence-level IPA using phonemizer (espeak) or epitran if available.
 - Reentrant: allowDuplicate=False skips exact duplicates by first field.
 - --update-existing upserts by exact cloze-field text (updates Text/Back Extra/Audio/tags if found).
 - High‑quality audio pipeline with padding; auto‑select a working voice to avoid voice errors.
@@ -29,6 +30,17 @@ try:
 except Exception:
     print("This script requires 'requests'. Install: pip install requests")
     sys.exit(1)
+
+# Optional deps for IPA
+try:
+    from phonemizer import phonemize  # type: ignore
+except Exception:
+    phonemize = None
+
+try:
+    import epitran  # type: ignore
+except Exception:
+    epitran = None
 
 BASE = Path(__file__).resolve().parent.parent
 INP = BASE / "data" / "sentences_generated.json"
@@ -101,16 +113,7 @@ def store_media(filename: str, path: Path):
         data = base64.b64encode(f.read()).decode("utf-8")
     anki("storeMediaFile", filename=filename, data=data)
 
-
-def make_cloze(text: str, targets: list[str]) -> str:
-    s = text
-    idx = 1
-    for t in targets:
-        if not t: continue
-        s = s.replace(t, f"{{{{c{idx}::{t}}}}}", 1)
-        idx += 1
-    return s
-
+# Filename slug for sentence audio
 
 def slugify_filename(text: str) -> str:
     s = text.lower().strip()
@@ -118,6 +121,68 @@ def slugify_filename(text: str) -> str:
     s = re.sub(r"[^a-z0-9_\-]", "", s)
     s = re.sub(r"_+", "_", s)
     return s[:64] or "sentence"
+
+# Cloze builder (supports optional hint objects: {"target":"perro","hint":"animal"})
+
+def make_cloze(text: str, targets: list) -> str:
+    s = text
+    idx = 1
+    for t in targets or []:
+        if isinstance(t, dict):
+            target = (t.get("target") or "").strip()
+            hint = (t.get("hint") or "").strip()
+        else:
+            target = (t or "").strip()
+            hint = ""
+        if not target:
+            continue
+        marker = f"{{{{c{idx}::{target}{('::' + hint) if hint else ''}}}}}"
+        s = s.replace(target, marker, 1)
+        idx += 1
+    return s
+
+_WORD_RE = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+", re.UNICODE)
+
+_EPI = None
+
+def ipa_word(word: str) -> str:
+    global _EPI
+    # Prefer phonemizer (espeak)
+    if phonemize is not None:
+        try:
+            out = phonemize(word, language="es", backend="espeak", strip=True, with_stress=True, njobs=1)
+            out = (out or "").strip().replace(" ", "")
+            if out:
+                return out
+        except Exception:
+            pass
+    # Fallback to epitran
+    if epitran is not None:
+        try:
+            if _EPI is None:
+                _EPI = epitran.Epitran("spa-Latn")
+            out = _EPI.transliterate(word).strip().replace(" ", "")
+            if out:
+                return out
+        except Exception:
+            pass
+    return ""
+
+def sentence_ipa(text: str) -> str:
+    tokens = _WORD_RE.findall(text)
+    if not tokens:
+        return ""
+    ipas = []
+    for w in tokens:
+        ip = ipa_word(w)
+        if not ip:
+            ip = ""
+        ipas.append(ip)
+    non_empty = sum(1 for x in ipas if x)
+    if non_empty == 0:
+        return ""
+    joined = " ".join(x for x in ipas if x)
+    return f"/{joined}/"
 
 # ----------------------- Field mapping ---------------------
 
@@ -135,10 +200,15 @@ def pick_fields(model_name: str, debug: bool):
     text_field = "Text" if "Text" in field_set else None
     extra_field = "Back Extra" if "Back Extra" in field_set else ("Extra" if "Extra" in field_set else None)
     audio_field = "Audio" if "Audio" in field_set else None
+    ipa_field = None
+    for cand in ("Sentence IPA", "IPA", "SentenceIpa", "Ipa"):
+        if cand in field_set:
+            ipa_field = cand
+            break
     if debug:
         print(f"Model '{model_name}' fields: {fields}")
-        print(f"Mapping → cloze:{cloze_field} text:{text_field} extra:{extra_field} audio:{audio_field}")
-    return cloze_field, text_field, extra_field, audio_field, fields
+        print(f"Mapping → cloze:{cloze_field} text:{text_field} extra:{extra_field} audio:{audio_field} sentence_ipa:{ipa_field}")
+    return cloze_field, text_field, extra_field, audio_field, ipa_field, fields
 
 # ----------------------- Upsert helpers --------------------
 
@@ -185,7 +255,7 @@ def main():
 
     AUDIO_DIR.mkdir(parents=True, exist_ok=True)
 
-    cloze_field, text_field, extra_field, audio_field, model_fields = pick_fields(args.model, args.debug)
+    cloze_field, text_field, extra_field, audio_field, ipa_field, model_fields = pick_fields(args.model, args.debug)
     if cloze_field is None:
         print(f"[error] The target model '{args.model}' has no suitable field for cloze text (needs 'Cloze' or 'Text').")
         sys.exit(1)
@@ -219,6 +289,9 @@ def main():
             tts_to_mp3(text, mp3)
         store_media(mp3.name, mp3)
 
+        # Optional sentence IPA
+        sent_ipa = sentence_ipa(text) if ipa_field else ""
+
         # Prepare fields per model
         fields = {cloze_field: cloze_txt}
         if text_field and text_field != cloze_field:
@@ -231,6 +304,8 @@ def main():
             if extra_field:
                 prev = fields.get(extra_field, "")
                 fields[extra_field] = (prev + ("\n" if prev else "") + f"[sound:{mp3.name}]").strip()
+        if ipa_field and sent_ipa:
+            fields[ipa_field] = sent_ipa
 
         # Upsert: update if --update-existing and found; else try add; if duplicate error, rescue
         nid = None
