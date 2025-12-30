@@ -468,9 +468,12 @@ def compute_article(spanish: str, gender: str, pos: str) -> str:
     # Skip numbers
     if base in NUMBER_WORDS:
         return ""
-    # Skip obvious verbs
-    if base.endswith(("ar","er","ir")):
+    
+    # [Fixed] Skip verb check if pos is explicitly "noun". 
+    # Only skip "ar/er/ir" if we don't know it's a noun.
+    if not p and base.endswith(("ar","er","ir")):
         return ""
+        
     if g == "m":
         return "el"
     # feminine with euphony
