@@ -197,16 +197,28 @@ def argos_translate_suggest(eng: str, sense: str, pos: str) -> list[str]:
     out = []
     try:
         import argostranslate.translate as argos_translate  # type: ignore
+        # 1. Base translation
         t1 = strip_article(argos_translate.translate(eng, "en", "es").strip())
         if t1:
             out.append(t1)
-        hint = eng
+        
+        # 2. Contextual translation using Sense
+        hints_to_try = []
         if sense:
-            hint = f"{eng} ({sense})"
+            # Try "English (Sense)"
+            hints_to_try.append(f"{eng} ({sense})")
+            # Try "Sense English" (e.g. "Sport fan") - often works better for simple models
+            hints_to_try.append(f"{sense} {eng}")
+            # Try "English related to Sense"
+            hints_to_try.append(f"{eng} related to {sense}")
         elif pos:
-            hint = f"{eng} ({pos})"
-        if hint != eng:
+            hints_to_try.append(f"{eng} ({pos})")
+        
+        for hint in hints_to_try:
             t2 = strip_article(argos_translate.translate(hint, "en", "es").strip())
+            # Clean up common failures where it just returns the hint
+            if t2.lower() == hint.lower():
+                continue
             if t2 and t2 not in out:
                 out.append(t2)
     except Exception:
@@ -423,7 +435,7 @@ def main():
 
         default, cands = build_candidates(eng, sense, pos, hints_candidates, defaults_map)
 
-        print("-"*60)
+        print("-" * 60)
         print(f"[{i+1}/{total}] english='{eng}'  sense='{sense}'  pos='{pos}'")
         if cands:
             print("Candidates:")
@@ -432,7 +444,7 @@ def main():
         else:
             print("(no candidates — press 'o' to open references or type your Spanish)")
         print(f"Default: {default if default else '(none)'}")
-        print("Commands: type Spanish; 1-9 pick; d=default; g=gender guess; o=open refs; s=skip; p=prev; u=unset; q=quit")
+        print("Commands: type Spanish; 1-9 pick; n=none/manual; d=default; g=gender guess; o=open refs; s=skip; p=prev; u=unset; q=quit")
         ans = input("> ").strip()
 
         if ans == "":
@@ -456,6 +468,26 @@ def main():
             row["spanish"] = ""; row["gender"] = ""
             write_rows(OUT_CSV, rows)
             continue
+        elif ans.lower() == "n":
+            # Explicit 'none of the above' flow
+            print("Candidates rejected. Please type the correct Spanish word (or 'o' for refs):")
+            manual = input("spanish> ").strip()
+            if not manual:
+                print("Skipped.")
+                continue
+            if manual.lower() == "o":
+                open_refs(eng)
+                continue
+            
+            # Allow gender shortcut like 'perro (m)' in manual entry too
+            m = re.search(r"\b\((m|f)\)\b", manual, re.IGNORECASE) or re.search(r"\b(m|f)\b$", manual, re.IGNORECASE)
+            if m:
+                row["gender"] = m.group(1).lower()
+                manual = re.sub(r"\s*\((m|f)\)\s*", " ", manual, flags=re.IGNORECASE)
+                manual = re.sub(r"\s\b(m|f)\b\s*$", "", manual, flags=re.IGNORECASE).strip()
+            
+            row["spanish"] = manual
+            # Fall through to POS/Gender logic below...
         elif ans.lower() == "d":
             if default:
                 row["spanish"] = default
