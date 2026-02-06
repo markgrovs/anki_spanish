@@ -1,0 +1,22 @@
+<!-- Answer line with conditional article using Gender -->
+{{#Gender}}
+    <div class="answer" data-gender="{{Gender}}">
+        <span class="article m">el</span>
+        <span class="article f">la</span>
+        <span class="word">{{Word}}</span>
+    </div>
+{{/Gender}}
+{{^Gender}}
+    <div class="answer"><span class="word">{{Word}}</span></div>
+{{/Gender}}
+
+
+<div class="image">{{Image}}</div>
+<div class="audio">{{Audio}}</div>
+<div style='font-family: "Arial"; font-size: 20px;'>{{IPA}}</div>
+<!-- You can remove this next line if you don’t want to show raw Gender anymore -->
+<!-- <div style='font-family: "Arial"; font-size: 20px;'>{{Gender}}</div> -->
+<div style='font-family: "Arial"; font-size: 20px;'>{{Personal Connection}}</div>
+
+
+

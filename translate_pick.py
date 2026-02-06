@@ -14,61 +14,18 @@ HINTS_PATH = BASE_DIR / "hints_es.yaml"
 # Optional services
 LIBRE_URL = os.getenv("LIBRETRANSLATE_URL", "")  # e.g., https://libretranslate.com
 
-# --- Argos Translate detection (robust across versions) ---------------------
+# --- Argos Translate detection (Simplified & Robust) ---------------------
 ARGOS_OK = False
+_ARGOS_TRANS_OBJ = None
 
 def _argos_detect_en_es() -> bool:
-    # Try API-based detection first
+    global _ARGOS_TRANS_OBJ
     try:
-        import argostranslate.translate as argos_translate  # type: ignore
-        langs = getattr(argos_translate, "get_installed_languages", lambda: [])()
-        for lang in langs:
-            code = getattr(lang, "code", None) or getattr(lang, "lang_code", None)
-            if code in ("en", "eng"):
-                for t in getattr(lang, "translations", []) or []:
-                    # Try multiple ways to get destination code depending on Argos version
-                    to_code = None
-                    to_obj = (
-                        getattr(t, "to_lang", None)
-                        or getattr(t, "to_language", None)
-                        or getattr(t, "to", None)
-                        or getattr(t, "tgt_lang", None)
-                    )
-                    if to_obj is not None:
-                        to_code = getattr(to_obj, "code", None)
-                    # Direct code attributes on the translation object
-                    to_code = (
-                        to_code
-                        or getattr(t, "to_code", None)
-                        or getattr(t, "tgt_code", None)
-                        or getattr(t, "code", None)
-                    )
-                    if to_code in ("es", "spa"):
-                        return True
-    except Exception:
-        pass
-    # Fallback: check installed packages metadata
-    try:
-        import argostranslate.package as argos_package  # type: ignore
-        pkgs = getattr(argos_package, "get_installed_packages", lambda: [])()
-        for p in pkgs or []:
-            name = (getattr(p, "name", "") or getattr(p, "id", "") or "").lower()
-            ptype = (getattr(p, "package_type", "") or getattr(p, "type", "") or "").lower()
-            from_code = getattr(p, "from_code", None) or getattr(p, "fromCode", None)
-            to_code = getattr(p, "to_code", None) or getattr(p, "toCode", None)
-            if (
-                ("translate" in name or ptype == "translate")
-                and ((from_code == "en" and to_code == "es") or ("en_es" in name) or ("en-es" in name) or ("translate-en_es" in name))
-            ):
-                return True
-    except Exception:
-        pass
-    # Last-chance: try a tiny translation call and see if it returns something plausible
-    try:
-        import argostranslate.translate as argos_translate  # type: ignore
-        text = "test"
-        res = argos_translate.translate(text, "en", "es")
-        if isinstance(res, str) and res and res != text:
+        import argostranslate.translate as argos_translate
+        # Direct functional check: Can we get a translation object for en->es?
+        t = argos_translate.get_translation_from_codes("en", "es")
+        if t:
+            _ARGOS_TRANS_OBJ = t
             return True
     except Exception:
         pass
@@ -192,31 +149,33 @@ def strip_article(s: str) -> str:
 
 
 def argos_translate_suggest(eng: str, sense: str, pos: str) -> list[str]:
-    if not ARGOS_OK:
+    # Use the pre-validated object for speed and reliability
+    if not _ARGOS_TRANS_OBJ:
         return []
+    
     out = []
     try:
-        import argostranslate.translate as argos_translate  # type: ignore
+        # Helper to run translation on the cached object
+        def run_tr(text):
+            res = _ARGOS_TRANS_OBJ.translate(text)
+            return strip_article(str(res).strip())
+
         # 1. Base translation
-        t1 = strip_article(argos_translate.translate(eng, "en", "es").strip())
+        t1 = run_tr(eng)
         if t1:
             out.append(t1)
         
         # 2. Contextual translation using Sense
         hints_to_try = []
         if sense:
-            # Try "English (Sense)"
             hints_to_try.append(f"{eng} ({sense})")
-            # Try "Sense English" (e.g. "Sport fan") - often works better for simple models
             hints_to_try.append(f"{sense} {eng}")
-            # Try "English related to Sense"
             hints_to_try.append(f"{eng} related to {sense}")
         elif pos:
             hints_to_try.append(f"{eng} ({pos})")
         
         for hint in hints_to_try:
-            t2 = strip_article(argos_translate.translate(hint, "en", "es").strip())
-            # Clean up common failures where it just returns the hint
+            t2 = run_tr(hint)
             if t2.lower() == hint.lower():
                 continue
             if t2 and t2 not in out:
@@ -414,6 +373,7 @@ def main():
         print("CSV not found:", SRC_CSV)
         sys.exit(1)
 
+    # Note: ARGOS_OK is computed at module level
     if not ARGOS_OK:
         print("[Info] Argos Translate en→es model not detected (or not visible to Python). Using other sources for candidates.")
     else:

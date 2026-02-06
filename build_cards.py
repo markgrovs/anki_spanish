@@ -95,7 +95,18 @@ def anki(action, **params):
         return None
     if requests is None:
         raise RuntimeError("requests module not installed; needed for AnkiConnect HTTP calls")
-    r = requests.post(ANKI, json={"action": action, "version": 6, "params": params}, timeout=30)
+    
+    try:
+        r = requests.post(ANKI, json={"action": action, "version": 6, "params": params}, timeout=30)
+    except requests.exceptions.ConnectionError:
+        print("\n" + "!"*60)
+        print("[FATAL] Could not connect to Anki (127.0.0.1:8765).")
+        print("Please ensure:")
+        print("  1. Anki is open and running.")
+        print("  2. The 'AnkiConnect' add-on is installed.")
+        print("!"*60 + "\n")
+        sys.exit(1)
+        
     r.raise_for_status()
     data = r.json()
     if data.get("error"):
@@ -108,6 +119,7 @@ def verify_model_fields():
     try:
         fields = anki("modelFieldNames", modelName=MODEL_NAME)
     except Exception as e:
+        # If anki() exits, we won't get here. If it's another error, warn.
         warn(f"Could not query model fields for '{MODEL_NAME}': {e}")
         return
     missing = [f for f in EXPECTED_FIELDS if f not in fields]
@@ -421,15 +433,19 @@ def ensure_base_image(spanish: str) -> Path | None:
     info(f"No base image for '{spanish}'. Opening image search:\n  {url}")
     webbrowser.open_new_tab(url)
     target_stem = slugify(spanish)
-    info(f"Save images as {IMAGES_DIR}/{target_stem}.jpg or {target_stem}-1.jpg, {target_stem}-2.jpg, ... or into folder {IMAGES_DIR}/{target_stem}/. Waiting up to 3 minutes…")
-    deadline = time.time() + 180
-    while time.time() < deadline:
-        img = find_base_image(spanish)
-        if img:
-            return img
-        time.sleep(1)
-    warn(f"Skipped: no image saved for '{spanish}'.")
-    return None
+    info(f"Save images as {IMAGES_DIR}/{target_stem}.jpg or {target_stem}-1.jpg, {target_stem}-2.jpg, ...")
+    
+    # [Changed] Wait for user confirmation instead of auto-advancing on first file
+    while True:
+        try:
+            input(f" >>> Press Enter when you have finished saving images for '{spanish}'...")
+            img = find_base_image(spanish)
+            if img:
+                return img
+            print(f"No images found for '{target_stem}'. Please check the filename and try again.")
+        except KeyboardInterrupt:
+            print("\nSkipping...")
+            return None
 
 # ---------------------- Image HTML composition (gender badge overlay) -------
 
