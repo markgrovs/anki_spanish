@@ -1,0 +1,174 @@
+================================================================================
+ SPANISH ANKI — IMPROVEMENT WORKLOG
+ Started: 2026-02-06
+ Project: /Users/markgroves/Documents/[06] Development/spanish_anki
+================================================================================
+
+PURPOSE
+-------
+Track all refactoring, fixes, and feature work to improve this system before
+Mark's motorcycle trip through Central & South America.
+
+Current state (2026-02-06):
+  - 215/610 words have Spanish translations (35%)
+  - 55 words in active Anki review
+  - 224 images, 273 audio files, 65 sentence audio files
+  - 20 cloze sentences generated
+  - 3,190 lines of Python across 14 files
+  - Significant code duplication across files
+  - No shared library, no pinned dependencies
+
+
+================================================================================
+ PHASE 1: FOUNDATION (Clean Up & Consolidate)
+================================================================================
+
+[ ] 1.1  Normalize POS values in CSV
+         - Migrate all "adj" → "adjective", ensure consistent set:
+           noun, verb, adjective, adverb
+         - Fix 625_structured.es.csv in-place
+         - Grep all .py files for POS string checks and unify
+
+[ ] 1.2  Fix CSV line-ending issue
+         - Normalize \r\n → \n in 625_structured.es.csv
+         - Ensure all write_rows() functions use newline="" consistently
+
+[ ] 1.3  Delete dead / superseded files
+         - translate_assist.py      (superseded by translate_pick.py)
+         - translate_assist_v2.py   (superseded by translate_pick.py)
+         - scripts/sentences_cli.py (superseded by anki_flow.py)
+
+[ ] 1.4  Create shared library: lib/
+         - lib/__init__.py
+         - lib/anki_client.py      — AnkiClient class (single anki() wrapper)
+         - lib/csv_store.py        — read_rows(), write_rows(), FIELDNAMES
+         - lib/tts.py              — TTSEngine class (voice pick + tts_to_mp3)
+         - lib/ipa.py              — ipa_from_wiktionary/phonemizer/epitran + cache
+         - lib/gender.py           — detect_gender(), wiktionary_gender(), etc.
+         - lib/wiktionary.py       — shared fetcher with retry/backoff
+         - lib/slugify.py          — one canonical slugify()
+         - lib/config.py           — paths, deck name, model name, voice (from config.yaml)
+
+[ ] 1.5  Refactor existing scripts to use lib/
+         - build_cards.py
+         - translate_pick.py
+         - enrich_ipa.py
+         - scripts/enrich_pos_gender.py
+         - scripts/sentences_build.py
+         - scripts/sentences_get_known_words.py
+
+[ ] 1.6  Eliminate global mutable state in build_cards.py
+         - Replace module-level globals with a Config dataclass or dict
+         - Pass config through functions instead of mutating globals
+
+[ ] 1.7  Create pyproject.toml with pinned dependencies
+         - Core: requests, Pillow
+         - Optional: phonemizer, epitran, argostranslate, deep-translator
+         - Dev: (none for now)
+
+[ ] 1.8  Remove second venv (venv/), keep only .venv312/
+         - Update .gitignore if needed
+
+
+================================================================================
+ PHASE 2: WORKFLOW AUTOMATION
+================================================================================
+
+[ ] 2.1  Auto-image download via Pixabay or Unsplash API
+         - Sign up for free Pixabay API key (100 req/hour)
+         - Search {spanish_word}, download top result as {slug}.jpg
+         - Fall back to browser if no API results
+         - Add --manual-images flag to preserve current behavior
+         - Store API key in config.yaml or .env
+
+[ ] 2.2  Rich audit dashboard
+         - `python anki_flow.py audit --detailed`
+         - Per-word table: Spanish | POS | Gender | IPA | Image | Audio | Anki
+         - Summary line: Complete: X/610 (Y%) | Ready to build: Z | Blocked: W
+
+[ ] 2.3  Pipeline command (batch processing)
+         - `python anki_flow.py pipeline --batch 20`
+         - For next N unfilled words:
+           1. Auto-translate (Argos + deep_translator)
+           2. Auto-enrich POS, gender, IPA
+           3. Auto-download candidate image
+           4. Compact review UI: confirm / edit / skip
+           5. On confirm → build card immediately
+         - Saves progress after each word
+
+[ ] 2.4  Improve translate_pick.py startup time
+         - Lazy-load Argos (don't init until first translation needed)
+         - Cache Argos translation object across sessions if possible
+
+
+================================================================================
+ PHASE 3: SENTENCE GENERATION
+================================================================================
+
+[ ] 3.1  Add `sentences generate` command
+         - Use OpenAI or Anthropic API
+         - Read known_words.json
+         - Use prompt from prompts/sentences_prompt.md
+         - Write to data/sentences_generated.json
+         - `python anki_flow.py sentences generate --count 20`
+
+[ ] 3.2  Spaced introduction for sentences
+         - Focus on newest known words (last 2 weeks)
+         - Mix with older words for reinforcement
+         - Tag sentences with target word difficulty
+
+
+================================================================================
+ PHASE 4: TRAVEL-READY
+================================================================================
+
+[ ] 4.1  Add inbox for on-the-road word capture
+         - data/inbox.json — simple format: [{"word": "llanta", "english": "tire"}, ...]
+         - `python anki_flow.py inbox process` — enrich + append to main CSV
+
+[ ] 4.2  Cross-platform TTS fallback
+         - Add Google Cloud TTS or gTTS as alternative when macOS `say` unavailable
+         - Auto-detect platform and pick backend
+
+[ ] 4.3  Offline .apkg export
+         - Generate importable Anki package without AnkiConnect
+         - Useful for syncing to phone Anki without desktop
+
+
+================================================================================
+ PHASE 5: TRAVEL-SPECIFIC CONTENT
+================================================================================
+
+[ ] 5.1  Create travel_vocab.csv — motorcycle trip word list
+         Sections:
+         - Mechanical: llanta, gasolina, aceite, freno, cadena, taller mecánico
+         - Navigation: carretera, curva, peaje, frontera, aduana
+         - Emergency:  hospital, policía, seguro, robo, accidente
+         - Daily:      hospedaje, habitación, baño, precio, propina, cambio
+         - Food:       desayuno, almuerzo, cena, cuenta, menú, propina
+         - Social:     amigo, fiesta, cerveza, gracias, por favor, disculpe
+
+[ ] 5.2  Support multiple CSV sources in build
+         - `python anki_flow.py build --csv travel_vocab.csv --deck "My Spanish Deck::Travel"`
+
+
+================================================================================
+ COMPLETED WORK
+================================================================================
+
+ Date       | Item  | Notes
+------------|-------|------------------------------------------------------
+            |       |
+
+
+================================================================================
+ SESSION NOTES
+================================================================================
+
+--- 2026-02-06 ---
+- Initial codebase analysis completed
+- Identified 15 issues across 5 categories
+- Created this worklog
+- Next up: Phase 1 foundation work (start with 1.1, 1.2, 1.3)
+
+
