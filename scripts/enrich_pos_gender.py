@@ -70,7 +70,7 @@ INF_VERB = re.compile(r"^[a-záéíóúñ]+(ar|er|ir)$", re.IGNORECASE)
 POS_MAP_KEYS = {
     'sustantivo': 'noun',
     'verbo': 'verb',
-    'adjetivo': 'adj',
+    'adjetivo': 'adjective',
 }
 
 
@@ -139,7 +139,7 @@ def parse_spanish_section(section: str):
             elif 'verbo' in meta:
                 pos = 'verb'
             elif 'adjetivo' in meta:
-                pos = 'adj'
+                pos = 'adjective'
     return pos, gender
 
 
@@ -172,12 +172,12 @@ def ensure_default_hints():
             "# POS hints (key: value)\n"
             "dólar: noun\n"
             "dolar: noun\n"
-            "rojo: adj\n"
-            "azul: adj\n"
+            "rojo: adjective\n"
+            "azul: adjective\n"
             "animal: noun\n"
             "arcilla: noun\n"
             "limpiar: verb\n"
-            "cerca: adj\n",
+            "cerca: adjective\n",
             encoding="utf-8"
         )
 
@@ -202,7 +202,7 @@ FIELDS = ["english","sense","pos","spanish","gender","ipa","notes"]
 
 SENSE_MAP = {
     'verb': 'verb',
-    'adjective': 'adj', 'adj.': 'adj', 'adj': 'adj',
+    'adjective': 'adjective', 'adj.': 'adjective', 'adj': 'adjective',
     'noun': 'noun',
     'color': 'adj', 'season': 'noun', 'location': 'noun', 'the location': 'noun',
 }
@@ -254,7 +254,7 @@ def main():
         if args.pos_only and not pos:
             # 1) hints override
             hp = hints.get(key)
-            if hp in ("noun","verb","adj"):
+            if hp in ("noun","verb","adjective"):
                 r["pos"] = hp
                 pos = hp
                 changed = True

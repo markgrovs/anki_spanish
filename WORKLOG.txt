@@ -23,13 +23,13 @@ Current state (2026-02-06):
  PHASE 1: FOUNDATION (Clean Up & Consolidate)
 ================================================================================
 
-[ ] 1.1  Normalize POS values in CSV
+[x] 1.1  Normalize POS values in CSV
          - Migrate all "adj" → "adjective", ensure consistent set:
            noun, verb, adjective, adverb
          - Fix 625_structured.es.csv in-place
          - Grep all .py files for POS string checks and unify
 
-[ ] 1.2  Fix CSV line-ending issue
+[x] 1.2  Fix CSV line-ending issue
          - Normalize \r\n → \n in 625_structured.es.csv
          - Ensure all write_rows() functions use newline="" consistently
 
@@ -177,3 +177,9 @@ Current state (2026-02-06):
 - Created scripts/sync_check.py to detect orphans, unbuilt cards, and field mismatches
 - Added 'sync' command to anki_flow.py
 - Added post-build sync check to build_cards.py
+--- 2026-02-06 (POS Normalization) ---
+- Normalized POS values in CSV:
+  - Fixed 9 messy rows (music) (verb -> verb, etc.)
+  - Ensured 'adjective' is used consistently (not 'adj')
+  - Fixed CSV line endings (removed \r\n)
+- Updated scripts/enrich_pos_gender.py to use 'adjective'
