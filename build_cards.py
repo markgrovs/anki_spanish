@@ -32,23 +32,7 @@ try:
 except ImportError:
     Image = None
 
-# Global config (overridden by CLI)
-CFG = {
-    "deck": CONF_DECK,
-    "model": CONF_MODEL,
-    "voice": VOICE_NAME,
-    "rate": SPEAKING_RATE,
-    "dry_run": False,
-    "force_audio": False,
-    "open_image": True,
-    "recalc_ipa": False,
-    "recalc_pos": False,
-    "only_missing": False,
-    "limit": None,
-    "disable_wikt": False,
-    "disable_phon": False,
-    "disable_epit": False,
-}
+
 
 # ---------------------- Small utilities ------------------------------------
 def info(msg: str):
@@ -60,10 +44,10 @@ def warn(msg: str):
 # ---------------------- Anki verification ----------------------------------
 EXPECTED_FIELDS = ["Word", "Image", "Audio", "Notes", "IPA", "Gender", "POS", "Article"]
 
-def verify_model_fields():
-    if CFG["dry_run"]: return
+def verify_model_fields(cfg):
+    if cfg["dry_run"]: return
     try:
-        fields = anki.model_field_names(CFG["model"])
+        fields = anki.model_field_names(cfg["model"])
     except Exception as e:
         warn(f"Could not query fields for '{CFG['model']}': {e}")
         return
@@ -148,10 +132,10 @@ def find_base_image(spanish: str) -> Path | None:
     out = create_collage(sources, collage)
     return out or sources[0]
 
-def ensure_base_image(spanish: str) -> Path | None:
+def ensure_base_image(spanish: str, cfg: dict) -> Path | None:
     img = find_base_image(spanish)
     if img: return img
-    if not CFG["open_image"]:
+    if not cfg["open_image"]:
         warn(f"No base image for '{spanish}'. Skipping.")
         return None
         
@@ -182,14 +166,32 @@ def compose_image_html(main_image_name: str, gender: str | None) -> str:
         "</div>"
     )
 
-def store_media_safe(filename, path):
-    if CFG["dry_run"] or not path.exists(): return
+def store_media_safe(filename, path, cfg):
+    if cfg["dry_run"] or not path.exists(): return
     with open(path, "rb") as f:
         data = base64.b64encode(f.read()).decode("utf-8")
     anki.store_media_file(filename, data)
 
 # ---------------------- Main Build ----------------------------------------
 def main():
+    # Default config
+    cfg = {
+        "deck": CONF_DECK,
+        "model": CONF_MODEL,
+        "voice": VOICE_NAME,
+        "rate": SPEAKING_RATE,
+        "dry_run": False,
+        "force_audio": False,
+        "open_image": True,
+        "recalc_ipa": False,
+        "recalc_pos": False,
+        "only_missing": False,
+        "limit": None,
+        "disable_wikt": False,
+        "disable_phon": False,
+        "disable_epit": False,
+    }
+
     ap = argparse.ArgumentParser(description="Build/Update Anki cards (using lib)")
     ap.add_argument("--deck", default=CONF_DECK)
     ap.add_argument("--model", default=CONF_MODEL)
@@ -208,7 +210,7 @@ def main():
     ap.add_argument("--no-epit", action="store_true")
     args = ap.parse_args()
 
-    CFG.update({
+    cfg.update({
         "deck": args.deck,
         "model": args.model,
         "voice": args.voice,
@@ -229,7 +231,7 @@ def main():
         warn(f"CSV not found: {args.csv}")
         return
 
-    verify_model_fields()
+    verify_model_fields(cfg)
     rows = read_rows(Path(args.csv))
     
     counts = {"added":0, "updated":0, "skipped":0, "audio_fail":0, "img_miss":0, "enriched_ipa":0, "enriched_gender":0}
@@ -237,7 +239,7 @@ def main():
 
     processed = 0
     for r in rows:
-        if CFG["limit"] and processed >= CFG["limit"]: break
+        if cfg["limit"] and processed >= cfg["limit"]: break
         
         spanish = (r.get("spanish") or "").strip()
         if not spanish:
@@ -255,7 +257,7 @@ def main():
             # Try heuristic
             g = heuristic_gender(spanish)
             # Try wiktionary if needed (optional deep check not done here to keep it fast, unless requested)
-            if not g and CFG["recalc_pos"]:
+            if not g and cfg["recalc_pos"]:
                 _, wg = wiktionary_pos_gender(spanish)
                 if wg: g = wg
             
@@ -265,11 +267,11 @@ def main():
                 counts["enriched_gender"] += 1
 
         # 2. Enrich IPA
-        if CFG["recalc_ipa"] or not ipa_text:
+        if cfg["recalc_ipa"] or not ipa_text:
             ip = ""
-            if not CFG["disable_wikt"]: ip = ipa_from_wiktionary(spanish)
-            if not ip and not CFG["disable_phon"]: ip = ipa_from_phonemizer(spanish)
-            if not ip and not CFG["disable_epit"]: ip = ipa_from_epitran(spanish)
+            if not cfg["disable_wikt"]: ip = ipa_from_wiktionary(spanish)
+            if not ip and not cfg["disable_phon"]: ip = ipa_from_phonemizer(spanish)
+            if not ip and not cfg["disable_epit"]: ip = ipa_from_epitran(spanish)
             
             if ip:
                 r["ipa"] = ip
@@ -290,19 +292,19 @@ def main():
         if not mp3_path.exists(): needs.append("audio")
         if not ipa_text: needs.append("ipa")
         
-        if CFG["only_missing"] and not needs and not CFG["recalc_pos"] and not CFG["recalc_ipa"]:
+        if cfg["only_missing"] and not needs and not cfg["recalc_pos"] and not cfg["recalc_ipa"]:
             counts["skipped"] += 1
             continue
 
         # 5. Acquire Assets
         if not img_path:
-            img_path = ensure_base_image(spanish)
+            img_path = ensure_base_image(spanish, cfg)
             if not img_path:
                 counts["img_miss"] += 1
                 continue
         
         try:
-            if CFG["force_audio"] and mp3_path.exists():
+            if cfg["force_audio"] and mp3_path.exists():
                 try: mp3_path.unlink()
                 except: pass
             if not mp3_path.exists():
@@ -314,8 +316,8 @@ def main():
             continue
 
         # 6. Upload Media
-        store_media_safe(img_path.name, img_path)
-        store_media_safe(mp3_path.name, mp3_path)
+        store_media_safe(img_path.name, img_path, cfg)
+        store_media_safe(mp3_path.name, mp3_path, cfg)
         
         # 7. Build Note Fields
         notes_bits = []
@@ -340,10 +342,10 @@ def main():
         if gender and gender != "none": tags.append(f"gender:{gender}")
         if pos: tags.append(f"pos:{pos}")
         
-        if CFG["dry_run"]:
+        if cfg["dry_run"]:
             info(f"[dry-run] Would upsert: {spanish}")
         else:
-            ids = anki.find_notes(query=f'deck:"{CFG["deck"]}" note:"{CFG["model"]}" "{spanish}"')
+            ids = anki.find_notes(query=f'deck:"{cfg["deck"]}" note:"{cfg["model"]}" "{spanish}"')
             existing_id = None
             if ids:
                 infos = anki.notes_info(ids)
@@ -360,8 +362,8 @@ def main():
                 info(f"Updated: {spanish}")
             else:
                 note = {
-                    "deckName": CFG["deck"],
-                    "modelName": CFG["model"],
+                    "deckName": cfg["deck"],
+                    "modelName": cfg["model"],
                     "fields": fields,
                     "options": {"allowDuplicate": False},
                     "tags": tags,
@@ -380,7 +382,7 @@ def main():
         print(f"  {k}: {v}")
 
     # Automatic Sync Check
-    if not CFG["dry_run"]:
+    if not cfg["dry_run"]:
         try:
             from scripts.sync_check import main as sync_main
             print("\n--- Post-build sync check ---")

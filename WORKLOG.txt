@@ -57,16 +57,16 @@ Current state (2026-02-06):
          - scripts/sentences_build.py
          - scripts/sentences_get_known_words.py
 
-[ ] 1.6  Eliminate global mutable state in build_cards.py
+[x] 1.6  Eliminate global mutable state in build_cards.py
          - Replace module-level globals with a Config dataclass or dict
          - Pass config through functions instead of mutating globals
 
-[ ] 1.7  Create pyproject.toml with pinned dependencies
+[x] 1.7  Create pyproject.toml with pinned dependencies
          - Core: requests, Pillow
          - Optional: phonemizer, epitran, argostranslate, deep-translator
          - Dev: (none for now)
 
-[ ] 1.8  Remove second venv (venv/), keep only .venv312/
+[x] 1.8  Remove second venv (venv/), keep only .venv312/
          - Update .gitignore if needed
 
 

@@ -1,0 +1,29 @@
+[project]
+name = "spanish-anki"
+version = "0.1.0"
+description = "Spanish Anki deck builder with Fluent Forever 625 list"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+    "Pillow",
+    "PyYAML"
+]
+
+[project.optional-dependencies]
+tts = [
+    "phonemizer",
+    "epitran",
+]
+translate = [
+    "argostranslate",
+    "deep-translator",
+]
+dev = [
+    "pytest",
+    "black",
+    "mypy"
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
