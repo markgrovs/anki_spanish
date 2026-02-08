@@ -49,7 +49,7 @@ Current state (2026-02-06):
          - lib/slugify.py          — one canonical slugify()
          - lib/config.py           — paths, deck name, model name, voice (from config.yaml)
 
-[ ] 1.5  Refactor existing scripts to use lib/
+[x] 1.5  Refactor existing scripts to use lib/
          - build_cards.py
          - translate_pick.py
          - enrich_ipa.py
@@ -198,3 +198,13 @@ Current state (2026-02-06):
   - gender.py: Gender detection, POS parsing, article computation
   - wiktionary.py: Shared API fetcher
   - slugify.py: Canonical string normalization
+--- 2026-02-06 (Refactoring Complete) ---
+- Refactored all scripts to use shared 'lib' modules:
+  - build_cards.py (Logic reduced from 700+ lines to ~280 lines)
+  - anki_flow.py (Simplified command routing)
+  - translate_pick.py
+  - enrich_ipa.py
+  - scripts/enrich_pos_gender.py
+  - scripts/sentences_build.py
+  - scripts/sentences_get_known_words.py
+- Verified 'sync' command still works via lib
