@@ -126,6 +126,16 @@ def cmd_audit(args):
 
 # ---------------- Known words (top-level) -----------------------------------
 
+
+def cmd_sync(args):
+    script = BASE / "scripts" / "sync_check.py"
+    cmd = [sys.executable, str(script)]
+    if args.fix: cmd.append("--fix")
+    if args.dry_run: cmd.append("--dry-run")
+    if args.deck: cmd += ["--deck", args.deck]
+    if args.model: cmd += ["--model", args.model]
+    run(cmd)
+
 def cmd_known(args):
     # Proxy to the sentences known exporter
     script = BASE / "scripts" / "sentences_get_known_words.py"
@@ -206,6 +216,13 @@ def main():
 
     p4 = sub.add_parser("audit", help="Report what’s missing in CSV/media")
     p4.set_defaults(func=cmd_audit)
+
+    psync = sub.add_parser("sync", help="Check CSV ↔ Anki sync and optionally fix mismatches")
+    psync.add_argument("--fix", action="store_true", help="Push CSV values to Anki for mismatches")
+    psync.add_argument("--dry-run", action="store_true", help="With --fix, show changes without applying")
+    psync.add_argument("--deck", default="My Spanish Deck::625")
+    psync.add_argument("--model", default="Picture Word")
+    psync.set_defaults(func=cmd_sync)
 
     # Top-level known words export (alias of sentences known)
     pk0 = sub.add_parser("known", help="Export known words to data/known_words.json")

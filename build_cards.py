@@ -191,7 +191,7 @@ def detect_gender(word: str, pos: str = "") -> str:
 
 
 def find_gender_badge(gender: str) -> Path | None:
-    if not gender:
+    if not gender or gender.lower() == "none":
         return None
     base = "male" if gender.lower().startswith("m") else "female"
     for ext in (".png", ".jpg", ".jpeg", ".webp"):
@@ -705,6 +705,19 @@ def main():
     print(f"  Audio failed:   {audio_failed}")
     print(f"  Enriched IPA:   {enriched_ipa}")
     print(f"  Enriched Gender:{enriched_gender}")
+
+    # Post-build sync check
+    if not DRY_RUN:
+        try:
+            sync_script = BASE_DIR / "scripts" / "sync_check.py"
+            if sync_script.exists():
+                print("\n--- Post-build sync check ---")
+                subprocess.run(
+                    [sys.executable, str(sync_script)],
+                    cwd=str(BASE_DIR),
+                )
+        except Exception as e:
+            warn(f"Post-build sync check failed: {e}")
 
 if __name__ == "__main__":
     main()

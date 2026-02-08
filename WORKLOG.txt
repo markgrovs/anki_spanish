@@ -172,3 +172,8 @@ Current state (2026-02-06):
 - Next up: Phase 1 foundation work (start with 1.1, 1.2, 1.3)
 
 
+--- 2026-02-06 (Sync & Cleanup) ---
+- Fixed 3 discrepancies between Anki and CSV (duplicate 'frío', plural 'bebidas', phrase 'ventilador eléctrico')
+- Created scripts/sync_check.py to detect orphans, unbuilt cards, and field mismatches
+- Added 'sync' command to anki_flow.py
+- Added post-build sync check to build_cards.py
