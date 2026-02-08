@@ -21,8 +21,18 @@ Fix actions (with --fix):
 import sys
 import csv
 import argparse
-import unicodedata
+
 from pathlib import Path
+
+import sys
+# Add parent to path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from lib.config import CSV_PATH, FIELDNAMES
+from lib.anki_client import anki
+from lib.csv_store import read_rows
+from lib.gender import compute_article
+
 
 try:
     import requests
@@ -36,64 +46,11 @@ ANKI = "http://127.0.0.1:8765"
 
 FIELDNAMES = ["english", "sense", "pos", "spanish", "gender", "ipa", "notes"]
 
-# ---- Anki helpers ----
 
-def anki(action, **params):
-    try:
-        r = requests.post(ANKI, json={"action": action, "version": 6, "params": params}, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        if data.get("error"):
-            raise RuntimeError(data["error"])
-        return data["result"]
-    except requests.exceptions.ConnectionError:
-        print("ERROR: Cannot connect to Anki. Is Anki open with AnkiConnect?")
-        sys.exit(1)
 
-# ---- Article computation (mirrors build_cards.py logic) ----
 
-FEM_EL_WHITELIST = {
-    "agua", "aguila", "águila", "arma", "alma", "aula", "hacha",
-    "hada", "hambre", "area", "área", "ala",
-}
-NUMBER_WORDS = {
-    "cero","uno","una","dos","tres","cuatro","cinco","seis","siete",
-    "ocho","nueve","diez","once","doce","trece","catorce","quince",
-    "veinte","treinta","cuarenta","cincuenta","sesenta","setenta",
-    "ochenta","noventa","cien","ciento","mil",
-}
 
-def compute_article(spanish, gender, pos):
-    g = (gender or "").lower()
-    p = (pos or "").lower()
-    if g not in ("m", "f"):
-        return ""
-    if p and p != "noun":
-        return ""
-    base = unicodedata.normalize("NFD", spanish).lower()
-    base = "".join(ch for ch in base if unicodedata.category(ch) != "Mn")
-    if base in NUMBER_WORDS:
-        return ""
-    if not p and base.endswith(("ar", "er", "ir")):
-        return ""
-    if g == "m":
-        return "el"
-    if base in FEM_EL_WHITELIST:
-        return "el"
-    return "la"
 
-# ---- CSV helpers ----
-
-def read_csv():
-    if not CSV_PATH.exists():
-        print(f"CSV not found: {CSV_PATH}")
-        sys.exit(1)
-    with CSV_PATH.open("r", encoding="utf-8") as f:
-        rows = list(csv.DictReader(f))
-    for r in rows:
-        for k in FIELDNAMES:
-            r.setdefault(k, "")
-    return rows
 
 # ---- Main ----
 
@@ -105,7 +62,7 @@ def main():
     ap.add_argument("--model", default="Picture Word")
     args = ap.parse_args()
 
-    rows = read_csv()
+    rows = read_rows(CSV_PATH)
     csv_by_word = {}
     for r in rows:
         s = (r.get("spanish") or "").strip()
@@ -113,12 +70,12 @@ def main():
             csv_by_word[s] = r
 
     # Fetch all Anki notes
-    note_ids = anki("findNotes", query=f'deck:"{args.deck}" note:"{args.model}"')
+    note_ids = anki.find_notes(query=f'deck:"{args.deck}" note:"{args.model}"')
     if not note_ids:
         print(f"No notes found in deck '{args.deck}' with model '{args.model}'")
         return
 
-    note_infos = anki("notesInfo", notes=note_ids)
+    note_infos = anki.notes_info(notes=note_ids)
     anki_by_word = {}
     duplicates = []
     for n in note_infos:
@@ -256,7 +213,7 @@ def main():
                     if args.dry_run:
                         print(f"  [dry-run] Would update {w}: {updates}")
                     else:
-                        anki("updateNoteFields", note={"id": nid, "fields": updates})
+                        anki.update_note_fields(nid, updates)
                         fixed += 1
             if args.dry_run:
                 print(f"\n  Dry run complete. {len(field_diffs)} notes would be updated.")

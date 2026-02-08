@@ -161,7 +161,8 @@ def main():
     total = len(rows)
     
     i = 0
-    while i < total:
+    try:
+        while i < total:
         row = rows[i]
         if row.get("spanish"):
             i += 1
@@ -244,4 +245,8 @@ def main():
     print("Done.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\n[Interrupted] Saved progress. Exiting.")
+        sys.exit(0)
