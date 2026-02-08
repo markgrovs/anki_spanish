@@ -74,7 +74,7 @@ Current state (2026-02-06):
  PHASE 2: WORKFLOW AUTOMATION
 ================================================================================
 
-[ ] 2.1  Auto-image download via Pixabay or Unsplash API
+[x] 2.1  Auto-image download via Pixabay or Unsplash API
          - Sign up for free Pixabay API key (100 req/hour)
          - Search {spanish_word}, download top result as {slug}.jpg
          - Fall back to browser if no API results
@@ -208,3 +208,10 @@ Current state (2026-02-06):
   - scripts/sentences_build.py
   - scripts/sentences_get_known_words.py
 - Verified 'sync' command still works via lib
+--- 2026-02-06 (Auto-Images) ---
+- Implemented Task 2.1: Auto-image download with candidate selection
+- Created lib/image_search.py (Pixabay client)
+- Created lib/collage.py (Grid generator)
+- Created scripts/pick_images.py (Interactive loop)
+- Updated lib/config.py to load .env (PIXABAY_API_KEY)
+- Added 'pick-images' command to anki_flow.py

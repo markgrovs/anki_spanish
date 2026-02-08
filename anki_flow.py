@@ -45,6 +45,14 @@ def cmd_enrich_gender(args):
     cmd += ["--deck", args.deck, "--model", args.model]
     run(cmd)
 
+
+def cmd_pick_images(args):
+    script = BASE_DIR / "scripts" / "pick_images.py"
+    cmd = [sys.executable, str(script)]
+    if args.limit: cmd += ["--limit", str(args.limit)]
+    if args.query: cmd += ["--query", args.query]
+    run(cmd)
+
 def cmd_build(args):
     script = BASE_DIR / "build_cards.py"
     cmd = [sys.executable, str(script)]
@@ -246,6 +254,13 @@ def main():
     pb.add_argument("--regen-audio", action="store_true")
     pb.add_argument("--debug", action="store_true")
     pb.set_defaults(func=cmd_sentences_build)
+
+    
+    # 8. Pick Images
+    pimg = sub.add_parser("pick-images", help="Interactive image picker (Pixabay)")
+    pimg.add_argument("--limit", type=int, default=10, help="Batch size")
+    pimg.add_argument("--query", type=str, help="Specific word to process (optional)")
+    pimg.set_defaults(func=cmd_pick_images)
 
     args = ap.parse_args()
     if hasattr(args, "func"):
