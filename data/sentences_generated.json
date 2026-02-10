@@ -1,242 +1,584 @@
 [
   {
-    "english_gloss": "I drink coffee in the afternoon",
-    "tags": ["present", "daily_life", "time"],
-    "clozes": ["beber", "café", "tarde"],
-    "text": "Bebo café por la tarde."
+    "english_gloss": "Where can I buy cheap gas for my motorcycle?",
+    "tags": ["question", "present", "motorcycle", "travel"],
+    "clozes": ["comprar", "barato", "motor"],
+    "text": "¿Dónde puedo comprar gasolina barata para mi motor?"
   },
   {
-    "english_gloss": "The dog sleeps near the door",
-    "tags": ["present", "location"],
-    "clozes": ["perro", "cerca", "puerta"],
-    "text": "El perro duerme cerca de la puerta."
+    "english_gloss": "My motorcycle is broken and I need a mechanic",
+    "tags": ["present", "motorcycle", "problem_solving", "estar"],
+    "clozes": ["motor", "romper"],
+    "text": "Mi motor está roto y necesito un mecánico."
   },
   {
-    "english_gloss": "We need to clean the apartment",
+    "english_gloss": "The hotel room is expensive but clean",
+    "tags": ["present", "hotel", "ser"],
+    "clozes": ["dormitorio", "caro", "limpio"],
+    "text": "El dormitorio del hotel es caro pero limpio."
+  },
+  {
+    "english_gloss": "I want to drink coffee and eat breakfast",
+    "tags": ["infinitive", "present", "food", "daily_life"],
+    "clozes": ["beber", "café", "comer", "desayuno"],
+    "text": "Quiero beber café y comer desayuno."
+  },
+  {
+    "english_gloss": "Is there a gas station near the bridge?",
+    "tags": ["question", "present", "directions", "travel"],
+    "clozes": ["cerca", "puente"],
+    "text": "¿Hay una gasolinera cerca del puente?"
+  },
+  {
+    "english_gloss": "I need to find a cheap hotel for the night",
+    "tags": ["infinitive", "present", "hotel", "travel"],
+    "clozes": ["barato", "noche"],
+    "text": "Necesito encontrar un hotel barato para la noche."
+  },
+  {
+    "english_gloss": "Where is the bathroom in this building?",
+    "tags": ["question", "present", "hotel", "directions"],
+    "clozes": ["baño", "edificio"],
+    "text": "¿Dónde está el baño en este edificio?"
+  },
+  {
+    "english_gloss": "I want to eat chicken and drink a cold beer",
+    "tags": ["infinitive", "present", "food", "restaurant"],
+    "clozes": ["comer", "pollo", "beber", "cerveza", "frío"],
+    "text": "Quiero comer pollo y beber una cerveza fría."
+  },
+  {
+    "english_gloss": "My motorcycle needs new parts but they're expensive",
+    "tags": ["present", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "caro"],
+    "text": "Mi motor necesita partes nuevas pero son caras."
+  },
+  {
+    "english_gloss": "Can I park my motorcycle near the hotel?",
+    "tags": ["question", "present", "motorcycle", "hotel"],
+    "clozes": ["motor", "cerca"],
+    "text": "¿Puedo estacionar mi motor cerca del hotel?"
+  },
+  {
+    "english_gloss": "The bed in the room is very clean",
+    "tags": ["present", "hotel", "estar"],
+    "clozes": ["cama", "dormitorio", "limpio"],
+    "text": "La cama en el dormitorio está muy limpia."
+  },
+  {
+    "english_gloss": "I need to buy beef, chicken, and cheese",
+    "tags": ["infinitive", "present", "food", "shopping"],
+    "clozes": ["comprar", "carne de res", "pollo", "queso"],
+    "text": "Necesito comprar carne de res, pollo y queso."
+  },
+  {
+    "english_gloss": "Where is the nearest hospital?",
+    "tags": ["question", "present", "emergency", "directions"],
+    "clozes": ["cerca"],
+    "text": "¿Dónde está el hospital más cerca?"
+  },
+  {
+    "english_gloss": "The mechanic can fix my motorcycle today",
+    "tags": ["present", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "día"],
+    "text": "El mecánico puede arreglar mi motor hoy en el día."
+  },
+  {
+    "english_gloss": "I want a room with a clean bathroom",
+    "tags": ["infinitive", "present", "hotel"],
+    "clozes": ["dormitorio", "baño", "limpio"],
+    "text": "Quiero un dormitorio con un baño limpio."
+  },
+  {
+    "english_gloss": "How much does breakfast cost at this hotel?",
+    "tags": ["question", "present", "food", "hotel"],
+    "clozes": ["desayuno"],
+    "text": "¿Cuánto cuesta el desayuno en este hotel?"
+  },
+  {
+    "english_gloss": "My brother is going to drive to the airport",
+    "tags": ["future", "present", "travel", "family"],
+    "clozes": ["hermano", "conducir", "aeropuerto"],
+    "text": "Mi hermano va a conducir al aeropuerto."
+  },
+  {
+    "english_gloss": "I need to find a doctor because I have a disease",
+    "tags": ["infinitive", "present", "medical", "emergency"],
+    "clozes": ["doctora", "enfermedad"],
+    "text": "Necesito encontrar una doctora porque tengo una enfermedad."
+  },
+  {
+    "english_gloss": "The gas is very expensive in this country",
+    "tags": ["present", "motorcycle", "travel", "ser"],
+    "clozes": ["caro", "país"],
+    "text": "La gasolina es muy cara en este país."
+  },
+  {
+    "english_gloss": "Can I drink the water here or is it bad?",
+    "tags": ["question", "present", "food", "health"],
+    "clozes": ["beber", "malo"],
+    "text": "¿Puedo beber el agua aquí o es mala?"
+  },
+  {
+    "english_gloss": "I'm going to eat at the restaurant near the corner",
+    "tags": ["future", "present", "food", "directions"],
+    "clozes": ["comer", "cerca", "esquina"],
+    "text": "Voy a comer en el restaurante cerca de la esquina."
+  },
+  {
+    "english_gloss": "My motorcycle broke down near the bridge",
+    "tags": ["preterite", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "romper", "cerca", "puente"],
+    "text": "Mi motor se rompió cerca del puente."
+  },
+  {
+    "english_gloss": "Do you have a room for eight nights?",
+    "tags": ["question", "present", "hotel"],
+    "clozes": ["dormitorio", "ocho", "noche"],
+    "text": "¿Tiene un dormitorio para ocho noches?"
+  },
+  {
+    "english_gloss": "I need to buy a new coat because it's very cold",
+    "tags": ["infinitive", "present", "shopping", "weather"],
+    "clozes": ["comprar", "abrigo", "frío"],
+    "text": "Necesito comprar un abrigo nuevo porque hace mucho frío."
+  },
+  {
+    "english_gloss": "Where can I find cheap motorcycle parts?",
+    "tags": ["question", "present", "motorcycle", "shopping"],
+    "clozes": ["barato", "motor"],
+    "text": "¿Dónde puedo encontrar partes baratas para motor?"
+  },
+  {
+    "english_gloss": "The hotel is near the airport and the bus station",
+    "tags": ["present", "hotel", "directions", "estar"],
+    "clozes": ["cerca", "aeropuerto", "autobús"],
+    "text": "El hotel está cerca del aeropuerto y la estación de autobús."
+  },
+  {
+    "english_gloss": "I want to eat eggs, bread, and drink coffee for breakfast",
+    "tags": ["infinitive", "present", "food", "restaurant"],
+    "clozes": ["comer", "huevo", "pan", "beber", "café", "desayuno"],
+    "text": "Quiero comer huevos, pan y beber café para el desayuno."
+  },
+  {
+    "english_gloss": "My sister is a famous doctor in this country",
+    "tags": ["present", "family", "social", "ser"],
+    "clozes": ["hermana", "famoso", "doctora", "país"],
+    "text": "Mi hermana es una doctora famosa en este país."
+  },
+  {
+    "english_gloss": "Is there a mechanic who can fix motorcycles near here?",
+    "tags": ["question", "present", "motorcycle", "directions"],
+    "clozes": ["motor", "cerca"],
+    "text": "¿Hay un mecánico que puede arreglar motores cerca de aquí?"
+  },
+  {
+    "english_gloss": "I need a clean room with a bed for tonight",
+    "tags": ["infinitive", "present", "hotel"],
+    "clozes": ["limpio", "dormitorio", "cama", "noche"],
+    "text": "Necesito un dormitorio limpio con una cama para esta noche."
+  },
+  {
+    "english_gloss": "The bathroom is dirty and I want a different room",
+    "tags": ["present", "hotel", "problem_solving", "estar"],
+    "clozes": ["baño", "dormitorio"],
+    "text": "El baño está sucio y quiero un dormitorio diferente."
+  },
+  {
+    "english_gloss": "How much does it cost to fix my motorcycle?",
+    "tags": ["question", "present", "motorcycle", "problem_solving"],
+    "clozes": ["motor"],
+    "text": "¿Cuánto cuesta arreglar mi motor?"
+  },
+  {
+    "english_gloss": "I'm going to drive east to the next country",
+    "tags": ["future", "present", "travel", "directions"],
+    "clozes": ["conducir", "este", "país"],
+    "text": "Voy a conducir al este al próximo país."
+  },
+  {
+    "english_gloss": "Can I buy gas with a credit card here?",
+    "tags": ["question", "present", "motorcycle", "travel"],
+    "clozes": ["comprar", "tarjeta"],
+    "text": "¿Puedo comprar gasolina con tarjeta de crédito aquí?"
+  },
+  {
+    "english_gloss": "The beef is expensive but the chicken is cheap",
+    "tags": ["present", "food", "restaurant", "ser"],
+    "clozes": ["carne de res", "caro", "pollo", "barato"],
+    "text": "La carne de res es cara pero el pollo es barato."
+  },
+  {
+    "english_gloss": "My family is going to come to the wedding in April",
+    "tags": ["future", "present", "social", "family"],
+    "clozes": ["familia", "abril"],
+    "text": "Mi familia va a venir a la boda en abril."
+  },
+  {
+    "english_gloss": "I need to find a doctor because my body hurts",
+    "tags": ["infinitive", "present", "medical", "emergency"],
+    "clozes": ["doctora", "cuerpo"],
+    "text": "Necesito encontrar una doctora porque me duele el cuerpo."
+  },
+  {
+    "english_gloss": "Where is the nearest bank to change dollars?",
+    "tags": ["question", "present", "directions", "travel"],
+    "clozes": ["cerca", "banco", "dólar"],
+    "text": "¿Dónde está el banco más cerca para cambiar dólares?"
+  },
+  {
+    "english_gloss": "The motorcycle is dirty and needs to be cleaned",
+    "tags": ["present", "motorcycle", "estar"],
+    "clozes": ["motor", "limpiar"],
+    "text": "El motor está sucio y necesita limpiarse."
+  },
+  {
+    "english_gloss": "I want to drink a cold beer after driving all day",
+    "tags": ["infinitive", "present", "food", "travel"],
+    "clozes": ["beber", "cerveza", "frío", "conducir", "día"],
+    "text": "Quiero beber una cerveza fría después de conducir todo el día."
+  },
+  {
+    "english_gloss": "Is there a hotel with parking for motorcycles?",
+    "tags": ["question", "present", "hotel", "motorcycle"],
+    "clozes": ["motor"],
+    "text": "¿Hay un hotel con estacionamiento para motores?"
+  },
+  {
+    "english_gloss": "My daughter is going to visit in December",
+    "tags": ["future", "present", "family", "social"],
+    "clozes": ["hija", "diciembre"],
+    "text": "Mi hija va a visitar en diciembre."
+  },
+  {
+    "english_gloss": "I need to buy bread, cheese, and bananas",
+    "tags": ["infinitive", "present", "food", "shopping"],
+    "clozes": ["comprar", "pan", "queso", "plátano"],
+    "text": "Necesito comprar pan, queso y plátanos."
+  },
+  {
+    "english_gloss": "The mechanic said the motorcycle is very bad",
+    "tags": ["preterite", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "malo"],
+    "text": "El mecánico dijo que el motor está muy malo."
+  },
+  {
+    "english_gloss": "Can you clean the room before night?",
+    "tags": ["question", "present", "hotel"],
+    "clozes": ["limpiar", "dormitorio", "noche"],
+    "text": "¿Puede limpiar el dormitorio antes de la noche?"
+  },
+  {
+    "english_gloss": "I'm going to eat breakfast at eight in the morning",
+    "tags": ["future", "present", "food", "daily_life"],
+    "clozes": ["comer", "desayuno", "ocho"],
+    "text": "Voy a comer desayuno a las ocho de la mañana."
+  },
+  {
+    "english_gloss": "Where can I find a cheap restaurant near here?",
+    "tags": ["question", "present", "food", "directions"],
+    "clozes": ["barato", "cerca"],
+    "text": "¿Dónde puedo encontrar un restaurante barato cerca de aquí?"
+  },
+  {
+    "english_gloss": "My brother drives a bus in this country",
+    "tags": ["present", "family", "work"],
+    "clozes": ["hermano", "conducir", "autobús", "país"],
+    "text": "Mi hermano conduce un autobús en este país."
+  },
+  {
+    "english_gloss": "The hotel room has a beautiful view of the bridge",
+    "tags": ["present", "hotel", "tener"],
+    "clozes": ["dormitorio", "hermosa", "puente"],
+    "text": "El dormitorio del hotel tiene una vista hermosa del puente."
+  },
+  {
+    "english_gloss": "I need to buy a cell phone because mine is broken",
+    "tags": ["infinitive", "present", "shopping", "problem_solving"],
+    "clozes": ["comprar", "celular", "romper"],
+    "text": "Necesito comprar un celular porque el mío está roto."
+  },
+  {
+    "english_gloss": "Is there a doctor in this building?",
+    "tags": ["question", "present", "medical", "directions"],
+    "clozes": ["doctora", "edificio"],
+    "text": "¿Hay una doctora en este edificio?"
+  },
+  {
+    "english_gloss": "I want to drink coffee but I need to eat breakfast first",
+    "tags": ["infinitive", "present", "food", "daily_life"],
+    "clozes": ["beber", "café", "comer", "desayuno"],
+    "text": "Quiero beber café pero necesito comer desayuno primero."
+  },
+  {
+    "english_gloss": "The motorcycle broke down and I need help",
+    "tags": ["preterite", "motorcycle", "emergency"],
+    "clozes": ["motor", "romper"],
+    "text": "El motor se rompió y necesito ayuda."
+  },
+  {
+    "english_gloss": "How many dollars does the hotel room cost per night?",
+    "tags": ["question", "present", "hotel"],
+    "clozes": ["dólar", "dormitorio", "noche"],
+    "text": "¿Cuántos dólares cuesta el dormitorio del hotel por noche?"
+  },
+  {
+    "english_gloss": "I'm going to drive to the beach in August",
+    "tags": ["future", "present", "travel"],
+    "clozes": ["conducir", "playa", "agosto"],
+    "text": "Voy a conducir a la playa en agosto."
+  },
+  {
+    "english_gloss": "Can I park my motorcycle near the church?",
+    "tags": ["question", "present", "motorcycle", "directions"],
+    "clozes": ["motor", "cerca", "iglesia"],
+    "text": "¿Puedo estacionar mi motor cerca de la iglesia?"
+  },
+  {
+    "english_gloss": "The air is very dry and I need to drink water",
+    "tags": ["present", "health", "estar"],
+    "clozes": ["aire", "seco", "beber"],
+    "text": "El aire está muy seco y necesito beber agua."
+  },
+  {
+    "english_gloss": "My daughter is a famous artist in this country",
+    "tags": ["present", "family", "social", "ser"],
+    "clozes": ["hija", "famoso", "artista", "país"],
+    "text": "Mi hija es una artista famosa en este país."
+  },
+  {
+    "english_gloss": "I need to find a bathroom near the corner",
+    "tags": ["infinitive", "present", "directions", "emergency"],
+    "clozes": ["baño", "cerca", "esquina"],
+    "text": "Necesito encontrar un baño cerca de la esquina."
+  },
+  {
+    "english_gloss": "The mechanic is going to fix my motorcycle tomorrow",
+    "tags": ["future", "present", "motorcycle", "problem_solving"],
+    "clozes": ["motor"],
+    "text": "El mecánico va a arreglar mi motor mañana."
+  },
+  {
+    "english_gloss": "I want a room on a high floor with a clean bathroom",
+    "tags": ["infinitive", "present", "hotel"],
+    "clozes": ["dormitorio", "baño", "limpio"],
+    "text": "Quiero un dormitorio en un piso alto con un baño limpio."
+  },
+  {
+    "english_gloss": "Where can I buy cheap clothes for cold weather?",
+    "tags": ["question", "present", "shopping", "weather"],
+    "clozes": ["comprar", "barato", "ropa", "frío"],
+    "text": "¿Dónde puedo comprar ropa barata para el clima frío?"
+  },
+  {
+    "english_gloss": "The gas station is near the bridge on the corner",
+    "tags": ["present", "directions", "motorcycle", "estar"],
+    "clozes": ["cerca", "puente", "esquina"],
+    "text": "La gasolinera está cerca del puente en la esquina."
+  },
+  {
+    "english_gloss": "I'm going to eat chicken and drink beer at the restaurant",
+    "tags": ["future", "present", "food", "restaurant"],
+    "clozes": ["comer", "pollo", "beber", "cerveza"],
+    "text": "Voy a comer pollo y beber cerveza en el restaurante."
+  },
+  {
+    "english_gloss": "My motorcycle needs a new battery but it's very expensive",
+    "tags": ["present", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "caro"],
+    "text": "Mi motor necesita una batería nueva pero es muy cara."
+  },
+  {
+    "english_gloss": "Is there a bank near the hotel?",
+    "tags": ["question", "present", "directions", "travel"],
+    "clozes": ["banco", "cerca"],
+    "text": "¿Hay un banco cerca del hotel?"
+  },
+  {
+    "english_gloss": "I need to clean my clothes because they're very dirty",
     "tags": ["infinitive", "present", "daily_life"],
-    "clozes": ["limpiar", "departamento"],
-    "text": "Necesitamos limpiar el departamento."
+    "clozes": ["limpiar", "ropa"],
+    "text": "Necesito limpiar mi ropa porque está muy sucia."
   },
   {
-    "english_gloss": "My body is cold",
-    "tags": ["present", "estar", "physical_state"],
-    "clozes": ["cuerpo", "frío"],
-    "text": "Mi cuerpo está frío."
+    "english_gloss": "The doctor said I have a bad disease",
+    "tags": ["preterite", "medical", "emergency"],
+    "clozes": ["doctora", "malo", "enfermedad"],
+    "text": "La doctora dijo que tengo una enfermedad mala."
   },
   {
-    "english_gloss": "The boy draws in his book",
-    "tags": ["present", "activities"],
-    "clozes": ["chico", "dibujar", "libro"],
-    "text": "El chico dibuja en su libro."
+    "english_gloss": "Can I buy breakfast at this hotel?",
+    "tags": ["question", "present", "food", "hotel"],
+    "clozes": ["comprar", "desayuno"],
+    "text": "¿Puedo comprar desayuno en este hotel?"
   },
   {
-    "english_gloss": "She wants to drink a bottle of water",
-    "tags": ["infinitive", "present", "daily_life"],
-    "clozes": ["beber", "botella"],
-    "text": "Ella quiere beber una botella de agua."
+    "english_gloss": "I'm going to drive my motorcycle to the airport today",
+    "tags": ["future", "present", "motorcycle", "travel"],
+    "clozes": ["conducir", "motor", "aeropuerto", "día"],
+    "text": "Voy a conducir mi motor al aeropuerto hoy en el día."
   },
   {
-    "english_gloss": "The air is clean at the airport",
-    "tags": ["present", "estar", "location"],
-    "clozes": ["aire", "limpio", "aeropuerto"],
-    "text": "El aire está limpio en el aeropuerto."
+    "english_gloss": "My family is going to eat at a famous restaurant tonight",
+    "tags": ["future", "present", "food", "family"],
+    "clozes": ["familia", "comer", "famoso", "noche"],
+    "text": "Mi familia va a comer en un restaurante famoso esta noche."
   },
   {
-    "english_gloss": "I have a dream about a blue boat",
-    "tags": ["present", "tener"],
-    "clozes": ["sueño", "bote", "azul"],
-    "text": "Tengo un sueño con un bote azul."
+    "english_gloss": "Where is the nearest gas station to buy gas?",
+    "tags": ["question", "present", "motorcycle", "directions"],
+    "clozes": ["cerca", "comprar"],
+    "text": "¿Dónde está la gasolinera más cerca para comprar gasolina?"
   },
   {
-    "english_gloss": "The actor wears black clothes",
-    "tags": ["present", "clothing"],
-    "clozes": ["actor", "ropa", "negro"],
-    "text": "El actor lleva ropa negra."
+    "english_gloss": "The hotel bed is very clean and beautiful",
+    "tags": ["present", "hotel", "ser"],
+    "clozes": ["cama", "limpio", "hermosa"],
+    "text": "La cama del hotel es muy limpia y hermosa."
   },
   {
-    "english_gloss": "We cook bread in April",
-    "tags": ["present", "food", "time"],
-    "clozes": ["cocinar", "pan", "abril"],
-    "text": "Cocinamos pan en abril."
+    "english_gloss": "I need to find a mechanic because my motorcycle is making bad sounds",
+    "tags": ["infinitive", "present", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "malo"],
+    "text": "Necesito encontrar un mecánico porque mi motor hace sonidos malos."
   },
   {
-    "english_gloss": "The doctor works downstairs in the club",
-    "tags": ["present", "location"],
-    "clozes": ["doctora", "abajo", "club"],
-    "text": "La doctora trabaja abajo en el club."
+    "english_gloss": "Can I drink coffee and eat cake here?",
+    "tags": ["question", "present", "food", "restaurant"],
+    "clozes": ["beber", "café", "comer", "pastel"],
+    "text": "¿Puedo beber café y comer pastel aquí?"
   },
   {
-    "english_gloss": "I see a black animal near the box",
-    "tags": ["present", "location"],
-    "clozes": ["animal", "negro", "cerca", "caja"],
-    "text": "Veo un animal negro cerca de la caja."
+    "english_gloss": "My brother is going to buy a motorcycle in December",
+    "tags": ["future", "present", "motorcycle", "family"],
+    "clozes": ["hermano", "comprar", "motor", "diciembre"],
+    "text": "Mi hermano va a comprar un motor en diciembre."
   },
   {
-    "english_gloss": "The artist drinks coffee and eats an apple",
-    "tags": ["present", "food", "daily_life"],
-    "clozes": ["artista", "beber", "café", "manzana"],
-    "text": "El artista bebe café y come una manzana."
+    "english_gloss": "The bathroom in my room is very dirty",
+    "tags": ["present", "hotel", "problem_solving", "estar"],
+    "clozes": ["baño", "dormitorio"],
+    "text": "El baño en mi dormitorio está muy sucio."
   },
   {
-    "english_gloss": "My computer is on the table downstairs",
-    "tags": ["present", "estar", "location"],
-    "clozes": ["computadora", "abajo"],
-    "text": "Mi computadora está en la mesa abajo."
+    "english_gloss": "I want to eat beef with cheese and drink a cold beer",
+    "tags": ["infinitive", "present", "food", "restaurant"],
+    "clozes": ["comer", "carne de res", "queso", "beber", "cerveza", "frío"],
+    "text": "Quiero comer carne de res con queso y beber una cerveza fría."
   },
   {
-    "english_gloss": "The dress is a beautiful color",
-    "tags": ["present", "ser", "clothing"],
-    "clozes": ["vestido", "color"],
-    "text": "El vestido es de un color bonito."
+    "english_gloss": "Is there a doctor who speaks English near here?",
+    "tags": ["question", "present", "medical", "directions"],
+    "clozes": ["doctora", "cerca"],
+    "text": "¿Hay una doctora que habla inglés cerca de aquí?"
   },
   {
-    "english_gloss": "I want to drive to the airport in August",
-    "tags": ["infinitive", "present", "travel", "time"],
-    "clozes": ["conducir", "aeropuerto", "agosto"],
-    "text": "Quiero conducir al aeropuerto en agosto."
+    "english_gloss": "The motorcycle parts are very expensive in this country",
+    "tags": ["present", "motorcycle", "travel", "ser"],
+    "clozes": ["motor", "caro", "país"],
+    "text": "Las partes de motor son muy caras en este país."
   },
   {
-    "english_gloss": "The boy has a dry book",
-    "tags": ["present", "tener"],
-    "clozes": ["chico", "libro", "seco"],
-    "text": "El chico tiene un libro seco."
+    "english_gloss": "I'm going to buy bread, eggs, and coffee for breakfast",
+    "tags": ["future", "present", "food", "shopping"],
+    "clozes": ["comprar", "pan", "huevo", "café", "desayuno"],
+    "text": "Voy a comprar pan, huevos y café para el desayuno."
   },
   {
-    "english_gloss": "We live near the airport",
-    "tags": ["present", "location"],
-    "clozes": ["vivo", "cerca", "aeropuerto"],
-    "text": "Vivimos cerca del aeropuerto."
+    "english_gloss": "Can I park my motorcycle near this building?",
+    "tags": ["question", "present", "motorcycle", "directions"],
+    "clozes": ["motor", "cerca", "edificio"],
+    "text": "¿Puedo estacionar mi motor cerca de este edificio?"
   },
   {
-    "english_gloss": "The contract is in the box",
-    "tags": ["present", "estar", "location"],
-    "clozes": ["contrato", "caja"],
-    "text": "El contrato está en la caja."
+    "english_gloss": "My sister is a doctor and she works at the hospital",
+    "tags": ["present", "family", "medical"],
+    "clozes": ["hermana", "doctora"],
+    "text": "Mi hermana es doctora y trabaja en el hospital."
   },
   {
-    "english_gloss": "I need to clean the dust from the clock",
-    "tags": ["infinitive", "present"],
-    "clozes": ["limpiar", "polvo", "reloj"],
-    "text": "Necesito limpiar el polvo del reloj."
+    "english_gloss": "I need a hotel room for eighteen nights",
+    "tags": ["infinitive", "present", "hotel"],
+    "clozes": ["dormitorio", "dieciocho", "noche"],
+    "text": "Necesito un dormitorio de hotel para dieciocho noches."
   },
   {
-    "english_gloss": "The doctor sees the brain on the computer",
-    "tags": ["present", "medical", "technology"],
-    "clozes": ["doctora", "cerebro", "computadora"],
-    "text": "La doctora ve el cerebro en la computadora."
+    "english_gloss": "The mechanic said my motorcycle needs expensive parts",
+    "tags": ["preterite", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "caro"],
+    "text": "El mecánico dijo que mi motor necesita partes caras."
   },
   {
-    "english_gloss": "I drink cold coffee in the afternoon",
-    "tags": ["present", "food", "time"],
-    "clozes": ["beber", "café", "frío", "tarde"],
-    "text": "Bebo café frío por la tarde."
+    "english_gloss": "Where can I find a cheap hotel near the airport?",
+    "tags": ["question", "present", "hotel", "directions"],
+    "clozes": ["barato", "cerca", "aeropuerto"],
+    "text": "¿Dónde puedo encontrar un hotel barato cerca del aeropuerto?"
   },
   {
-    "english_gloss": "The black dog is alive",
-    "tags": ["present", "estar"],
-    "clozes": ["perro", "negro", "vivo"],
-    "text": "El perro negro está vivo."
+    "english_gloss": "I want to drink cold water because the air is very dry",
+    "tags": ["infinitive", "present", "health", "weather"],
+    "clozes": ["beber", "frío", "aire", "seco"],
+    "text": "Quiero beber agua fría porque el aire está muy seco."
   },
   {
-    "english_gloss": "She draws art with clay",
-    "tags": ["present", "activities"],
-    "clozes": ["dibujar", "arte", "arcilla"],
-    "text": "Ella dibuja arte con arcilla."
+    "english_gloss": "My motorcycle broke down near the church",
+    "tags": ["preterite", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "romper", "cerca", "iglesia"],
+    "text": "Mi motor se rompió cerca de la iglesia."
   },
   {
-    "english_gloss": "The actor has a disease",
-    "tags": ["present", "tener", "medical"],
-    "clozes": ["actor", "enfermedad"],
-    "text": "El actor tiene una enfermedad."
+    "english_gloss": "Is there a restaurant that serves cheap breakfast?",
+    "tags": ["question", "present", "food", "directions"],
+    "clozes": ["barato", "desayuno"],
+    "text": "¿Hay un restaurante que sirve desayuno barato?"
   },
   {
-    "english_gloss": "I want to cook bread and drink coffee",
-    "tags": ["infinitive", "present", "food"],
-    "clozes": ["cocinar", "pan", "beber", "café"],
-    "text": "Quiero cocinar pan y beber café."
+    "english_gloss": "I need to buy a coat because it's going to be very cold",
+    "tags": ["infinitive", "future", "shopping", "weather"],
+    "clozes": ["comprar", "abrigo", "frío"],
+    "text": "Necesito comprar un abrigo porque va a hacer mucho frío."
   },
   {
-    "english_gloss": "The blue bottle is on the table",
-    "tags": ["present", "estar", "location"],
-    "clozes": ["botella", "azul"],
-    "text": "La botella azul está en la mesa."
+    "english_gloss": "The hotel is beautiful and near the beach",
+    "tags": ["present", "hotel", "directions", "ser"],
+    "clozes": ["hermosa", "cerca", "playa"],
+    "text": "El hotel es hermoso y está cerca de la playa."
   },
   {
-    "english_gloss": "The boy wears a blue dress",
-    "tags": ["present", "clothing"],
-    "clozes": ["chico", "vestido", "azul"],
-    "text": "El chico lleva un vestido azul."
+    "english_gloss": "Can I eat breakfast in my room?",
+    "tags": ["question", "present", "food", "hotel"],
+    "clozes": ["comer", "desayuno", "dormitorio"],
+    "text": "¿Puedo comer desayuno en mi dormitorio?"
   },
   {
-    "english_gloss": "I have a dream about the airport",
-    "tags": ["present", "tener"],
-    "clozes": ["sueño", "aeropuerto"],
-    "text": "Tengo un sueño sobre el aeropuerto."
+    "english_gloss": "I'm going to drive east to find a cheaper hotel",
+    "tags": ["future", "present", "travel", "hotel"],
+    "clozes": ["conducir", "este", "barato"],
+    "text": "Voy a conducir al este para encontrar un hotel más barato."
   },
   {
-    "english_gloss": "The air is cold in April",
-    "tags": ["present", "estar", "weather", "time"],
-    "clozes": ["aire", "frío", "abril"],
-    "text": "El aire está frío en abril."
+    "english_gloss": "My family is coming to visit in April for the wedding",
+    "tags": ["present", "family", "social"],
+    "clozes": ["familia", "abril"],
+    "text": "Mi familia viene a visitar en abril para la boda."
   },
   {
-    "english_gloss": "The artist lives in the apartment downstairs",
-    "tags": ["present", "location"],
-    "clozes": ["artista", "departamento", "abajo"],
-    "text": "El artista vive en el departamento de abajo."
+    "english_gloss": "The motorcycle is dirty and needs to be cleaned today",
+    "tags": ["present", "motorcycle", "estar"],
+    "clozes": ["motor", "limpiar", "día"],
+    "text": "El motor está sucio y necesita limpiarse hoy en el día."
   },
   {
-    "english_gloss": "I see a boat near the door",
-    "tags": ["present", "location"],
-    "clozes": ["bote", "cerca", "puerta"],
-    "text": "Veo un bote cerca de la puerta."
+    "english_gloss": "I need to find a bank to change my dollars",
+    "tags": ["infinitive", "present", "travel", "directions"],
+    "clozes": ["banco", "dólar"],
+    "text": "Necesito encontrar un banco para cambiar mis dólares."
   },
   {
-    "english_gloss": "The adult drinks from a clean bottle",
-    "tags": ["present", "daily_life"],
-    "clozes": ["adulto", "beber", "botella", "limpio"],
-    "text": "El adulto bebe de una botella limpia."
-  },
-  {
-    "english_gloss": "My body needs clean air",
-    "tags": ["present", "health"],
-    "clozes": ["cuerpo", "aire", "limpio"],
-    "text": "Mi cuerpo necesita aire limpio."
-  },
-  {
-    "english_gloss": "The contract is dry and clean",
-    "tags": ["present", "estar"],
-    "clozes": ["contrato", "seco", "limpio"],
-    "text": "El contrato está seco y limpio."
-  },
-  {
-    "english_gloss": "I want to drive to the club in August",
-    "tags": ["infinitive", "present", "travel", "time"],
-    "clozes": ["conducir", "club", "agosto"],
-    "text": "Quiero conducir al club en agosto."
-  },
-  {
-    "english_gloss": "The boy eats an apple and drinks coffee",
-    "tags": ["present", "food"],
-    "clozes": ["chico", "manzana", "beber", "café"],
-    "text": "El chico come una manzana y bebe café."
-  },
-  {
-    "english_gloss": "The black clothes are in the box",
-    "tags": ["present", "estar", "location"],
-    "clozes": ["ropa", "negro", "caja"],
-    "text": "La ropa negra está en la caja."
-  },
-  {
-    "english_gloss": "I see the clock on the computer",
-    "tags": ["present", "technology"],
-    "clozes": ["reloj", "computadora"],
-    "text": "Veo el reloj en la computadora."
-  },
-  {
-    "english_gloss": "The doctor cleans the blood from the body",
-    "tags": ["present", "medical"],
-    "clozes": ["doctora", "limpiar", "sangre", "cuerpo"],
-    "text": "La doctora limpia la sangre del cuerpo."
+    "english_gloss": "Is there a mechanic who can fix my motorcycle tonight?",
+    "tags": ["question", "present", "motorcycle", "problem_solving"],
+    "clozes": ["motor", "noche"],
+    "text": "¿Hay un mecánico que puede arreglar mi motor esta noche?"
   }
 ]
