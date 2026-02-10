@@ -31,14 +31,34 @@ def main():
     ap.add_argument("--deck", default=DECK_NAME)
     ap.add_argument("--model", default="*")
     ap.add_argument("--min-ivl", type=int, default=0)
-    ap.add_argument("--min-reps", type=int, default=1)
+    ap.add_argument("--min-reps", type=int, default=0)
     ap.add_argument("--exclude-new", action="store_true", default=True)
     ap.add_argument("--include-new", dest="exclude_new", action="store_false")
     ap.add_argument("--review-only", action="store_true")
     ap.add_argument("--limit", type=int, default=None)
-    ap.add_argument("--use-notes", action="store_true")
+    ap.add_argument("--use-notes", action="store_true", default=True)
     ap.add_argument("--debug", action="store_true")
+    ap.add_argument("--mode", choices=["strict", "learned", "all"], default="strict", 
+                    help="strict=reviewed(reps>0), learned=seen(-is:new), all=everything")
+    
     args = ap.parse_args()
+
+    # Apply mode defaults if not overridden explicitly
+    # Note: args.min_reps is 0 by default now due to my previous logic change request
+    
+    if args.mode == "strict":
+        # Strict: must have > 0 reps
+        if args.min_reps == 0: 
+            args.min_reps = 1
+        args.exclude_new = True
+    elif args.mode == "learned":
+        # Learned: seen at least once (learning or review), so exclude new is enough
+        args.min_reps = 0
+        args.exclude_new = True
+    elif args.mode == "all":
+        # All: include new
+        args.min_reps = 0
+        args.exclude_new = False
 
     query = build_query(args.deck, args.model, args.exclude_new, args.min_ivl, args.min_reps, args.review_only)
     if args.debug: print(f"Query: {query}")

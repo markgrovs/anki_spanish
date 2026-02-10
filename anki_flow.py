@@ -135,6 +135,7 @@ def cmd_known(args):
     if args.limit: cmd += ["--limit", str(args.limit)]
     if args.use_notes: cmd.append("--use-notes")
     if args.debug: cmd.append("--debug")
+    cmd += ["--mode", args.mode]
     run(cmd)
 
 
@@ -149,6 +150,7 @@ def cmd_sentences_known(args):
     if args.limit: cmd += ["--limit", str(args.limit)]
     if args.use_notes: cmd.append("--use-notes")
     if args.debug: cmd.append("--debug")
+    cmd += ["--mode", args.mode]
     run(cmd)
 
 def cmd_sentences_build(args):
@@ -158,6 +160,7 @@ def cmd_sentences_build(args):
     if args.update_existing: cmd.append("--update-existing")
     if args.regen_audio: cmd.append("--regen-audio")
     if args.debug: cmd.append("--debug")
+    cmd += ["--mode", args.mode]
     run(cmd)
 
 # ---------------- Parser ----------------
@@ -228,6 +231,7 @@ def main():
     pk0.add_argument("--limit", type=int, default=None)
     pk0.add_argument("--use-notes", action="store_true")
     pk0.add_argument("--debug", action="store_true")
+    pk0.add_argument("--mode", default="strict", choices=["strict", "learned", "all"])
     pk0.set_defaults(func=cmd_known)
 
     # 7. Sentences
