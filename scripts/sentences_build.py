@@ -4,6 +4,7 @@ Build (or upsert) Cloze Sentence notes from JSON (AI-generated or manual).
 Refactored to use shared 'lib'.
 """
 import json
+import base64
 import sys
 import re
 import argparse
@@ -15,7 +16,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from lib.config import BASE_DIR, SENTENCES_AUDIO_DIR, SENTENCES_DECK, SENTENCES_MODEL
 from lib.anki_client import anki
 from lib.tts import pick_working_voice
-from lib.ipa import ipa_from_phonemizer, ipa_from_epitran
+from lib.ipa import ipa_sentence_from_phonemizer
 from lib.slugify import slugify
 
 INP = BASE_DIR / "data" / "sentences_generated.json"
@@ -27,22 +28,12 @@ INP = BASE_DIR / "data" / "sentences_generated.json"
 from lib.tts import tts_to_mp3
 
 def sentence_ipa(text: str) -> str:
-    """Compute sentence-level IPA by concatenating word IPA."""
-    tokens = re.findall(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+", text)
-    if not tokens: return ""
-    ipas = []
-    for w in tokens:
-        # Prefer phonemizer
-        ip = ipa_from_phonemizer(w)
-        if not ip: ip = ipa_from_epitran(w)
-        
-        # Remove slashes for joining
-        if ip: ip = ip.replace("/", "")
-        ipas.append(ip)
-        
-    non_empty = [x for x in ipas if x]
-    if not non_empty: return ""
-    return "/" + " ".join(non_empty) + "/"
+    # Try bulk phonemizer first (fastest)
+    ip = ipa_sentence_from_phonemizer(text)
+    if ip: return ip
+    
+    # Fallback or skip
+    return ""
 
 def make_cloze(text: str, targets: list) -> str:
     s = text
@@ -120,6 +111,8 @@ def main():
     first_field = all_fields[0] if all_fields else cloze_f
     count_add = 0
     count_upd = 0
+    total = len(items)
+    print(f"Processing {total} sentences...")
 
     for i, it in enumerate(items):
         if args.limit and (count_add + count_upd) >= args.limit: break
@@ -132,7 +125,7 @@ def main():
         if not text: continue
         cloze_txt = make_cloze(text, clozes)
         if "{{c" not in cloze_txt:
-            if args.debug: print(f"[skip] No cloze in: {text}")
+            print(f"[{i+1}/{total}] Skipped (no cloze): {text}")
             continue
 
         # Audio
@@ -180,7 +173,7 @@ def main():
             anki.update_note_fields(nid, fields)
             if tags: anki.add_tags(nid, " ".join(tags))
             count_upd += 1
-            if args.debug: print(f"[updated] {text}")
+            print(f"[{i+1}/{total}] Updated: {text}")
         else:
             note = {
                 "deckName": args.deck,
@@ -192,7 +185,7 @@ def main():
             try:
                 anki.add_note(note)
                 count_add += 1
-                if args.debug: print(f"[added] {text}")
+                print(f"[{i+1}/{total}] Added:   {text}")
             except Exception as e:
                 # Rescue duplicate
                 if "duplicate" in str(e).lower():
@@ -207,7 +200,7 @@ def main():
                         anki.update_note_fields(nid2, fields)
                         if tags: anki.add_tags(nid2, " ".join(tags))
                         count_upd += 1
-                        if args.debug: print(f"[dup-rescue] {text}")
+                        print(f"[{i+1}/{total}] Rescued: {text}")
                     else:
                         print(f"[error] Duplicate reported but couldn't find note: {text}")
 

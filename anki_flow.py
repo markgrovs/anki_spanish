@@ -160,7 +160,6 @@ def cmd_sentences_build(args):
     if args.update_existing: cmd.append("--update-existing")
     if args.regen_audio: cmd.append("--regen-audio")
     if args.debug: cmd.append("--debug")
-    cmd += ["--mode", args.mode]
     run(cmd)
 
 # ---------------- Parser ----------------
