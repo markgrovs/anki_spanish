@@ -2,14 +2,14 @@
   {
     "english_gloss": "Where can I buy cheap gas for my motorcycle?",
     "tags": ["question", "present", "motorcycle", "travel"],
-    "clozes": ["comprar", "barato", "motor"],
-    "text": "¿Dónde puedo comprar gasolina barata para mi motor?"
+    "clozes": ["comprar", "barato", "motocicleta"],
+    "text": "¿Dónde puedo comprar gasolina barata para mi motocicleta?"
   },
   {
     "english_gloss": "My motorcycle is broken and I need a mechanic",
     "tags": ["present", "motorcycle", "problem_solving", "estar"],
-    "clozes": ["motor", "romper"],
-    "text": "Mi motor está roto y necesito un mecánico."
+    "clozes": ["motocicleta", "romper"],
+    "text": "Mi motocicleta está roto y necesito un mecánico."
   },
   {
     "english_gloss": "The hotel room is expensive but clean",
@@ -50,14 +50,14 @@
   {
     "english_gloss": "My motorcycle needs new parts but they're expensive",
     "tags": ["present", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "caro"],
-    "text": "Mi motor necesita partes nuevas pero son caras."
+    "clozes": ["motocicleta", "caro"],
+    "text": "Mi motocicleta necesita partes nuevas pero son caras."
   },
   {
     "english_gloss": "Can I park my motorcycle near the hotel?",
     "tags": ["question", "present", "motorcycle", "hotel"],
-    "clozes": ["motor", "cerca"],
-    "text": "¿Puedo estacionar mi motor cerca del hotel?"
+    "clozes": ["motocicleta", "cerca"],
+    "text": "¿Puedo estacionar mi motocicleta cerca del hotel?"
   },
   {
     "english_gloss": "The bed in the room is very clean",
@@ -80,8 +80,8 @@
   {
     "english_gloss": "The mechanic can fix my motorcycle today",
     "tags": ["present", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "día"],
-    "text": "El mecánico puede arreglar mi motor hoy en el día."
+    "clozes": ["motocicleta", "día"],
+    "text": "El mecánico puede arreglar mi motocicleta hoy en el día."
   },
   {
     "english_gloss": "I want a room with a clean bathroom",
@@ -128,8 +128,8 @@
   {
     "english_gloss": "My motorcycle broke down near the bridge",
     "tags": ["preterite", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "romper", "cerca", "puente"],
-    "text": "Mi motor se rompió cerca del puente."
+    "clozes": ["motocicleta", "romper", "cerca", "puente"],
+    "text": "Mi motocicleta se rompió cerca del puente."
   },
   {
     "english_gloss": "Do you have a room for eight nights?",
@@ -146,8 +146,8 @@
   {
     "english_gloss": "Where can I find cheap motorcycle parts?",
     "tags": ["question", "present", "motorcycle", "shopping"],
-    "clozes": ["barato", "motor"],
-    "text": "¿Dónde puedo encontrar partes baratas para motor?"
+    "clozes": ["barato", "motocicleta"],
+    "text": "¿Dónde puedo encontrar partes baratas para motocicleta?"
   },
   {
     "english_gloss": "The hotel is near the airport and the bus station",
@@ -170,7 +170,7 @@
   {
     "english_gloss": "Is there a mechanic who can fix motorcycles near here?",
     "tags": ["question", "present", "motorcycle", "directions"],
-    "clozes": ["motor", "cerca"],
+    "clozes": ["motocicleta", "cerca"],
     "text": "¿Hay un mecánico que puede arreglar motores cerca de aquí?"
   },
   {
@@ -188,8 +188,8 @@
   {
     "english_gloss": "How much does it cost to fix my motorcycle?",
     "tags": ["question", "present", "motorcycle", "problem_solving"],
-    "clozes": ["motor"],
-    "text": "¿Cuánto cuesta arreglar mi motor?"
+    "clozes": ["motocicleta"],
+    "text": "¿Cuánto cuesta arreglar mi motocicleta?"
   },
   {
     "english_gloss": "I'm going to drive east to the next country",
@@ -230,8 +230,8 @@
   {
     "english_gloss": "The motorcycle is dirty and needs to be cleaned",
     "tags": ["present", "motorcycle", "estar"],
-    "clozes": ["motor", "limpiar"],
-    "text": "El motor está sucio y necesita limpiarse."
+    "clozes": ["motocicleta", "limpiar"],
+    "text": "El motocicleta está sucio y necesita limpiarse."
   },
   {
     "english_gloss": "I want to drink a cold beer after driving all day",
@@ -242,7 +242,7 @@
   {
     "english_gloss": "Is there a hotel with parking for motorcycles?",
     "tags": ["question", "present", "hotel", "motorcycle"],
-    "clozes": ["motor"],
+    "clozes": ["motocicleta"],
     "text": "¿Hay un hotel con estacionamiento para motores?"
   },
   {
@@ -260,8 +260,8 @@
   {
     "english_gloss": "The mechanic said the motorcycle is very bad",
     "tags": ["preterite", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "malo"],
-    "text": "El mecánico dijo que el motor está muy malo."
+    "clozes": ["motocicleta", "malo"],
+    "text": "El mecánico dijo que el motocicleta está muy malo."
   },
   {
     "english_gloss": "Can you clean the room before night?",
@@ -314,8 +314,8 @@
   {
     "english_gloss": "The motorcycle broke down and I need help",
     "tags": ["preterite", "motorcycle", "emergency"],
-    "clozes": ["motor", "romper"],
-    "text": "El motor se rompió y necesito ayuda."
+    "clozes": ["motocicleta", "romper"],
+    "text": "El motocicleta se rompió y necesito ayuda."
   },
   {
     "english_gloss": "How many dollars does the hotel room cost per night?",
@@ -332,8 +332,8 @@
   {
     "english_gloss": "Can I park my motorcycle near the church?",
     "tags": ["question", "present", "motorcycle", "directions"],
-    "clozes": ["motor", "cerca", "iglesia"],
-    "text": "¿Puedo estacionar mi motor cerca de la iglesia?"
+    "clozes": ["motocicleta", "cerca", "iglesia"],
+    "text": "¿Puedo estacionar mi motocicleta cerca de la iglesia?"
   },
   {
     "english_gloss": "The air is very dry and I need to drink water",
@@ -356,8 +356,8 @@
   {
     "english_gloss": "The mechanic is going to fix my motorcycle tomorrow",
     "tags": ["future", "present", "motorcycle", "problem_solving"],
-    "clozes": ["motor"],
-    "text": "El mecánico va a arreglar mi motor mañana."
+    "clozes": ["motocicleta"],
+    "text": "El mecánico va a arreglar mi motocicleta mañana."
   },
   {
     "english_gloss": "I want a room on a high floor with a clean bathroom",
@@ -386,8 +386,8 @@
   {
     "english_gloss": "My motorcycle needs a new battery but it's very expensive",
     "tags": ["present", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "caro"],
-    "text": "Mi motor necesita una batería nueva pero es muy cara."
+    "clozes": ["motocicleta", "caro"],
+    "text": "Mi motocicleta necesita una batería nueva pero es muy cara."
   },
   {
     "english_gloss": "Is there a bank near the hotel?",
@@ -416,8 +416,8 @@
   {
     "english_gloss": "I'm going to drive my motorcycle to the airport today",
     "tags": ["future", "present", "motorcycle", "travel"],
-    "clozes": ["conducir", "motor", "aeropuerto", "día"],
-    "text": "Voy a conducir mi motor al aeropuerto hoy en el día."
+    "clozes": ["conducir", "motocicleta", "aeropuerto", "día"],
+    "text": "Voy a conducir mi motocicleta al aeropuerto hoy en el día."
   },
   {
     "english_gloss": "My family is going to eat at a famous restaurant tonight",
@@ -440,8 +440,8 @@
   {
     "english_gloss": "I need to find a mechanic because my motorcycle is making bad sounds",
     "tags": ["infinitive", "present", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "malo"],
-    "text": "Necesito encontrar un mecánico porque mi motor hace sonidos malos."
+    "clozes": ["motocicleta", "malo"],
+    "text": "Necesito encontrar un mecánico porque mi motocicleta hace sonidos malos."
   },
   {
     "english_gloss": "Can I drink coffee and eat cake here?",
@@ -452,8 +452,8 @@
   {
     "english_gloss": "My brother is going to buy a motorcycle in December",
     "tags": ["future", "present", "motorcycle", "family"],
-    "clozes": ["hermano", "comprar", "motor", "diciembre"],
-    "text": "Mi hermano va a comprar un motor en diciembre."
+    "clozes": ["hermano", "comprar", "motocicleta", "diciembre"],
+    "text": "Mi hermano va a comprar un motocicleta en diciembre."
   },
   {
     "english_gloss": "The bathroom in my room is very dirty",
@@ -476,8 +476,8 @@
   {
     "english_gloss": "The motorcycle parts are very expensive in this country",
     "tags": ["present", "motorcycle", "travel", "ser"],
-    "clozes": ["motor", "caro", "país"],
-    "text": "Las partes de motor son muy caras en este país."
+    "clozes": ["motocicleta", "caro", "país"],
+    "text": "Las partes de motocicleta son muy caras en este país."
   },
   {
     "english_gloss": "I'm going to buy bread, eggs, and coffee for breakfast",
@@ -488,8 +488,8 @@
   {
     "english_gloss": "Can I park my motorcycle near this building?",
     "tags": ["question", "present", "motorcycle", "directions"],
-    "clozes": ["motor", "cerca", "edificio"],
-    "text": "¿Puedo estacionar mi motor cerca de este edificio?"
+    "clozes": ["motocicleta", "cerca", "edificio"],
+    "text": "¿Puedo estacionar mi motocicleta cerca de este edificio?"
   },
   {
     "english_gloss": "My sister is a doctor and she works at the hospital",
@@ -506,8 +506,8 @@
   {
     "english_gloss": "The mechanic said my motorcycle needs expensive parts",
     "tags": ["preterite", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "caro"],
-    "text": "El mecánico dijo que mi motor necesita partes caras."
+    "clozes": ["motocicleta", "caro"],
+    "text": "El mecánico dijo que mi motocicleta necesita partes caras."
   },
   {
     "english_gloss": "Where can I find a cheap hotel near the airport?",
@@ -524,8 +524,8 @@
   {
     "english_gloss": "My motorcycle broke down near the church",
     "tags": ["preterite", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "romper", "cerca", "iglesia"],
-    "text": "Mi motor se rompió cerca de la iglesia."
+    "clozes": ["motocicleta", "romper", "cerca", "iglesia"],
+    "text": "Mi motocicleta se rompió cerca de la iglesia."
   },
   {
     "english_gloss": "Is there a restaurant that serves cheap breakfast?",
@@ -566,8 +566,8 @@
   {
     "english_gloss": "The motorcycle is dirty and needs to be cleaned today",
     "tags": ["present", "motorcycle", "estar"],
-    "clozes": ["motor", "limpiar", "día"],
-    "text": "El motor está sucio y necesita limpiarse hoy en el día."
+    "clozes": ["motocicleta", "limpiar", "día"],
+    "text": "El motocicleta está sucio y necesita limpiarse hoy en el día."
   },
   {
     "english_gloss": "I need to find a bank to change my dollars",
@@ -578,7 +578,7 @@
   {
     "english_gloss": "Is there a mechanic who can fix my motorcycle tonight?",
     "tags": ["question", "present", "motorcycle", "problem_solving"],
-    "clozes": ["motor", "noche"],
-    "text": "¿Hay un mecánico que puede arreglar mi motor esta noche?"
+    "clozes": ["motocicleta", "noche"],
+    "text": "¿Hay un mecánico que puede arreglar mi motocicleta esta noche?"
   }
 ]
