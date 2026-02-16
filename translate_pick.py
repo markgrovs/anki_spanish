@@ -161,8 +161,7 @@ def main():
     total = len(rows)
     
     i = 0
-    try:
-        while i < total:
+    while i < total:
         row = rows[i]
         if row.get("spanish"):
             i += 1
