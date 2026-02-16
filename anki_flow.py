@@ -38,6 +38,15 @@ def cmd_enrich_pos(args):
     cmd += ["--deck", args.deck, "--model", args.model]
     run(cmd)
 
+
+def cmd_enrich_all(args):
+    print("--- 1/3 Enriching POS ---")
+    cmd_enrich_pos(args)
+    print("\n--- 2/3 Enriching Gender ---")
+    cmd_enrich_gender(args)
+    print("\n--- 3/3 Enriching IPA ---")
+    cmd_enrich(args)
+
 def cmd_enrich_gender(args):
     script = BASE_DIR / "scripts" / "enrich_pos_gender.py"
     cmd = [sys.executable, str(script), "--gender-nouns"]
@@ -191,6 +200,16 @@ def main():
     pgen.add_argument("--deck", default=DECK_NAME)
     pgen.add_argument("--model", default=MODEL_NAME)
     pgen.set_defaults(func=cmd_enrich_gender)
+    # 2d. Enrich All
+    pall = sub.add_parser("enrich-all", help="Run POS, Gender, and IPA enrichment in sequence")
+    pall.add_argument("--push", action="store_true", help="Push changes to Anki immediately")
+    pall.add_argument("--deck", default=DECK_NAME)
+    pall.add_argument("--model", default=MODEL_NAME)
+    # Arguments needed by sub-commands (defaults)
+    pall.add_argument("--hints-pos", default=None)
+    pall.add_argument("--guess-verbs", action="store_true")
+    pall.set_defaults(func=cmd_enrich_all)
+
 
     # 3. Build
     p3 = sub.add_parser("build", help="Build/update cards")
