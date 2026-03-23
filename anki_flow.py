@@ -291,4 +291,8 @@ def main():
         ap.print_help()
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n[Interrupted] Exiting anki_flow gracefully.")
+        sys.exit(0)
