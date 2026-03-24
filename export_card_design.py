@@ -24,7 +24,7 @@ if not styling:
     sys.exit(1)
 
 css = styling.get("css", "")
-with open("current_styling.css", "w", encoding="utf-8") as f:
+with open("templates/current_styling.css", "w", encoding="utf-8") as f:
     f.write(css)
 print(f"Saved 'current_styling.css' ({len(css)} chars)")
 
@@ -39,11 +39,11 @@ for card_name, tmpl in templates.items():
     safe_name = card_name.replace(" ", "_")
     
     front = tmpl.get("Front", "")
-    with open(f"template_{safe_name}_front.html", "w", encoding="utf-8") as f:
+    with open(f"templates/template_{safe_name}_front.html", "w", encoding="utf-8") as f:
         f.write(front)
         
     back = tmpl.get("Back", "")
-    with open(f"template_{safe_name}_back.html", "w", encoding="utf-8") as f:
+    with open(f"templates/template_{safe_name}_back.html", "w", encoding="utf-8") as f:
         f.write(back)
         
     print(f"Saved templates for card type: '{card_name}'")
