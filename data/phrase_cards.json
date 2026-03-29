@@ -1,0 +1,92 @@
+[
+  {
+    "english": "I want to pay.",
+    "spanish": "Quiero pagar.",
+    "pattern": "quiero + infinitive",
+    "topic": "payment",
+    "notes": "Core travel phrase.",
+    "tags": ["travel_phrase", "topic_payment", "pattern_quiero"],
+    "audio": true
+  },
+  {
+    "english": "I want to rest.",
+    "spanish": "Quiero descansar.",
+    "pattern": "quiero + infinitive",
+    "topic": "general",
+    "notes": "Useful for long travel days.",
+    "tags": ["travel_phrase", "topic_general", "pattern_quiero"],
+    "audio": true
+  },
+  {
+    "english": "Can I pay with a card?",
+    "spanish": "¿Puedo pagar con tarjeta?",
+    "pattern": "puedo + infinitive",
+    "topic": "payment",
+    "notes": "High-frequency travel question.",
+    "tags": ["travel_phrase", "topic_payment", "pattern_puedo"],
+    "audio": true
+  },
+  {
+    "english": "Can I park here?",
+    "spanish": "¿Puedo estacionar aquí?",
+    "pattern": "puedo + infinitive",
+    "topic": "parking",
+    "notes": "Useful when arriving by motorcycle.",
+    "tags": ["travel_phrase", "topic_parking", "pattern_puedo"],
+    "audio": true
+  },
+  {
+    "english": "I need to find a hotel.",
+    "spanish": "Necesito encontrar un hotel.",
+    "pattern": "necesito + infinitive",
+    "topic": "hotel",
+    "notes": "Core lodging phrase.",
+    "tags": ["travel_phrase", "topic_hotel", "pattern_necesito"],
+    "audio": true
+  },
+  {
+    "english": "I need to change money.",
+    "spanish": "Necesito cambiar dinero.",
+    "pattern": "necesito + infinitive",
+    "topic": "money",
+    "notes": "Useful at borders and airports.",
+    "tags": ["travel_phrase", "topic_money", "pattern_necesito"],
+    "audio": true
+  },
+  {
+    "english": "I am going to look for food.",
+    "spanish": "Voy a buscar comida.",
+    "pattern": "voy a + infinitive",
+    "topic": "food",
+    "notes": "Simple future action phrase.",
+    "tags": ["travel_phrase", "topic_food", "pattern_voy_a"],
+    "audio": true
+  },
+  {
+    "english": "I am going to leave early.",
+    "spanish": "Voy a salir temprano.",
+    "pattern": "voy a + infinitive",
+    "topic": "travel",
+    "notes": "Useful for planning and departures.",
+    "tags": ["travel_phrase", "topic_travel", "pattern_voy_a"],
+    "audio": true
+  },
+  {
+    "english": "I have to check the motorcycle.",
+    "spanish": "Tengo que revisar la moto.",
+    "pattern": "tengo que + infinitive",
+    "topic": "repairs",
+    "notes": "Core motorcycle maintenance phrase.",
+    "tags": ["travel_phrase", "topic_repairs", "pattern_tengo_que"],
+    "audio": true
+  },
+  {
+    "english": "I have to buy water.",
+    "spanish": "Tengo que comprar agua.",
+    "pattern": "tengo que + infinitive",
+    "topic": "shopping",
+    "notes": "Simple high-frequency errand phrase.",
+    "tags": ["travel_phrase", "topic_shopping", "pattern_tengo_que"],
+    "audio": true
+  }
+]

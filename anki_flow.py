@@ -10,7 +10,7 @@ import csv
 from pathlib import Path
 
 # Import shared config
-from lib.config import BASE_DIR, CSV_PATH, DECK_NAME, MODEL_NAME, SENTENCES_DECK, SENTENCES_MODEL
+from lib.config import BASE_DIR, CSV_PATH, DECK_NAME, MODEL_NAME, SENTENCES_DECK, SENTENCES_MODEL, PHRASE_DECK, PHRASE_MODEL
 
 def run(cmd):
     try:
@@ -170,6 +170,15 @@ def cmd_sentences_build(args):
     if args.regen_audio: cmd.append("--regen-audio")
     if args.debug: cmd.append("--debug")
     run(cmd)
+def cmd_phrase_build(args):
+    script = BASE_DIR / "scripts" / "phrase_cards_build.py"
+    cmd = [sys.executable, str(script), "--deck", args.deck, "--model", args.model]
+    if args.limit: cmd += ["--limit", str(args.limit)]
+    if args.update_existing: cmd.append("--update-existing")
+    if args.regen_audio: cmd.append("--regen-audio")
+    if args.debug: cmd.append("--debug")
+    run(cmd)
+
 
 # ---------------- Parser ----------------
 
@@ -251,6 +260,16 @@ def main():
     pk0.add_argument("--debug", action="store_true")
     pk0.add_argument("--mode", default="strict", choices=["strict", "learned", "all"])
     pk0.set_defaults(func=cmd_known)
+
+    # 6b. Phrase Build
+    ppb = sub.add_parser("phrase-build", help="Build/update travel phrase cards")
+    ppb.add_argument("--deck", default=PHRASE_DECK)
+    ppb.add_argument("--model", default=PHRASE_MODEL)
+    ppb.add_argument("--limit", type=int, default=None)
+    ppb.add_argument("--update-existing", action="store_true")
+    ppb.add_argument("--regen-audio", action="store_true")
+    ppb.add_argument("--debug", action="store_true")
+    ppb.set_defaults(func=cmd_phrase_build)
 
     # 7. Sentences
     ps = sub.add_parser("sentences", help="Sentences helpers")

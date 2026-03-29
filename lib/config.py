@@ -18,6 +18,7 @@ IMAGES_DIR = MEDIA_DIR / "images"
 AUDIO_DIR = MEDIA_DIR / "audio"
 GENDER_DIR = MEDIA_DIR / "gender"
 SENTENCES_AUDIO_DIR = MEDIA_DIR / "sentences_audio"
+PHRASE_AUDIO_DIR = MEDIA_DIR / "phrase_audio"
 
 CSV_PATH = BASE_DIR / "625_structured.es.csv"
 HINTS_PATH = BASE_DIR / "hints_es.yaml"
@@ -28,6 +29,8 @@ DECK_NAME = "My Spanish Deck::625"
 MODEL_NAME = "Picture Word"
 SENTENCES_DECK = "My Spanish Deck::Sentences"
 SENTENCES_MODEL = "Cloze"
+PHRASE_DECK = "My Spanish Deck::Travel Phrases"
+PHRASE_MODEL = "Travel Phrase"
 
 # Voice settings
 VOICE_NAME = "Paulina"
@@ -38,7 +41,7 @@ FIELDNAMES = ["english", "sense", "pos", "spanish", "gender", "ipa", "notes"]
 
 # Ensure directories exist
 def ensure_dirs():
-    for d in [DATA_DIR, MEDIA_DIR, IMAGES_DIR, AUDIO_DIR, GENDER_DIR, SENTENCES_AUDIO_DIR]:
+    for d in [DATA_DIR, MEDIA_DIR, IMAGES_DIR, AUDIO_DIR, GENDER_DIR, SENTENCES_AUDIO_DIR, PHRASE_AUDIO_DIR]:
         d.mkdir(parents=True, exist_ok=True)
 
 PIXABAY_API_KEY = os.getenv("PIXABAY_API_KEY", "")
