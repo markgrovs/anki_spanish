@@ -100,6 +100,8 @@ def main():
                 'verb': 'verb',
                 'adjective': 'adjective', 'adj': 'adjective',
                 'noun': 'noun',
+                'numeral': 'numeral', 'number': 'numeral',
+                'cardinal': 'numeral', 'ordinal': 'numeral',
                 'color': 'noun', 'season': 'noun', 'location': 'noun',
             }
             if not pos and sense in SENSE_MAP:

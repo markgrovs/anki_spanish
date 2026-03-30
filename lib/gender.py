@@ -19,11 +19,20 @@ FEM_EL_WHITELIST = {
 }
 
 NUMBER_WORDS = {
+    # Cardinals
     "cero","uno","una","dos","tres","cuatro","cinco","seis","siete",
     "ocho","nueve","diez","once","doce","trece","catorce","quince",
     "dieciseis","dieciséis","diecisiete","dieciocho","diecinueve","veinte",
     "treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa",
-    "cien","ciento","mil","millón", "billón"
+    "cien","ciento","mil","millon","millón","billon","billón",
+    "mil millones",
+    # Ordinals
+    "primero","primera","segundo","segunda","tercero","tercera",
+    "cuarto","cuarta","quinto","quinta","sexto","sexta",
+    "septimo","séptimo","septima","séptima",
+    "octavo","octava","noveno","novena","decimo","décimo","decima","décima",
+    # Fractions / related
+    "mitad","tercio","cuarto",
 }
 
 # Regex for Wiktionary parsing
@@ -31,6 +40,10 @@ POS_MAP_KEYS = {
     'sustantivo': 'noun',
     'verbo': 'verb',
     'adjetivo': 'adjective',
+    'numeral': 'numeral',
+    'número': 'numeral',
+    'número cardinal': 'numeral',
+    'número ordinal': 'numeral',
 }
 TEMPLATE_SUST = re.compile(r"\{\{\s*sustantivo\|es\|([mf])", re.IGNORECASE)
 TEMPLATE_NOUN = re.compile(r"\{\{\s*es-noun\|([mf])", re.IGNORECASE)
@@ -39,7 +52,13 @@ BOLD_LINE = re.compile(r"'''[^']+'''\s*\(([^)]+)\)")
 
 def heuristic_gender(word: str) -> str:
     """Guess gender from ending/exceptions."""
+    import unicodedata
     w = word.lower().strip()
+    # Numbers never take gender for flashcard purposes
+    base = unicodedata.normalize("NFD", w)
+    base = "".join(ch for ch in base if unicodedata.category(ch) != "Mn")
+    if base in NUMBER_WORDS:
+        return ""
     if w in GENDER_EXCEPTIONS:
         return GENDER_EXCEPTIONS[w]
     if any(w.endswith(s) for s in FEM_SUFFIXES):
@@ -119,7 +138,7 @@ def compute_article(spanish: str, gender: str, pos: str) -> str:
     
     # Must be noun with gender m or f
     if g not in ("m", "f"): return ""
-    if p and p != "noun": return ""
+    if p and p not in ("noun",): return ""
     
     # Clean string
     base = unicodedata.normalize("NFD", spanish).lower()

@@ -252,7 +252,7 @@ def main():
         gender = (r.get("gender") or "").strip().lower()
         ipa_text = (r.get("ipa") or "").strip()
 
-        # 1. Enrich Gender (if noun and missing)
+        # 1. Enrich Gender (nouns only — numerals, verbs, adjectives never get gender)
         if not gender and pos == "noun":
             # Try heuristic
             g = heuristic_gender(spanish)
@@ -327,15 +327,19 @@ def main():
         if gender and gender != "none": notes_bits.append(f"Gender: {gender}")
         if ipa_text: notes_bits.append(f"IPA: {ipa_text}")
         
+        # Numerals never show gender or article
+        display_gender = "" if pos == "numeral" else (gender if gender != "none" else "")
+        display_article = "" if pos == "numeral" else article
+
         fields = {
             "Word": spanish,
-            "Image": compose_image_html(img_path.name, gender),
+            "Image": compose_image_html(img_path.name, display_gender),
             "Audio": f"[sound:{mp3_path.name}]",
             "Notes": " • ".join(notes_bits),
             "IPA": ipa_text,
-            "Gender": gender if gender != "none" else "",
+            "Gender": display_gender,
             "POS": pos,
-            "Article": article,
+            "Article": display_article,
         }
         
         tags = ["625:auto"]

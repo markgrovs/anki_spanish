@@ -215,3 +215,11 @@ Current state (2026-02-06):
 - Created scripts/pick_images.py (Interactive loop)
 - Updated lib/config.py to load .env (PIXABAY_API_KEY)
 - Added 'pick-images' command to anki_flow.py
+--- 2026-03-30 (Numeral POS) ---
+- Added 'numeral' as a valid POS type across the system
+- Updated lib/gender.py: POS_MAP_KEYS, compute_article, heuristic_gender
+- Updated scripts/enrich_pos_gender.py: SENSE_MAP + validation
+- Updated translate_pick.py: numeral offered as POS option in pick flow
+- Updated build_cards.py: numerals skip gender/article display
+- Migrated 13 existing number words from pos=noun -> pos=numeral in CSV
+- Pushed all changes to Anki (284/284 in sync)
