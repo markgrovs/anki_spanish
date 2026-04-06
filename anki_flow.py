@@ -93,49 +93,75 @@ def cmd_audit(args):
         print(f"CSV not found: {CSV_PATH}")
         sys.exit(1)
         
-    # Use lib logic implicitly by reading rows roughly
     with CSV_PATH.open("r", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
         
+    from lib.slugify import slugify
+    from lib.config import IMAGES_DIR, AUDIO_DIR
+    
     total = len(rows)
-    missing_es = sum(1 for r in rows if not (r.get("spanish") or "").strip())
-    missing_pos = sum(1 for r in rows if not (r.get("pos") or "").strip())
-    missing_ipa = sum(1 for r in rows if not (r.get("ipa") or "").strip())
+    translated = [r for r in rows if (r.get("spanish") or "").strip()]
     
-    print("Audit:")
-    print(f"  Rows total:       {total}")
-    print(f"  Missing Spanish:   {missing_es}")
-    print(f"  Missing POS:       {missing_pos}")
-    print(f"  Missing IPA:       {missing_ipa}")
+    missing_es = total - len(translated)
     
-    # We could import lib.media to check images, but simple check matches old logic
-    images_dir = BASE_DIR / "media" / "images"
-    audio_dir = BASE_DIR / "media" / "audio"
-    
+    # We only care about missing fields for words that actually HAVE a Spanish translation
+    missing_pos = 0
+    missing_gender_nouns = 0
+    missing_ipa = 0
     miss_img = 0
     miss_aud = 0
     
-    # Simple check for now
-    from lib.slugify import slugify
-    
-    for r in rows:
-        es = (r.get("spanish") or "").strip()
-        if not es: continue
+    for r in translated:
+        es = r.get("spanish").strip()
+        pos = (r.get("pos") or "").strip().lower()
+        gen = (r.get("gender") or "").strip()
         
-        # Check image
+        if not pos: missing_pos += 1
+        if pos == "noun" and not gen: missing_gender_nouns += 1
+        if not r.get("ipa"): missing_ipa += 1
+        
+        # Check media
         slug = slugify(es)
-        has_img = any((images_dir / f"{slug}{ext}").exists() for ext in (".jpg", ".jpeg", ".png", ".webp"))
-        if not has_img: 
-            # try collage
-            if (images_dir / f"{slug}_collage.jpg").exists(): has_img = True
-            
-        # Check audio (approximate - build_cards does full logic)
-        # We can't easily check audio without knowing article/gender logic here.
-        # So we skip rigorous audio check in quick audit.
-        
+        has_img = any((IMAGES_DIR / f"{slug}{ext}").exists() for ext in (".jpg", ".jpeg", ".png", ".webp"))
+        if not has_img and (IMAGES_DIR / f"{slug}_collage.jpg").exists():
+            has_img = True
         if not has_img: miss_img += 1
         
-    print(f"  Missing images:    {miss_img} (approx)")
+        # Check audio (approximate, audio slug uses article if present, but base is usually close enough to check if ANY audio exists)
+        # To be perfectly accurate we'd compute the article, but a glob is fine for audit.
+        aud_files = list(AUDIO_DIR.glob(f"*{slug}*.mp3"))
+        if not aud_files: miss_aud += 1
+
+    noun_count = sum(1 for r in translated if (r.get("pos") or "").strip().lower() == "noun")
+    
+    print("============================================================")
+    print("  SPANISH ANKI DECK PROGRESS")
+    print("============================================================")
+    print(f"  Vocabulary:     {len(translated)} / {total} words translated ({(len(translated)/total)*100:.1f}%)")
+    print("------------------------------------------------------------")
+    print("  TO DO:")
+    if missing_es > 0:
+        print(f"  • {missing_es} words need translation (run: 'anki pick')")
+    
+    if missing_pos > 0:
+        print(f"  • {missing_pos} words missing POS (run: 'anki enrich-all')")
+        
+    if missing_gender_nouns > 0:
+        print(f"  • {missing_gender_nouns} nouns missing gender (run: 'anki enrich-all')")
+        
+    if missing_ipa > 0:
+        print(f"  • {missing_ipa} words missing IPA (run: 'anki enrich-all')")
+        
+    if miss_img > 0:
+        print(f"  • {miss_img} words missing Images (run: 'anki pick-images')")
+        
+    if miss_aud > 0:
+        print(f"  • {miss_aud} words missing Audio (run: 'anki build')")
+        
+    if missing_es == 0 and missing_pos == 0 and missing_gender_nouns == 0 and missing_ipa == 0 and miss_img == 0 and miss_aud == 0:
+        print("  • Nothing! Everything is 100% complete.")
+        print("============================================================")
+
 
 def cmd_sync(args):
     script = BASE_DIR / "scripts" / "sync_check.py"
