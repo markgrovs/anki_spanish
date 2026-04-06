@@ -223,3 +223,9 @@ Current state (2026-02-06):
 - Updated build_cards.py: numerals skip gender/article display
 - Migrated 13 existing number words from pos=noun -> pos=numeral in CSV
 - Pushed all changes to Anki (284/284 in sync)
+--- 2026-03-30 (Pronoun POS) ---
+- Added 'pronoun' as a valid POS type across the system
+- Updated lib/gender.py: POS_MAP_KEYS (maps 'pronombre', 'pronombre personal' to 'pronoun')
+- Updated scripts/enrich_pos_gender.py: SENSE_MAP + validation
+- Updated translate_pick.py: 'pronoun' offered as POS option in pick flow
+- Migrated 1 existing pronoun ('él') from pos=noun -> pos=pronoun in CSV

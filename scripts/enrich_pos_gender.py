@@ -101,6 +101,7 @@ def main():
                 'adjective': 'adjective', 'adj': 'adjective',
                 'noun': 'noun',
                 'numeral': 'numeral', 'number': 'numeral',
+                'pronoun': 'pronoun',
                 'cardinal': 'numeral', 'ordinal': 'numeral',
                 'color': 'noun', 'season': 'noun', 'location': 'noun',
             }

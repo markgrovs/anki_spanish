@@ -44,6 +44,8 @@ POS_MAP_KEYS = {
     'número': 'numeral',
     'número cardinal': 'numeral',
     'número ordinal': 'numeral',
+    'pronombre': 'pronoun',
+    'pronombre personal': 'pronoun',
 }
 TEMPLATE_SUST = re.compile(r"\{\{\s*sustantivo\|es\|([mf])", re.IGNORECASE)
 TEMPLATE_NOUN = re.compile(r"\{\{\s*es-noun\|([mf])", re.IGNORECASE)
