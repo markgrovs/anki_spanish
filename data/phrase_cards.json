@@ -5,7 +5,11 @@
     "pattern": "quiero + infinitive",
     "topic": "payment",
     "notes": "Core travel phrase.",
-    "tags": ["travel_phrase", "topic_payment", "pattern_quiero"],
+    "tags": [
+      "travel_phrase",
+      "topic_payment",
+      "pattern_quiero"
+    ],
     "audio": true
   },
   {
@@ -14,7 +18,11 @@
     "pattern": "quiero + infinitive",
     "topic": "general",
     "notes": "Useful for long travel days.",
-    "tags": ["travel_phrase", "topic_general", "pattern_quiero"],
+    "tags": [
+      "travel_phrase",
+      "topic_general",
+      "pattern_quiero"
+    ],
     "audio": true
   },
   {
@@ -23,7 +31,11 @@
     "pattern": "puedo + infinitive",
     "topic": "payment",
     "notes": "High-frequency travel question.",
-    "tags": ["travel_phrase", "topic_payment", "pattern_puedo"],
+    "tags": [
+      "travel_phrase",
+      "topic_payment",
+      "pattern_puedo"
+    ],
     "audio": true
   },
   {
@@ -32,7 +44,11 @@
     "pattern": "puedo + infinitive",
     "topic": "parking",
     "notes": "Useful when arriving by motorcycle.",
-    "tags": ["travel_phrase", "topic_parking", "pattern_puedo"],
+    "tags": [
+      "travel_phrase",
+      "topic_parking",
+      "pattern_puedo"
+    ],
     "audio": true
   },
   {
@@ -41,7 +57,11 @@
     "pattern": "necesito + infinitive",
     "topic": "hotel",
     "notes": "Core lodging phrase.",
-    "tags": ["travel_phrase", "topic_hotel", "pattern_necesito"],
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_necesito"
+    ],
     "audio": true
   },
   {
@@ -50,7 +70,11 @@
     "pattern": "necesito + infinitive",
     "topic": "money",
     "notes": "Useful at borders and airports.",
-    "tags": ["travel_phrase", "topic_money", "pattern_necesito"],
+    "tags": [
+      "travel_phrase",
+      "topic_money",
+      "pattern_necesito"
+    ],
     "audio": true
   },
   {
@@ -59,7 +83,11 @@
     "pattern": "voy a + infinitive",
     "topic": "food",
     "notes": "Simple future action phrase.",
-    "tags": ["travel_phrase", "topic_food", "pattern_voy_a"],
+    "tags": [
+      "travel_phrase",
+      "topic_food",
+      "pattern_voy_a"
+    ],
     "audio": true
   },
   {
@@ -68,7 +96,11 @@
     "pattern": "voy a + infinitive",
     "topic": "travel",
     "notes": "Useful for planning and departures.",
-    "tags": ["travel_phrase", "topic_travel", "pattern_voy_a"],
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_voy_a"
+    ],
     "audio": true
   },
   {
@@ -77,7 +109,11 @@
     "pattern": "tengo que + infinitive",
     "topic": "repairs",
     "notes": "Core motorcycle maintenance phrase.",
-    "tags": ["travel_phrase", "topic_repairs", "pattern_tengo_que"],
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_tengo_que"
+    ],
     "audio": true
   },
   {
@@ -86,7 +122,170 @@
     "pattern": "tengo que + infinitive",
     "topic": "shopping",
     "notes": "Simple high-frequency errand phrase.",
-    "tags": ["travel_phrase", "topic_shopping", "pattern_tengo_que"],
+    "tags": [
+      "travel_phrase",
+      "topic_shopping",
+      "pattern_tengo_que"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I am staying in this hotel.",
+    "spanish": "Me estoy quedando en este hotel.",
+    "pattern": "me estoy + gerund",
+    "topic": "hotel",
+    "notes": "Useful explanation when asking about parking or services.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_estar_gerund"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I have a reservation here.",
+    "spanish": "Tengo una reservación aquí.",
+    "pattern": "tengo + noun",
+    "topic": "hotel",
+    "notes": "Very useful at hotels and check-in.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_tengo"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I am a guest of the hotel.",
+    "spanish": "Soy huésped del hotel.",
+    "pattern": "soy + noun",
+    "topic": "hotel",
+    "notes": "Short, useful hotel identity phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_ser"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Because there is a hotel here.",
+    "spanish": "Porque hay un hotel aquí.",
+    "pattern": "porque + hay",
+    "topic": "hotel",
+    "notes": "Simple reason phrase for sentence expansion.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_porque",
+      "pattern_hay"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Because I need to rest.",
+    "spanish": "Porque necesito descansar.",
+    "pattern": "porque + necesito + infinitive",
+    "topic": "general",
+    "notes": "High-frequency explanation phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_general",
+      "pattern_porque",
+      "pattern_necesito"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Because I have to leave early.",
+    "spanish": "Porque tengo que salir temprano.",
+    "pattern": "porque + tengo que + infinitive",
+    "topic": "travel",
+    "notes": "Useful reason phrase for planning and lodging conversations.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_porque",
+      "pattern_tengo_que"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Where is the hotel?",
+    "spanish": "¿Dónde está el hotel?",
+    "pattern": "dónde está + noun",
+    "topic": "hotel",
+    "notes": "Core location question.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_donde_esta"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Where can I park?",
+    "spanish": "¿Dónde puedo estacionar?",
+    "pattern": "dónde puedo + infinitive",
+    "topic": "parking",
+    "notes": "More flexible than asking only about here.",
+    "tags": [
+      "travel_phrase",
+      "topic_parking",
+      "pattern_donde_puedo"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Is there parking here?",
+    "spanish": "¿Hay estacionamiento aquí?",
+    "pattern": "hay + noun",
+    "topic": "parking",
+    "notes": "Very useful arrival question.",
+    "tags": [
+      "travel_phrase",
+      "topic_parking",
+      "pattern_hay"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you help me?",
+    "spanish": "¿Me puede ayudar?",
+    "pattern": "me puede + infinitive",
+    "topic": "help",
+    "notes": "Polite, high-frequency help phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_help",
+      "pattern_poder_formal"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I am looking for a mechanic.",
+    "spanish": "Busco un mecánico.",
+    "pattern": "busco + noun",
+    "topic": "repairs",
+    "notes": "Critical motorcycle travel phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_busco"
+    ],
+    "audio": true
+  },
+  {
+    "english": "There is a problem with the motorcycle.",
+    "spanish": "Hay un problema con la moto.",
+    "pattern": "hay + noun",
+    "topic": "repairs",
+    "notes": "Core repair/emergency phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_hay"
+    ],
     "audio": true
   }
 ]
