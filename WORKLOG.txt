@@ -229,3 +229,6 @@ Current state (2026-02-06):
 - Updated scripts/enrich_pos_gender.py: SENSE_MAP + validation
 - Updated translate_pick.py: 'pronoun' offered as POS option in pick flow
 - Migrated 1 existing pronoun ('él') from pos=noun -> pos=pronoun in CSV
+--- 2026-03-30 (Zsh Autocomplete) ---
+- Installed argcomplete package
+- Added PYTHON_ARGCOMPLETE_OK and argcomplete initialization to anki_flow.py

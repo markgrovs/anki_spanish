@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# PYTHON_ARGCOMPLETE_OK
+
+import sys, os
+from pathlib import Path
+_VENV_PYTHON = Path(__file__).resolve().parent / ".venv312" / "bin" / "python3"
+if sys.executable != str(_VENV_PYTHON) and _VENV_PYTHON.exists():
+    os.execv(str(_VENV_PYTHON), [str(_VENV_PYTHON)] + sys.argv)
 """
 Unified CLI for Spanish→Anki workflow.
 Refactored to use shared 'lib'.
@@ -8,6 +15,11 @@ import subprocess
 import sys
 import csv
 from pathlib import Path
+
+try:
+    import argcomplete
+except ImportError:
+    argcomplete = None
 
 # Import shared config
 from lib.config import BASE_DIR, CSV_PATH, DECK_NAME, MODEL_NAME, SENTENCES_DECK, SENTENCES_MODEL, PHRASE_DECK, PHRASE_MODEL
@@ -303,6 +315,8 @@ def main():
     pimg.add_argument("--query", type=str, help="Specific word to process (optional)")
     pimg.set_defaults(func=cmd_pick_images)
 
+    if argcomplete:
+        argcomplete.autocomplete(ap)
     args = ap.parse_args()
     if hasattr(args, "func"):
         args.func(args)
