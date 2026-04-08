@@ -231,7 +231,8 @@ def main():
         warn(f"CSV not found: {args.csv}")
         return
 
-    verify_model_fields(cfg)
+    if not cfg["dry_run"]:
+        verify_model_fields(cfg)
     rows = read_rows(Path(args.csv))
     
     counts = {"added":0, "updated":0, "skipped":0, "audio_fail":0, "img_miss":0, "enriched_ipa":0, "enriched_gender":0}

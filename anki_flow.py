@@ -67,6 +67,10 @@ def cmd_enrich_gender(args):
     run(cmd)
 
 
+def cmd_smoke_test(args):
+    script = BASE_DIR / "scripts" / "smoke_test.py"
+    run([sys.executable, str(script)])
+
 def cmd_pick_images(args):
     script = BASE_DIR / "scripts" / "pick_images.py"
     cmd = [sys.executable, str(script)]
@@ -323,6 +327,7 @@ def main():
     pk.add_argument("--limit", type=int, default=None)
     pk.add_argument("--use-notes", action="store_true")
     pk.add_argument("--debug", action="store_true")
+    pk.add_argument("--mode", default="strict", choices=["strict", "learned", "all"])
     pk.set_defaults(func=cmd_sentences_known)
 
     pb = sub2.add_parser("build", help="Build Cloze notes")
@@ -340,6 +345,10 @@ def main():
     pimg.add_argument("--limit", type=int, default=10, help="Batch size")
     pimg.add_argument("--query", type=str, help="Specific word to process (optional)")
     pimg.set_defaults(func=cmd_pick_images)
+
+    # 9. Smoke test
+    psmoke = sub.add_parser("smoke-test", help="Run non-destructive CLI smoke tests")
+    psmoke.set_defaults(func=cmd_smoke_test)
 
     if argcomplete:
         argcomplete.autocomplete(ap)
