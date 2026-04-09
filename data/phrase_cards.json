@@ -287,5 +287,62 @@
       "pattern_hay"
     ],
     "audio": true
+  },
+  {
+    "english": "There is a hole in my inner tube.",
+    "spanish": "Hay un agujero en la cámara.",
+    "pattern": "problem description",
+    "topic": "repairs",
+    "notes": "Use to explain the issue to a mechanic.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle",
+      "flat_tire"
+    ],
+    "audio": true
+  },
+  {
+    "english": "My inner tube has a hole.",
+    "spanish": "La cámara tiene un agujero.",
+    "pattern": "problem description",
+    "topic": "repairs",
+    "notes": "Simple way to describe tube damage.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle",
+      "flat_tire"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need you to fix the inner tube.",
+    "spanish": "Necesito que repare la cámara.",
+    "pattern": "necesito que + subjunctive",
+    "topic": "repairs",
+    "notes": "Requesting repair from a mechanic.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle",
+      "flat_tire",
+      "subjunctive"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you fix the inner tube?",
+    "spanish": "¿Puede reparar la cámara?",
+    "pattern": "puede + infinitive",
+    "topic": "repairs",
+    "notes": "Direct repair request to a mechanic.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle",
+      "flat_tire"
+    ],
+    "audio": true
   }
 ]
