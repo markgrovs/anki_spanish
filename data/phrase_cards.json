@@ -344,5 +344,136 @@
       "flat_tire"
     ],
     "audio": true
+  },
+  {
+    "english": "I have a reservation.",
+    "spanish": "Tengo una reserva.",
+    "pattern": "tener",
+    "topic": "hotel",
+    "notes": "Useful at check-in.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_tener"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need a room for one night.",
+    "spanish": "Necesito una habitación para una noche.",
+    "pattern": "necesito + noun phrase",
+    "topic": "hotel",
+    "notes": "Core lodging phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "pattern_necesito"
+    ],
+    "audio": true
+  },
+  {
+    "english": "How much does it cost per night?",
+    "spanish": "¿Cuánto cuesta por noche?",
+    "pattern": "question",
+    "topic": "hotel",
+    "notes": "Useful for lodging and prices.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel",
+      "topic_money",
+      "pattern_question"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Where can I park the motorcycle?",
+    "spanish": "¿Dónde puedo estacionar la moto?",
+    "pattern": "puedo + infinitive",
+    "topic": "parking",
+    "notes": "Useful when arriving at hotels or restaurants.",
+    "tags": [
+      "travel_phrase",
+      "topic_parking",
+      "pattern_puedo"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need gas.",
+    "spanish": "Necesito gasolina.",
+    "pattern": "necesito + noun",
+    "topic": "fuel",
+    "notes": "Simple high-frequency travel phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_fuel",
+      "pattern_necesito"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Is there a mechanic near here?",
+    "spanish": "¿Hay un mecánico cerca de aquí?",
+    "pattern": "question",
+    "topic": "repairs",
+    "notes": "Useful when you need help on the road.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_question"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The motorcycle won't start.",
+    "spanish": "La moto no arranca.",
+    "pattern": "statement",
+    "topic": "repairs",
+    "notes": "Core breakdown phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_statement"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you check it, please?",
+    "spanish": "¿Puede revisarla, por favor?",
+    "pattern": "puede + infinitive/object",
+    "topic": "repairs",
+    "notes": "Useful with a mechanic or helper.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_poder"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm looking for an ATM.",
+    "spanish": "Busco un cajero automático.",
+    "pattern": "buscar",
+    "topic": "money",
+    "notes": "Useful in towns and airports.",
+    "tags": [
+      "travel_phrase",
+      "topic_money",
+      "pattern_busco"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you speak more slowly, please?",
+    "spanish": "¿Puede hablar más despacio, por favor?",
+    "pattern": "puede + infinitive",
+    "topic": "communication",
+    "notes": "Essential communication repair phrase.",
+    "tags": [
+      "travel_phrase",
+      "topic_communication",
+      "pattern_poder"
+    ],
+    "audio": true
   }
 ]
