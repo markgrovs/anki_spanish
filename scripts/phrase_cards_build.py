@@ -15,6 +15,7 @@ from lib.config import BASE_DIR, PHRASE_AUDIO_DIR, PHRASE_DECK, PHRASE_MODEL
 from lib.anki_client import anki
 from lib.slugify import slugify
 from lib.tts import tts_to_mp3
+from lib.ipa import get_best_ipa
 
 INP = BASE_DIR / "data" / "phrase_cards.json"
 
@@ -31,6 +32,7 @@ def pick_fields(model_name: str, debug: bool):
         "Topic": "Topic" if "Topic" in field_set else None,
         "Notes": "Notes" if "Notes" in field_set else None,
         "Audio": "Audio" if "Audio" in field_set else None,
+        "Word IPA": "Word IPA" if "Word IPA" in field_set else ("WordIpa" if "WordIpa" in field_set else None),
     }
     if debug:
         print(f"Model '{model_name}' fields: {fields}")
@@ -113,10 +115,29 @@ def main():
                 anki.store_media_file(mp3.name, data)
                 audio_val = f"[sound:{mp3.name}]"
 
+        # Generate Word IPA if field exists
+        word_ipa_val = ""
+        if field_map.get("Word IPA") and spanish:
+            # Tokenize keeping punctuation out of the lookup but in the display if possible
+            # For a simple v1, we just extract words, look them up, and join with middle dots.
+            import re
+            words = re.findall(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+", spanish)
+            ipa_pairs = []
+            for w in words:
+                ip = get_best_ipa(w.lower())
+                if ip:
+                    ipa_pairs.append(f"{w} {ip}")
+                else:
+                    ipa_pairs.append(w)
+            word_ipa_val = " &middot; ".join(ipa_pairs)
+
         fields = {
             field_map["English"]: english,
             field_map["Spanish"]: spanish,
         }
+        if field_map.get("Word IPA") and word_ipa_val:
+            fields[field_map["Word IPA"]] = word_ipa_val
+
         if field_map.get("Pattern"):
             fields[field_map["Pattern"]] = pattern
         if field_map.get("Topic"):
