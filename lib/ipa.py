@@ -1,6 +1,10 @@
 import re
 import requests
 
+import warnings
+warnings.filterwarnings("ignore", category=SyntaxWarning, module="panphon.*")
+warnings.filterwarnings("ignore", category=SyntaxWarning, module="jamo.*")
+
 try:
     from phonemizer import phonemize
 except ImportError:
