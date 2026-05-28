@@ -475,5 +475,80 @@
       "pattern_poder"
     ],
     "audio": true
+  },
+
+  {
+    "english": "It is expensive.",
+    "spanish": "Es caro.",
+    "pattern": "es + adjective",
+    "topic": "description",
+    "notes": "Subject 'it' is omitted in Spanish. Common for describing things.",
+    "tags": ["travel_phrase", "topic_description", "pattern_es"],
+    "audio": true
+  },
+  {
+    "english": "It is cheap.",
+    "spanish": "Es barato.",
+    "pattern": "es + adjective",
+    "topic": "description",
+    "notes": "Subject 'it' is omitted. Useful for negotiating prices.",
+    "tags": ["travel_phrase", "topic_description", "pattern_es"],
+    "audio": true
+  },
+  {
+    "english": "It is here.",
+    "spanish": "Está aquí.",
+    "pattern": "está + location",
+    "topic": "location",
+    "notes": "Subject 'it' is omitted. Use 'está' for location.",
+    "tags": ["travel_phrase", "topic_location", "pattern_esta"],
+    "audio": true
+  },
+  {
+    "english": "It is far.",
+    "spanish": "Está lejos.",
+    "pattern": "está + adjective",
+    "topic": "location",
+    "notes": "Subject 'it' is omitted. Useful for asking about distances.",
+    "tags": ["travel_phrase", "topic_location", "pattern_esta"],
+    "audio": true
+  },
+  {
+    "english": "It is near.",
+    "spanish": "Está cerca.",
+    "pattern": "está + adjective",
+    "topic": "location",
+    "notes": "Subject 'it' is omitted. Common response to 'Where is...?' questions.",
+    "tags": ["travel_phrase", "topic_location", "pattern_esta"],
+    "audio": true
+  },
+  {
+    "english": "I need it.",
+    "spanish": "Lo necesito.",
+    "pattern": "lo + verb",
+    "topic": "general",
+    "notes": "Object 'it' (masculine) comes before the verb. Use when referring to masculine nouns.",
+    "tags": ["travel_phrase", "topic_general", "pattern_lo"],
+    "audio": true
+  },
+  {
+    "english": "I have it.",
+    "spanish": "Lo tengo.",
+    "pattern": "lo + verb",
+    "topic": "general",
+    "notes": "Object 'it' (masculine) comes before the verb.",
+    "tags": ["travel_phrase", "topic_general", "pattern_lo"],
+    "audio": true
+  },
+  {
+    "english": "I want it.",
+    "spanish": "Lo quiero.",
+    "pattern": "lo + verb",
+    "topic": "general",
+    "notes": "Object 'it' (masculine) comes before the verb.",
+    "tags": ["travel_phrase", "topic_general", "pattern_lo"],
+    "audio": true
   }
+
+
 ]
