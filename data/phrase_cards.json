@@ -476,14 +476,17 @@
     ],
     "audio": true
   },
-
   {
     "english": "It is expensive.",
     "spanish": "Es caro.",
     "pattern": "es + adjective",
     "topic": "description",
     "notes": "Subject 'it' is omitted in Spanish. Common for describing things.",
-    "tags": ["travel_phrase", "topic_description", "pattern_es"],
+    "tags": [
+      "travel_phrase",
+      "topic_description",
+      "pattern_es"
+    ],
     "audio": true
   },
   {
@@ -492,7 +495,11 @@
     "pattern": "es + adjective",
     "topic": "description",
     "notes": "Subject 'it' is omitted. Useful for negotiating prices.",
-    "tags": ["travel_phrase", "topic_description", "pattern_es"],
+    "tags": [
+      "travel_phrase",
+      "topic_description",
+      "pattern_es"
+    ],
     "audio": true
   },
   {
@@ -501,7 +508,11 @@
     "pattern": "está + location",
     "topic": "location",
     "notes": "Subject 'it' is omitted. Use 'está' for location.",
-    "tags": ["travel_phrase", "topic_location", "pattern_esta"],
+    "tags": [
+      "travel_phrase",
+      "topic_location",
+      "pattern_esta"
+    ],
     "audio": true
   },
   {
@@ -510,7 +521,11 @@
     "pattern": "está + adjective",
     "topic": "location",
     "notes": "Subject 'it' is omitted. Useful for asking about distances.",
-    "tags": ["travel_phrase", "topic_location", "pattern_esta"],
+    "tags": [
+      "travel_phrase",
+      "topic_location",
+      "pattern_esta"
+    ],
     "audio": true
   },
   {
@@ -519,7 +534,11 @@
     "pattern": "está + adjective",
     "topic": "location",
     "notes": "Subject 'it' is omitted. Common response to 'Where is...?' questions.",
-    "tags": ["travel_phrase", "topic_location", "pattern_esta"],
+    "tags": [
+      "travel_phrase",
+      "topic_location",
+      "pattern_esta"
+    ],
     "audio": true
   },
   {
@@ -528,7 +547,11 @@
     "pattern": "lo + verb",
     "topic": "general",
     "notes": "Object 'it' (masculine) comes before the verb. Use when referring to masculine nouns.",
-    "tags": ["travel_phrase", "topic_general", "pattern_lo"],
+    "tags": [
+      "travel_phrase",
+      "topic_general",
+      "pattern_lo"
+    ],
     "audio": true
   },
   {
@@ -537,7 +560,11 @@
     "pattern": "lo + verb",
     "topic": "general",
     "notes": "Object 'it' (masculine) comes before the verb.",
-    "tags": ["travel_phrase", "topic_general", "pattern_lo"],
+    "tags": [
+      "travel_phrase",
+      "topic_general",
+      "pattern_lo"
+    ],
     "audio": true
   },
   {
@@ -546,9 +573,674 @@
     "pattern": "lo + verb",
     "topic": "general",
     "notes": "Object 'it' (masculine) comes before the verb.",
-    "tags": ["travel_phrase", "topic_general", "pattern_lo"],
+    "tags": [
+      "travel_phrase",
+      "topic_general",
+      "pattern_lo"
+    ],
+    "audio": true
+  },
+  {
+    "english": "My motorcycle is broken.",
+    "spanish": "Mi moto está rota.",
+    "pattern": "estar + adjective",
+    "topic": "repairs",
+    "notes": "Use 'rota' (feminine) because 'moto' is feminine.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The tire is flat.",
+    "spanish": "La llanta está desinflada.",
+    "pattern": "estar + adjective",
+    "topic": "repairs",
+    "notes": "Common motorcycle problem on rough roads.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The chain is loose.",
+    "spanish": "La cadena está floja.",
+    "pattern": "estar + adjective",
+    "topic": "repairs",
+    "notes": "Common maintenance issue on motorcycles.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need oil.",
+    "spanish": "Necesito aceite.",
+    "pattern": "necesito + noun",
+    "topic": "repairs",
+    "notes": "For oil changes or topping up.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Fill it up, please.",
+    "spanish": "Llénalo, por favor.",
+    "pattern": "imperative + por favor",
+    "topic": "fuel",
+    "notes": "At the gas station - 'llénalo' = fill it (masculine for 'tanque').",
+    "tags": [
+      "travel_phrase",
+      "topic_fuel",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Is there secure parking?",
+    "spanish": "¿Hay estacionamiento seguro?",
+    "pattern": "hay + noun",
+    "topic": "parking",
+    "notes": "Important for overnight motorcycle storage.",
+    "tags": [
+      "travel_phrase",
+      "topic_parking",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The road has many holes.",
+    "spanish": "El camino tiene muchos agujeros.",
+    "pattern": "tener + noun",
+    "topic": "travel",
+    "notes": "Describing dangerous or damaged roads.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The rain is very strong.",
+    "spanish": "La lluvia es muy fuerte.",
+    "pattern": "ser + adjective",
+    "topic": "weather",
+    "notes": "Weather condition affecting travel.",
+    "tags": [
+      "travel_phrase",
+      "topic_weather"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm going to wait here.",
+    "spanish": "Voy a esperar aquí.",
+    "pattern": "voy a + infinitive",
+    "topic": "travel",
+    "notes": "When conditions are too bad to continue.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_voy_a"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you show me on the map?",
+    "spanish": "¿Puedes mostrarme en el mapa?",
+    "pattern": "puedo/puedes + infinitive",
+    "topic": "directions",
+    "notes": "Asking for help with navigation.",
+    "tags": [
+      "travel_phrase",
+      "topic_directions"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Do you know a good mechanic?",
+    "spanish": "¿Conoces un buen mecánico?",
+    "pattern": "conocer + noun",
+    "topic": "repairs",
+    "notes": "Asking locals for help finding services.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The sun is very hot.",
+    "spanish": "El sol está muy caliente.",
+    "pattern": "estar + adjective",
+    "topic": "weather",
+    "notes": "Describing extreme heat during travel.",
+    "tags": [
+      "travel_phrase",
+      "topic_weather"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I want to take a photo.",
+    "spanish": "Quiero tomar una foto.",
+    "pattern": "quiero + infinitive",
+    "topic": "travel",
+    "notes": "Stopping for scenic photos or documentation.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_quiero"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Where can I wash my clothes?",
+    "spanish": "¿Dónde puedo lavar mi ropa?",
+    "pattern": "dónde puedo + infinitive",
+    "topic": "daily_life",
+    "notes": "Finding laundry facilities.",
+    "tags": [
+      "travel_phrase",
+      "topic_daily_life"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The border crossing opens at six.",
+    "spanish": "La frontera abre a las seis.",
+    "pattern": "abrir + time",
+    "topic": "border",
+    "notes": "Critical for border crossing planning.",
+    "tags": [
+      "travel_phrase",
+      "topic_border",
+      "travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need my passport.",
+    "spanish": "Necesito mi pasaporte.",
+    "pattern": "necesito + noun",
+    "topic": "border",
+    "notes": "Essential document requirement.",
+    "tags": [
+      "travel_phrase",
+      "topic_border",
+      "travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can I leave my backpack here?",
+    "spanish": "¿Puedo dejar mi mochila aquí?",
+    "pattern": "puedo + infinitive",
+    "topic": "hotel",
+    "notes": "Storing luggage during day visits.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The tire pressure is too low.",
+    "spanish": "La presión de la llanta está muy baja.",
+    "pattern": "estar + adjective",
+    "topic": "repairs",
+    "notes": "Describing maintenance problem.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm looking for a place to camp.",
+    "spanish": "Estoy buscando un lugar para acampar.",
+    "pattern": "estar + gerund",
+    "topic": "accommodation",
+    "notes": "Finding camping spots.",
+    "tags": [
+      "travel_phrase",
+      "topic_accommodation",
+      "travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The wind is very strong.",
+    "spanish": "El viento está muy fuerte.",
+    "pattern": "estar + adjective",
+    "topic": "weather",
+    "notes": "Weather affecting motorcycle riding.",
+    "tags": [
+      "travel_phrase",
+      "topic_weather",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I want to send a package.",
+    "spanish": "Quiero enviar un paquete.",
+    "pattern": "quiero + infinitive",
+    "topic": "services",
+    "notes": "Mailing items home or to next destination.",
+    "tags": [
+      "travel_phrase",
+      "topic_services",
+      "pattern_quiero"
+    ],
+    "audio": true
+  },
+  {
+    "english": "How many hours to the next city?",
+    "spanish": "¿Cuántas horas hasta la próxima ciudad?",
+    "pattern": "question",
+    "topic": "directions",
+    "notes": "Estimating travel time.",
+    "tags": [
+      "travel_phrase",
+      "topic_directions"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The helmet is required by law.",
+    "spanish": "El casco es requerido por ley.",
+    "pattern": "ser + adjective",
+    "topic": "travel",
+    "notes": "Safety and legal requirements.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I forgot my jacket.",
+    "spanish": "Olvidé mi chaqueta.",
+    "pattern": "preterite verb",
+    "topic": "problem_solving",
+    "notes": "Reporting lost/forgotten items.",
+    "tags": [
+      "travel_phrase",
+      "topic_problem_solving"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you recommend a safe route?",
+    "spanish": "¿Puedes recomendar una ruta segura?",
+    "pattern": "puedo/puedes + infinitive",
+    "topic": "directions",
+    "notes": "Asking locals for route advice.",
+    "tags": [
+      "travel_phrase",
+      "topic_directions"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need to charge my phone.",
+    "spanish": "Necesito cargar mi teléfono.",
+    "pattern": "necesito + infinitive",
+    "topic": "services",
+    "notes": "Finding electricity for devices.",
+    "tags": [
+      "travel_phrase",
+      "topic_services"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Is there WiFi in the hotel?",
+    "spanish": "¿Hay WiFi en el hotel?",
+    "pattern": "hay + noun",
+    "topic": "hotel",
+    "notes": "Internet availability.",
+    "tags": [
+      "travel_phrase",
+      "topic_hotel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The mountain pass is closed.",
+    "spanish": "El paso de montaña está cerrado.",
+    "pattern": "estar + adjective",
+    "topic": "travel",
+    "notes": "Road closure information.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I want to try the local food.",
+    "spanish": "Quiero probar la comida local.",
+    "pattern": "quiero + infinitive",
+    "topic": "food",
+    "notes": "Cultural food experience.",
+    "tags": [
+      "travel_phrase",
+      "topic_food",
+      "pattern_quiero"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The police stopped me.",
+    "spanish": "La policía me detuvo.",
+    "pattern": "preterite verb",
+    "topic": "emergency",
+    "notes": "Traffic stop or checkpoint situation.",
+    "tags": [
+      "travel_phrase",
+      "topic_emergency"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need to see a dentist.",
+    "spanish": "Necesito ver un dentista.",
+    "pattern": "necesito + infinitive",
+    "topic": "medical",
+    "notes": "Emergency dental care.",
+    "tags": [
+      "travel_phrase",
+      "topic_medical"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The ferry leaves at noon.",
+    "spanish": "El ferry sale al mediodía.",
+    "pattern": "salir + time",
+    "topic": "travel",
+    "notes": "Transportation schedule.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The oil needs to be changed.",
+    "spanish": "El aceite necesita cambiarse.",
+    "pattern": "necesitar + infinitive",
+    "topic": "repairs",
+    "notes": "Maintenance scheduling.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm going to follow this river.",
+    "spanish": "Voy a seguir este río.",
+    "pattern": "voy a + infinitive",
+    "topic": "directions",
+    "notes": "Navigation method.",
+    "tags": [
+      "travel_phrase",
+      "topic_directions",
+      "pattern_voy_a"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The market is open only in the morning.",
+    "spanish": "El mercado está abierto solo en la mañana.",
+    "pattern": "estar + adjective",
+    "topic": "shopping",
+    "notes": "Market hours.",
+    "tags": [
+      "travel_phrase",
+      "topic_shopping"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I want to learn some local words.",
+    "spanish": "Quiero aprender algunas palabras locales.",
+    "pattern": "quiero + infinitive",
+    "topic": "communication",
+    "notes": "Cultural engagement.",
+    "tags": [
+      "travel_phrase",
+      "topic_communication",
+      "pattern_quiero"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The campsite has bathrooms.",
+    "spanish": "El campamento tiene baños.",
+    "pattern": "tener + noun",
+    "topic": "accommodation",
+    "notes": "Describing camp facilities.",
+    "tags": [
+      "travel_phrase",
+      "topic_accommodation"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I lost my wallet.",
+    "spanish": "Perdí mi cartera.",
+    "pattern": "preterite verb",
+    "topic": "emergency",
+    "notes": "Reporting lost items.",
+    "tags": [
+      "travel_phrase",
+      "topic_emergency"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can you help me push the motorcycle?",
+    "spanish": "¿Puedes ayudarme a empujar la moto?",
+    "pattern": "puedes + infinitive + infinitive",
+    "topic": "help",
+    "notes": "Asking for physical help.",
+    "tags": [
+      "travel_phrase",
+      "topic_help",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The sunset from here is incredible.",
+    "spanish": "La puesta de sol desde aquí es increíble.",
+    "pattern": "ser + adjective",
+    "topic": "travel",
+    "notes": "Appreciating scenic views.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need a tool to fix this.",
+    "spanish": "Necesito una herramienta para arreglarlo.",
+    "pattern": "necesito + noun + infinitive",
+    "topic": "repairs",
+    "notes": "Requesting tools for repairs.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The hostel is cheaper.",
+    "spanish": "El hostal es más barato.",
+    "pattern": "ser + comparative",
+    "topic": "accommodation",
+    "notes": "Comparing lodging prices.",
+    "tags": [
+      "travel_phrase",
+      "topic_accommodation"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm going to rest for two days.",
+    "spanish": "Voy a descansar por dos días.",
+    "pattern": "voy a + infinitive",
+    "topic": "travel",
+    "notes": "Planning rest stops.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_voy_a"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The altitude is making me sick.",
+    "spanish": "La altitud me está haciendo enfermo.",
+    "pattern": "estar + gerund",
+    "topic": "medical",
+    "notes": "Altitude sickness.",
+    "tags": [
+      "travel_phrase",
+      "topic_medical"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Where can I get motorcycle insurance?",
+    "spanish": "¿Dónde puedo conseguir seguro para la moto?",
+    "pattern": "dónde puedo + infinitive",
+    "topic": "legal",
+    "notes": "Insurance requirements.",
+    "tags": [
+      "travel_phrase",
+      "topic_legal",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The road is unpaved.",
+    "spanish": "El camino está sin pavimentar.",
+    "pattern": "estar + adjective",
+    "topic": "travel",
+    "notes": "Road condition description.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I want to meet other travelers.",
+    "spanish": "Quiero conocer otros viajeros.",
+    "pattern": "quiero + infinitive",
+    "topic": "social",
+    "notes": "Social interaction.",
+    "tags": [
+      "travel_phrase",
+      "topic_social",
+      "pattern_quiero"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The customs officer wants to see my documents.",
+    "spanish": "El oficial de aduana quiere ver mis documentos.",
+    "pattern": "querer + infinitive",
+    "topic": "border",
+    "notes": "Border crossing procedure.",
+    "tags": [
+      "travel_phrase",
+      "topic_border"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm going to avoid the highway.",
+    "spanish": "Voy a evitar la autopista.",
+    "pattern": "voy a + infinitive",
+    "topic": "directions",
+    "notes": "Route planning.",
+    "tags": [
+      "travel_phrase",
+      "topic_directions",
+      "pattern_voy_a"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The tent is wet from the rain.",
+    "spanish": "La carpa está mojada de la lluvia.",
+    "pattern": "estar + adjective",
+    "topic": "camping",
+    "notes": "Weather impact on camping.",
+    "tags": [
+      "travel_phrase",
+      "topic_camping"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Can I pay in installments?",
+    "spanish": "¿Puedo pagar en cuotas?",
+    "pattern": "puedo + infinitive",
+    "topic": "payment",
+    "notes": "Payment plan request.",
+    "tags": [
+      "travel_phrase",
+      "topic_payment"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need a veterinarian for my dog.",
+    "spanish": "Necesito un veterinario para mi perro.",
+    "pattern": "necesito + noun",
+    "topic": "services",
+    "notes": "Pet emergency services.",
+    "tags": [
+      "travel_phrase",
+      "topic_services"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The view from this mountain is worth it.",
+    "spanish": "La vista desde esta montaña vale la pena.",
+    "pattern": "valer + infinitive",
+    "topic": "travel",
+    "notes": "Appreciating scenic effort.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel"
+    ],
     "audio": true
   }
-
-
 ]
