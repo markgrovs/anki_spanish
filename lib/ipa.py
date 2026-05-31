@@ -1,5 +1,26 @@
 import re
 import requests
+import time
+import json
+from pathlib import Path
+from .config import DATA_DIR
+
+IPA_CACHE_FILE = DATA_DIR / "ipa_cache.json"
+
+def load_ipa_cache():
+    if IPA_CACHE_FILE.exists():
+        try:
+            return json.loads(IPA_CACHE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+def save_ipa_cache(cache):
+    IPA_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    IPA_CACHE_FILE.write_text(json.dumps(cache, indent=2, ensure_ascii=False), encoding="utf-8")
+
+IPA_CACHE = load_ipa_cache()
+
 
 import warnings
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="panphon.*")
@@ -26,31 +47,51 @@ def ipa_from_wiktionary(word: str) -> str:
     from the Spanish section. This is far more reliable than parsing
     raw wikitext templates.
     """
+    if word in IPA_CACHE:
+        return IPA_CACHE[word]
+
     url = "https://en.wiktionary.org/w/api.php"
     params = {"action": "parse", "page": word, "prop": "text", "format": "json"}
-    try:
-        r = requests.get(url, params=params, headers=HEADERS, timeout=10)
-        r.raise_for_status()
-        html = r.json().get("parse", {}).get("text", {}).get("*", "")
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            r = requests.get(url, params=params, headers=HEADERS, timeout=10)
+            
+            if r.status_code == 429:
+                print(f"\n[info] Rate limited by Wiktionary. Waiting {2 ** attempt}s...")
+                time.sleep(2 ** attempt)
+                continue
+                
+            r.raise_for_status()
+            time.sleep(0.3) # Be polite
+            
+            html = r.json().get("parse", {}).get("text", {}).get("*", "")
 
-        # Find the Spanish section
-        spanish_match = re.search(r'id="Spanish"', html)
-        if not spanish_match:
+            # Find the Spanish section
+            spanish_match = re.search(r'id="Spanish"', html)
+            if not spanish_match:
+                return ""
+
+            # Slice from Spanish section to next language heading
+            spanish_html = html[spanish_match.start():]
+            next_h2 = re.search(r'<h2[^>]*>', spanish_html[10:])
+            if next_h2:
+                spanish_html = spanish_html[:next_h2.start() + 10]
+
+            # Extract first phonemic /.../ IPA
+            matches = re.findall(r'<span class="IPA nowrap">(/[^<]+/)</span>', spanish_html)
+            if matches:
+                res = matches[0]
+                IPA_CACHE[word] = res
+                save_ipa_cache(IPA_CACHE)
+                return res
             return ""
-
-        # Slice from Spanish section to next language heading
-        spanish_html = html[spanish_match.start():]
-        next_h2 = re.search(r'<h2[^>]*>', spanish_html[10:])
-        if next_h2:
-            spanish_html = spanish_html[:next_h2.start() + 10]
-
-        # Extract first phonemic /.../ IPA
-        matches = re.findall(r'<span class="IPA nowrap">(/[^<]+/)</span>', spanish_html)
-        if matches:
-            return matches[0]
-
-    except Exception as e:
-        print(f"[warn] IPA HTML fetch failed for '{word}': {e}")
+        except Exception as e:
+            if attempt == max_retries - 1:
+                print(f"\n[warn] IPA HTML fetch failed for '{word}': {e}")
+                return ""
+            time.sleep(1)
     return ""
 
 
