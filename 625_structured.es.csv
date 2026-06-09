@@ -1,6 +1,6 @@
 english,sense,pos,spanish,gender,ipa,notes
 actor,,noun,actor,m,/aktˈɔɾ/,
-black,,adjective ,negro,m,/nˈeɣɾo/,
+black,,"adjective ",negro,m,/nˈeɣɾo/,
 clay,,noun,arcilla,f,/aɾθˈiʎa/,
 disease,,noun,enfermedad,f,/ˌɛmfɛɾmeðˈad/,
 adjective,,noun,adjetivo,m,/ˌaðxetˈiβo/,
@@ -54,7 +54,7 @@ drug,,noun,droga,f,/dɾˈoɣa/,
 art,,noun,arte,m,/ˈaɾte/,
 bread,,noun,pan,m,/pˈan/,
 contract,,noun,contrato,m,/kɔntɾˈato/,
-dry,,adjective ,seco,m,/sˈeko/,
+dry,,"adjective ",seco,,/sˈeko/,
 artist,,noun,artista,f,/aɾtˈista/,
 break,,verb,romper,,/rɔmpˈɛɾ/,
 cook,,verb,cocinar,,/kˌoθinˈaɾ/,
@@ -630,3 +630,6 @@ broken,,,roto,,/ˈroto/,
 flat,flat tire,adjective,desinflado,,/desinˈflado/,
 chain,motorcycle chain,noun,cadena,f,/kaˈdena/,
 loose,the chain is loose,adjective,flojo,,/ˈfloxo/,
+secure,,adjective,segura,r
+wait,to wait for,verb,esperar
+show,to show,verb,mostrar
