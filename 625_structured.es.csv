@@ -1,6 +1,6 @@
 english,sense,pos,spanish,gender,ipa,notes
 actor,,noun,actor,m,/aktˈɔɾ/,
-black,,adjective ,negro,m,/nˈeɣɾo/,
+black,,"adjective ",negro,m,/nˈeɣɾo/,
 clay,,noun,arcilla,f,/aɾθˈiʎa/,
 disease,,noun,enfermedad,f,/ˌɛmfɛɾmeðˈad/,
 adjective,,noun,adjetivo,m,/ˌaðxetˈiβo/,
@@ -54,7 +54,7 @@ drug,,noun,droga,f,/dɾˈoɣa/,
 art,,noun,arte,m,/ˈaɾte/,
 bread,,noun,pan,m,/pˈan/,
 contract,,noun,contrato,m,/kɔntɾˈato/,
-dry,,adjective ,seco,,/sˈeko/,
+dry,,"adjective ",seco,,/sˈeko/,
 artist,,noun,artista,f,/aɾtˈista/,
 break,,verb,romper,,/rɔmpˈɛɾ/,
 cook,,verb,cocinar,,/kˌoθinˈaɾ/,
@@ -198,7 +198,7 @@ happy,,adjective,feliz,,/felˈiθ/,
 lamp,,noun,lámpara,f,/lˈampaɾa/,
 money,,noun,dinero,m,/dinˈɛɾɔ/,
 fifty,,numeral,cincuenta,,/θinkwˈɛnta/,
-hard,,noun,duro,m,/dˈuɾɔ/,
+hard,,adjective,duro,,/dˈuɾɔ/,
 laptop,,noun,portátil,m,/pɔɾtˈatil/,
 month,,noun,mes,m,/mˈes/,
 fight,,verb,luchar,,/lutʃˈaɾ/,
@@ -584,7 +584,7 @@ win,,verb,,,,
 yard,,,,,,
 wake up,,verb,,,,
 wear,,verb,,,,
-wind,,noun,,,,
+wind,,noun,viento,m,/ˈbjento/,
 year,,,,,,
 walk,,verb,,,,
 wedding,,,,,,
@@ -637,3 +637,16 @@ know,to know,verb,conocer,,/konoˈθeɾ/,
 take,to take,verb,tomar,,/toˈmaɾ/,
 border,border crossing,noun,frontera,f,/fɾonˈteɾa/,
 open,to open,verb,abrir,,/aˈbɾiɾ/,
+pressure,tire pressure,noun,presión,f,/pɾeˈsjon/,
+place,place to camp,noun,lugar,m,/luˈɡaɾ/,
+camp,,verb,acampar,,/akamˈpaɾ/,
+send,to send a package,verb,enviar,,/emˈbjaɾ/,
+package,,noun,paquete,m,/paˈkete/,
+helmet,,noun,casco,m
+required,to require,verb,requerir
+law,,noun,ley,f
+forget,to forget,verb,olvidar
+jacket,,noun,chaqueta,f
+route,,noun,ruta,f
+recommend,,verb,recomendar
+charge,to charge my phone,verb,cargar
