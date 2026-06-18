@@ -452,7 +452,7 @@ secretary,,,,,,
 south,,,,,,
 throw,,verb,,,,
 play,,verb,,,,
-see,a bird,,,,,
+see,a bird,verb,ver,,,
 space,outer space,,,,,
 Thursday,,,,,,
 player,,,,,,
@@ -468,7 +468,7 @@ poison,,noun,,,,
 September,,,,,,
 sport,,,,,,
 time,,noun,,,,
-police,,,,,,
+police,,noun,policiá,f,,
 seven,,,,,,
 spring,,noun,,,,
 tire,of a car,noun,llanta,f,/ˈʝanta/,
@@ -494,7 +494,7 @@ stone,,,,,,
 top,,,,,,
 president,,,,,,
 shallow,,,,,,
-stop,,verb,,,,
+stop,,verb,detener,,,
 touch,,verb,,,,
 price,,,,,,
 she,,,,,,
@@ -650,3 +650,7 @@ jacket,,noun,chaqueta,f
 route,,noun,ruta,f
 recommend,,verb,recomendar
 charge,to charge my phone,verb,cargar
+closed,the store is closed,adverb,cerrado
+pass,Mountain Pass,noun,paso,m
+try,to try on to taste,verb,probar
+dentist,,noun,dentista

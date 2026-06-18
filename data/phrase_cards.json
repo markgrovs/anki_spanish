@@ -4,7 +4,7 @@
     "spanish": "Quiero pagar.",
     "pattern": "quiero + infinitive",
     "topic": "payment",
-    "notes": "Core travel phrase.",
+    "notes": "QUIERO = present tense of 'querer' (I want). Always followed by infinitive verb. No subject pronoun needed in Spanish.",
     "tags": [
       "travel_phrase",
       "topic_payment",
@@ -17,7 +17,7 @@
     "spanish": "Quiero descansar.",
     "pattern": "quiero + infinitive",
     "topic": "general",
-    "notes": "Useful for long travel days.",
+    "notes": "QUIERO = present tense 'I want'. DESCANSAR = infinitive 'to rest'. Basic structure: want + action.",
     "tags": [
       "travel_phrase",
       "topic_general",
@@ -30,7 +30,7 @@
     "spanish": "¿Puedo pagar con tarjeta?",
     "pattern": "puedo + infinitive",
     "topic": "payment",
-    "notes": "High-frequency travel question.",
+    "notes": "PUEDO = present tense 'I can' (ability). CON = with (preposition). Uses infinitive after can/puedo.",
     "tags": [
       "travel_phrase",
       "topic_payment",
@@ -43,7 +43,7 @@
     "spanish": "¿Puedo estacionar aquí?",
     "pattern": "puedo + infinitive",
     "topic": "parking",
-    "notes": "Useful when arriving by motorcycle.",
+    "notes": "AQUÍ = here (location). Inverted word order in Spanish questions: ¿Puedo... = Can I...? No do/does needed.",
     "tags": [
       "travel_phrase",
       "topic_parking",
@@ -56,7 +56,7 @@
     "spanish": "Necesito encontrar un hotel.",
     "pattern": "necesito + infinitive",
     "topic": "hotel",
-    "notes": "Core lodging phrase.",
+    "notes": "NECESITO = 'I need' (present). UN = masculine article 'a'. Infinitive follows directly. Very common travel pattern.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -69,7 +69,7 @@
     "spanish": "Necesito cambiar dinero.",
     "pattern": "necesito + infinitive",
     "topic": "money",
-    "notes": "Useful at borders and airports.",
+    "notes": "CAMBIAR = infinitive 'to change'. DINERO = money (masculine). Essential for border/airport situations.",
     "tags": [
       "travel_phrase",
       "topic_money",
@@ -82,7 +82,7 @@
     "spanish": "Voy a buscar comida.",
     "pattern": "voy a + infinitive",
     "topic": "food",
-    "notes": "Simple future action phrase.",
+    "notes": "VOY A = 'I'm going to' (near future). A = preposition required before infinitive. BUSCAR = to look for.",
     "tags": [
       "travel_phrase",
       "topic_food",
@@ -95,7 +95,7 @@
     "spanish": "Voy a salir temprano.",
     "pattern": "voy a + infinitive",
     "topic": "travel",
-    "notes": "Useful for planning and departures.",
+    "notes": "SALIR = to leave/depart (infinitive). TEMPRANO = early (adverb). VOY A constructs future plans.",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -108,7 +108,7 @@
     "spanish": "Tengo que revisar la moto.",
     "pattern": "tengo que + infinitive",
     "topic": "repairs",
-    "notes": "Core motorcycle maintenance phrase.",
+    "notes": "TENGO QUE = 'I have to' (obligation). LA = feminine article (moto is feminine). QUE = required connector word.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -121,7 +121,7 @@
     "spanish": "Tengo que comprar agua.",
     "pattern": "tengo que + infinitive",
     "topic": "shopping",
-    "notes": "Simple high-frequency errand phrase.",
+    "notes": "AGUA = water (feminine, though starts with 'a'). TENGO QUE = obligation/duty structure.",
     "tags": [
       "travel_phrase",
       "topic_shopping",
@@ -134,7 +134,7 @@
     "spanish": "Me estoy quedando en este hotel.",
     "pattern": "me estoy + gerund",
     "topic": "hotel",
-    "notes": "Useful explanation when asking about parking or services.",
+    "notes": "ME = reflexive pronoun (comes before verb). ESTOY = present of estar. QUEDANDO = gerund (staying). ESTE = this (masculine demonstrative).",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -147,7 +147,7 @@
     "spanish": "Tengo una reservación aquí.",
     "pattern": "tengo + noun",
     "topic": "hotel",
-    "notes": "Very useful at hotels and check-in.",
+    "notes": "TENGO = 'I have' (present of tener). UNA = feminine article 'a'. Simple possession structure.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -160,7 +160,7 @@
     "spanish": "Soy huésped del hotel.",
     "pattern": "soy + noun",
     "topic": "hotel",
-    "notes": "Short, useful hotel identity phrase.",
+    "notes": "SOY = 'I am' (identity/permanent state). DEL = de + el (of the, contracted). Identity statement uses SER not ESTAR.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -173,7 +173,7 @@
     "spanish": "Porque hay un hotel aquí.",
     "pattern": "porque + hay",
     "topic": "hotel",
-    "notes": "Simple reason phrase for sentence expansion.",
+    "notes": "PORQUE = because (conjunction). HAY = 'there is/are' (impersonal, never conjugates). UN = masculine article.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -187,7 +187,7 @@
     "spanish": "Porque necesito descansar.",
     "pattern": "porque + necesito + infinitive",
     "topic": "general",
-    "notes": "High-frequency explanation phrase.",
+    "notes": "PORQUE connects clauses. NECESITO = present tense. Reason phrases always use present, not future.",
     "tags": [
       "travel_phrase",
       "topic_general",
@@ -201,7 +201,7 @@
     "spanish": "Porque tengo que salir temprano.",
     "pattern": "porque + tengo que + infinitive",
     "topic": "travel",
-    "notes": "Useful reason phrase for planning and lodging conversations.",
+    "notes": "PORQUE = because. TENGO QUE = obligation. Reason phrase explains WHY (answering 'por qué').",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -215,7 +215,7 @@
     "spanish": "¿Dónde está el hotel?",
     "pattern": "dónde está + noun",
     "topic": "hotel",
-    "notes": "Core location question.",
+    "notes": "DÓNDE = where (question word). ESTÁ = present of estar (location). ESTÁ always used for location, not SER.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -228,7 +228,7 @@
     "spanish": "¿Dónde puedo estacionar?",
     "pattern": "dónde puedo + infinitive",
     "topic": "parking",
-    "notes": "More flexible than asking only about here.",
+    "notes": "DÓNDE + PUEDO + infinitive = 'Where can I...?'. Open-ended location question.",
     "tags": [
       "travel_phrase",
       "topic_parking",
@@ -241,7 +241,7 @@
     "spanish": "¿Hay estacionamiento aquí?",
     "pattern": "hay + noun",
     "topic": "parking",
-    "notes": "Very useful arrival question.",
+    "notes": "HAY = there is/are (never changes). ESTACIONAMIENTO = parking (masculine). Yes/no question format.",
     "tags": [
       "travel_phrase",
       "topic_parking",
@@ -254,7 +254,7 @@
     "spanish": "¿Me puede ayudar?",
     "pattern": "me puede + infinitive",
     "topic": "help",
-    "notes": "Polite, high-frequency help phrase.",
+    "notes": "ME = indirect object pronoun (to/for me). PUEDE = formal 'can you'. Pronoun goes before verb.",
     "tags": [
       "travel_phrase",
       "topic_help",
@@ -267,7 +267,7 @@
     "spanish": "Busco un mecánico.",
     "pattern": "busco + noun",
     "topic": "repairs",
-    "notes": "Critical motorcycle travel phrase.",
+    "notes": "BUSCO = present tense 'I look for/am looking for'. No auxiliary verb needed. Direct object follows.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -280,7 +280,7 @@
     "spanish": "Hay un problema con la moto.",
     "pattern": "hay + noun",
     "topic": "repairs",
-    "notes": "Core repair/emergency phrase.",
+    "notes": "HAY = there is. UN = masculine article. CON = with (preposition). LA = feminine article for moto.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -293,7 +293,7 @@
     "spanish": "Hay un agujero en la cámara.",
     "pattern": "problem description",
     "topic": "repairs",
-    "notes": "Use to explain the issue to a mechanic.",
+    "notes": "HAY = there is. EN = in (preposition). LA CÁMARA = the inner tube (feminine). Problem statement structure.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -307,7 +307,7 @@
     "spanish": "La cámara tiene un agujero.",
     "pattern": "problem description",
     "topic": "repairs",
-    "notes": "Simple way to describe tube damage.",
+    "notes": "TIENE = 'has' (present of tener). LA CÁMARA = subject (inner tube). Alternative way to express same problem.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -321,7 +321,7 @@
     "spanish": "Necesito que repare la cámara.",
     "pattern": "necesito que + subjunctive",
     "topic": "repairs",
-    "notes": "Requesting repair from a mechanic.",
+    "notes": "NECESITO QUE = 'I need that' (triggers subjunctive). REPARE = subjunctive 'you repair'. LA = feminine object.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -336,7 +336,7 @@
     "spanish": "¿Puede reparar la cámara?",
     "pattern": "puede + infinitive",
     "topic": "repairs",
-    "notes": "Direct repair request to a mechanic.",
+    "notes": "PUEDE = formal 'can you' (present of poder). Infinitive follows directly. Simpler than subjunctive version.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -350,7 +350,7 @@
     "spanish": "Tengo una reserva.",
     "pattern": "tener",
     "topic": "hotel",
-    "notes": "Useful at check-in.",
+    "notes": "TENGO = 'I have'. UNA = feminine article. Simple possession statement for check-in.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -363,7 +363,7 @@
     "spanish": "Necesito una habitación para una noche.",
     "pattern": "necesito + noun phrase",
     "topic": "hotel",
-    "notes": "Core lodging phrase.",
+    "notes": "PARA = for (preposition). UNA NOCHE = one night (feminine). Complex noun phrase after necesito.",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -376,7 +376,7 @@
     "spanish": "¿Cuánto cuesta por noche?",
     "pattern": "question",
     "topic": "hotel",
-    "notes": "Useful for lodging and prices.",
+    "notes": "CUÁNTO = how much (question word). CUESTA = costs (present of costar). POR = per (preposition).",
     "tags": [
       "travel_phrase",
       "topic_hotel",
@@ -390,7 +390,7 @@
     "spanish": "¿Dónde puedo estacionar la moto?",
     "pattern": "puedo + infinitive",
     "topic": "parking",
-    "notes": "Useful when arriving at hotels or restaurants.",
+    "notes": "DÓNDE PUEDO = where can I. LA MOTO = direct object (the motorcycle, feminine). Specific location question.",
     "tags": [
       "travel_phrase",
       "topic_parking",
@@ -403,7 +403,7 @@
     "spanish": "Necesito gasolina.",
     "pattern": "necesito + noun",
     "topic": "fuel",
-    "notes": "Simple high-frequency travel phrase.",
+    "notes": "NECESITO = I need (present). GASOLINA = gasoline (feminine). Essential travel phrase.",
     "tags": [
       "travel_phrase",
       "topic_fuel",
@@ -416,7 +416,7 @@
     "spanish": "¿Hay un mecánico cerca de aquí?",
     "pattern": "question",
     "topic": "repairs",
-    "notes": "Useful when you need help on the road.",
+    "notes": "HAY = there is. CERCA DE = near (preposition + de). AQUÍ = here. Yes/no question about service location.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -429,7 +429,7 @@
     "spanish": "La moto no arranca.",
     "pattern": "statement",
     "topic": "repairs",
-    "notes": "Core breakdown phrase.",
+    "notes": "NO = negation (goes before verb in Spanish). ARRANCA = starts (present of arrancar). LA = feminine article.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -442,7 +442,7 @@
     "spanish": "¿Puede revisarla, por favor?",
     "pattern": "puede + infinitive/object",
     "topic": "repairs",
-    "notes": "Useful with a mechanic or helper.",
+    "notes": "REVISARLA = check + it (LA is feminine object pronoun attached to infinitive). PUEDE = can you (formal).",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -455,7 +455,7 @@
     "spanish": "Busco un cajero automático.",
     "pattern": "buscar",
     "topic": "money",
-    "notes": "Useful in towns and airports.",
+    "notes": "BUSCO = I look for (present). UN CAJERO AUTOMÁTICO = an ATM (literally 'automatic cashier').",
     "tags": [
       "travel_phrase",
       "topic_money",
@@ -468,7 +468,7 @@
     "spanish": "¿Puede hablar más despacio, por favor?",
     "pattern": "puede + infinitive",
     "topic": "communication",
-    "notes": "Essential communication repair phrase.",
+    "notes": "PUEDE HABLAR = can you speak. MÁS DESPACIO = more slowly (comparative). Essential comprehension aid.",
     "tags": [
       "travel_phrase",
       "topic_communication",
@@ -481,7 +481,7 @@
     "spanish": "Es caro.",
     "pattern": "es + adjective",
     "topic": "description",
-    "notes": "Subject 'it' is omitted in Spanish. Common for describing things.",
+    "notes": "ES = 'it is' (identity/characteristic, not location). CARO = expensive (masculine form). Subject pronoun omitted.",
     "tags": [
       "travel_phrase",
       "topic_description",
@@ -494,7 +494,7 @@
     "spanish": "Es barato.",
     "pattern": "es + adjective",
     "topic": "description",
-    "notes": "Subject 'it' is omitted. Useful for negotiating prices.",
+    "notes": "BARATO = cheap (masculine). Use ES for permanent qualities, ESTÁ for conditions/location.",
     "tags": [
       "travel_phrase",
       "topic_description",
@@ -507,7 +507,7 @@
     "spanish": "Está aquí.",
     "pattern": "está + location",
     "topic": "location",
-    "notes": "Subject 'it' is omitted. Use 'está' for location.",
+    "notes": "ESTÁ = 'it is' (location/condition, not identity). AQUÍ = here. Never use ES for location.",
     "tags": [
       "travel_phrase",
       "topic_location",
@@ -520,7 +520,7 @@
     "spanish": "Está lejos.",
     "pattern": "está + adjective",
     "topic": "location",
-    "notes": "Subject 'it' is omitted. Useful for asking about distances.",
+    "notes": "LEJOS = far (location descriptor). ESTÁ shows temporary/changeable state or location.",
     "tags": [
       "travel_phrase",
       "topic_location",
@@ -533,7 +533,7 @@
     "spanish": "Está cerca.",
     "pattern": "está + adjective",
     "topic": "location",
-    "notes": "Subject 'it' is omitted. Common response to 'Where is...?' questions.",
+    "notes": "CERCA = near. Common response to location questions. ESTÁ for proximity/location.",
     "tags": [
       "travel_phrase",
       "topic_location",
@@ -546,7 +546,7 @@
     "spanish": "Lo necesito.",
     "pattern": "lo + verb",
     "topic": "general",
-    "notes": "Object 'it' (masculine) comes before the verb. Use when referring to masculine nouns.",
+    "notes": "LO = direct object pronoun 'it' (masculine). Always comes BEFORE conjugated verb. Not at end like English.",
     "tags": [
       "travel_phrase",
       "topic_general",
@@ -559,7 +559,7 @@
     "spanish": "Lo tengo.",
     "pattern": "lo + verb",
     "topic": "general",
-    "notes": "Object 'it' (masculine) comes before the verb.",
+    "notes": "LO = masculine object pronoun. Word order: LO before verb. Mirror of English structure.",
     "tags": [
       "travel_phrase",
       "topic_general",
@@ -572,7 +572,7 @@
     "spanish": "Lo quiero.",
     "pattern": "lo + verb",
     "topic": "general",
-    "notes": "Object 'it' (masculine) comes before the verb.",
+    "notes": "LO QUIERO = I want it. Pronoun placement before verb is non-negotiable in Spanish.",
     "tags": [
       "travel_phrase",
       "topic_general",
@@ -585,7 +585,7 @@
     "spanish": "Mi moto está rota.",
     "pattern": "estar + adjective",
     "topic": "repairs",
-    "notes": "Use 'rota' (feminine) because 'moto' is feminine.",
+    "notes": "ESTÁ = is (condition). ROTA = broken (feminine adjective matching feminine 'moto'). Adjectives agree with nouns.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -598,7 +598,7 @@
     "spanish": "La llanta está desinflada.",
     "pattern": "estar + adjective",
     "topic": "repairs",
-    "notes": "Common motorcycle problem on rough roads.",
+    "notes": "LA LLANTA = the tire (feminine). DESINFLADA = deflated (feminine form). ESTÁ for conditions.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -611,7 +611,7 @@
     "spanish": "La cadena está floja.",
     "pattern": "estar + adjective",
     "topic": "repairs",
-    "notes": "Common maintenance issue on motorcycles.",
+    "notes": "LA CADENA = the chain (feminine). FLOJA = loose (feminine). Maintenance problem description.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -624,7 +624,7 @@
     "spanish": "Necesito aceite.",
     "pattern": "necesito + noun",
     "topic": "repairs",
-    "notes": "For oil changes or topping up.",
+    "notes": "ACEITE = oil (masculine). Simple need statement for maintenance.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -637,7 +637,7 @@
     "spanish": "Llénalo, por favor.",
     "pattern": "imperative + por favor",
     "topic": "fuel",
-    "notes": "At the gas station - 'llénalo' = fill it (masculine for 'tanque').",
+    "notes": "LLÉNALO = fill it (imperative + masculine object pronoun -lo). Tú command form. Command adds pronouns directly.",
     "tags": [
       "travel_phrase",
       "topic_fuel",
@@ -650,7 +650,7 @@
     "spanish": "¿Hay estacionamiento seguro?",
     "pattern": "hay + noun",
     "topic": "parking",
-    "notes": "Important for overnight motorcycle storage.",
+    "notes": "HAY = there is. SEGURO = secure/safe (masculine). Critical for overnight motorcycle storage.",
     "tags": [
       "travel_phrase",
       "topic_parking",
@@ -663,7 +663,7 @@
     "spanish": "El camino tiene muchos agujeros.",
     "pattern": "tener + noun",
     "topic": "travel",
-    "notes": "Describing dangerous or damaged roads.",
+    "notes": "TIENE = has (present of tener). MUCHOS = many (masculine plural). AGUJEROS = holes.",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -676,7 +676,7 @@
     "spanish": "La lluvia es muy fuerte.",
     "pattern": "ser + adjective",
     "topic": "weather",
-    "notes": "Weather condition affecting travel.",
+    "notes": "LA LLUVIA = the rain (feminine). ES = is (characteristic/permanent). MUY = very (adverb intensifier).",
     "tags": [
       "travel_phrase",
       "topic_weather"
@@ -688,7 +688,7 @@
     "spanish": "Voy a esperar aquí.",
     "pattern": "voy a + infinitive",
     "topic": "travel",
-    "notes": "When conditions are too bad to continue.",
+    "notes": "VOY A ESPERAR = I'm going to wait (near future). AQUÍ = here. Safety decision phrase.",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -701,7 +701,7 @@
     "spanish": "¿Puedes mostrarme en el mapa?",
     "pattern": "puedo/puedes + infinitive",
     "topic": "directions",
-    "notes": "Asking for help with navigation.",
+    "notes": "PUEDES = can you (tú form). MOSTRARME = show + me (infinitive with pronoun). EN EL MAPA = on the map.",
     "tags": [
       "travel_phrase",
       "topic_directions"
@@ -713,7 +713,7 @@
     "spanish": "¿Conoces un buen mecánico?",
     "pattern": "conocer + noun",
     "topic": "repairs",
-    "notes": "Asking locals for help finding services.",
+    "notes": "CONOCES = do you know (tú form of conocer, personal knowledge). BUEN = good (shortened before masculine noun).",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -726,7 +726,7 @@
     "spanish": "El sol está muy caliente.",
     "pattern": "estar + adjective",
     "topic": "weather",
-    "notes": "Describing extreme heat during travel.",
+    "notes": "ESTÁ CALIENTE = is hot (condition, changeable). CALIENTE = hot (temporary state). MUY = intensifier.",
     "tags": [
       "travel_phrase",
       "topic_weather"
@@ -738,7 +738,7 @@
     "spanish": "Quiero tomar una foto.",
     "pattern": "quiero + infinitive",
     "topic": "travel",
-    "notes": "Stopping for scenic photos or documentation.",
+    "notes": "QUIERO TOMAR = I want to take. TOMAR = to take/make (photo). FOTO = photo (feminine).",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -751,7 +751,7 @@
     "spanish": "¿Dónde puedo lavar mi ropa?",
     "pattern": "dónde puedo + infinitive",
     "topic": "daily_life",
-    "notes": "Finding laundry facilities.",
+    "notes": "LAVAR = to wash (infinitive). MI ROPA = my clothes (feminine). Laundry/hygiene phrase.",
     "tags": [
       "travel_phrase",
       "topic_daily_life"
@@ -763,7 +763,7 @@
     "spanish": "La frontera abre a las seis.",
     "pattern": "abrir + time",
     "topic": "border",
-    "notes": "Critical for border crossing planning.",
+    "notes": "ABRE = opens (present of abrir). A LAS SEIS = at six (time expression). LA FRONTERA = the border (feminine).",
     "tags": [
       "travel_phrase",
       "topic_border",
@@ -776,7 +776,7 @@
     "spanish": "Necesito mi pasaporte.",
     "pattern": "necesito + noun",
     "topic": "border",
-    "notes": "Essential document requirement.",
+    "notes": "MI PASAPORTE = my passport (masculine). Critical document statement.",
     "tags": [
       "travel_phrase",
       "topic_border",
@@ -789,7 +789,7 @@
     "spanish": "¿Puedo dejar mi mochila aquí?",
     "pattern": "puedo + infinitive",
     "topic": "hotel",
-    "notes": "Storing luggage during day visits.",
+    "notes": "DEJAR = to leave/deposit (infinitive). MI MOCHILA = my backpack (feminine). Storage request.",
     "tags": [
       "travel_phrase",
       "topic_hotel"
@@ -801,7 +801,7 @@
     "spanish": "La presión de la llanta está muy baja.",
     "pattern": "estar + adjective",
     "topic": "repairs",
-    "notes": "Describing maintenance problem.",
+    "notes": "LA PRESIÓN DE LA LLANTA = tire pressure (feminine). ESTÁ BAJA = is low (condition). DEMASIADO/MUY = too.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -814,7 +814,7 @@
     "spanish": "Estoy buscando un lugar para acampar.",
     "pattern": "estar + gerund",
     "topic": "accommodation",
-    "notes": "Finding camping spots.",
+    "notes": "ESTOY BUSCANDO = I'm looking (present progressive). PARA ACAMPAR = to camp. UN LUGAR = a place.",
     "tags": [
       "travel_phrase",
       "topic_accommodation",
@@ -827,7 +827,7 @@
     "spanish": "El viento está muy fuerte.",
     "pattern": "estar + adjective",
     "topic": "weather",
-    "notes": "Weather affecting motorcycle riding.",
+    "notes": "EL VIENTO = the wind (masculine). FUERTE = strong (changeable condition). ESTÁ not ES for weather conditions.",
     "tags": [
       "travel_phrase",
       "topic_weather",
@@ -840,7 +840,7 @@
     "spanish": "Quiero enviar un paquete.",
     "pattern": "quiero + infinitive",
     "topic": "services",
-    "notes": "Mailing items home or to next destination.",
+    "notes": "QUIERO ENVIAR = I want to send. ENVIAR = to send/mail. UN PAQUETE = a package (masculine).",
     "tags": [
       "travel_phrase",
       "topic_services",
@@ -853,7 +853,7 @@
     "spanish": "¿Cuántas horas hasta la próxima ciudad?",
     "pattern": "question",
     "topic": "directions",
-    "notes": "Estimating travel time.",
+    "notes": "CUÁNTAS HORAS = how many hours. HASTA = until/to (preposition). LA PRÓXIMA CIUDAD = next city (feminine).",
     "tags": [
       "travel_phrase",
       "topic_directions"
@@ -865,7 +865,7 @@
     "spanish": "El casco es requerido por ley.",
     "pattern": "ser + adjective",
     "topic": "travel",
-    "notes": "Safety and legal requirements.",
+    "notes": "REQUERIDO = required (passive voice). POR LEY = by law (preposition phrase). Legal requirement statement.",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -878,7 +878,7 @@
     "spanish": "Olvidé mi chaqueta.",
     "pattern": "preterite verb",
     "topic": "problem_solving",
-    "notes": "Reporting lost/forgotten items.",
+    "notes": "OLVIDÉ = I forgot (preterite, past action completed). MI CHAQUETA = my jacket (feminine).",
     "tags": [
       "travel_phrase",
       "topic_problem_solving"
@@ -890,7 +890,7 @@
     "spanish": "¿Puedes recomendar una ruta segura?",
     "pattern": "puedo/puedes + infinitive",
     "topic": "directions",
-    "notes": "Asking locals for route advice.",
+    "notes": "PUEDES RECOMENDAR = can you recommend (tú form). UNA RUTA SEGURA = a safe route (feminine).",
     "tags": [
       "travel_phrase",
       "topic_directions"
@@ -902,7 +902,7 @@
     "spanish": "Necesito cargar mi teléfono.",
     "pattern": "necesito + infinitive",
     "topic": "services",
-    "notes": "Finding electricity for devices.",
+    "notes": "CARGAR = to charge (infinitive). MI TELÉFONO = my phone (masculine).",
     "tags": [
       "travel_phrase",
       "topic_services"
@@ -914,7 +914,7 @@
     "spanish": "¿Hay WiFi en el hotel?",
     "pattern": "hay + noun",
     "topic": "hotel",
-    "notes": "Internet availability.",
+    "notes": "HAY = there is. EN EL HOTEL = in the hotel (preposition + article + noun). Yes/no question.",
     "tags": [
       "travel_phrase",
       "topic_hotel"
@@ -926,7 +926,7 @@
     "spanish": "El paso de montaña está cerrado.",
     "pattern": "estar + adjective",
     "topic": "travel",
-    "notes": "Road closure information.",
+    "notes": "EL PASO DE MONTAÑA = the mountain pass (masculine). ESTÁ CERRADO = is closed (condition/state).",
     "tags": [
       "travel_phrase",
       "topic_travel"
@@ -938,7 +938,7 @@
     "spanish": "Quiero probar la comida local.",
     "pattern": "quiero + infinitive",
     "topic": "food",
-    "notes": "Cultural food experience.",
+    "notes": "PROBAR = to try/taste (infinitive). LA COMIDA LOCAL = the local food (feminine). Cultural experience phrase.",
     "tags": [
       "travel_phrase",
       "topic_food",
@@ -951,7 +951,7 @@
     "spanish": "La policía me detuvo.",
     "pattern": "preterite verb",
     "topic": "emergency",
-    "notes": "Traffic stop or checkpoint situation.",
+    "notes": "ME DETUVO = stopped me (preterite). LA POLICÍA = the police (feminine, singular subject). Past action.",
     "tags": [
       "travel_phrase",
       "topic_emergency"
@@ -963,7 +963,7 @@
     "spanish": "Necesito ver un dentista.",
     "pattern": "necesito + infinitive",
     "topic": "medical",
-    "notes": "Emergency dental care.",
+    "notes": "VER = to see (infinitive). UN DENTISTA = a dentist (masculine). Medical emergency phrase.",
     "tags": [
       "travel_phrase",
       "topic_medical"
@@ -975,7 +975,7 @@
     "spanish": "El ferry sale al mediodía.",
     "pattern": "salir + time",
     "topic": "travel",
-    "notes": "Transportation schedule.",
+    "notes": "SALE = leaves/departs (present of salir). AL MEDIODÍA = at noon (preposition + article + noun).",
     "tags": [
       "travel_phrase",
       "topic_travel"
@@ -987,7 +987,7 @@
     "spanish": "El aceite necesita cambiarse.",
     "pattern": "necesitar + infinitive",
     "topic": "repairs",
-    "notes": "Maintenance scheduling.",
+    "notes": "NECESITA CAMBIARSE = needs to change itself (reflexive). Passive construction. CAMBIARSE = to be changed.",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -1000,7 +1000,7 @@
     "spanish": "Voy a seguir este río.",
     "pattern": "voy a + infinitive",
     "topic": "directions",
-    "notes": "Navigation method.",
+    "notes": "VOY A SEGUIR = I'm going to follow. ESTE = this (masculine demonstrative). RÍO = river (masculine).",
     "tags": [
       "travel_phrase",
       "topic_directions",
@@ -1013,7 +1013,7 @@
     "spanish": "El mercado está abierto solo en la mañana.",
     "pattern": "estar + adjective",
     "topic": "shopping",
-    "notes": "Market hours.",
+    "notes": "ESTÁ ABIERTO = is open (condition, masculine). SOLO = only (adverb). EN LA MAÑANA = in the morning.",
     "tags": [
       "travel_phrase",
       "topic_shopping"
@@ -1025,7 +1025,7 @@
     "spanish": "Quiero aprender algunas palabras locales.",
     "pattern": "quiero + infinitive",
     "topic": "communication",
-    "notes": "Cultural engagement.",
+    "notes": "APRENDER = to learn (infinitive). ALGUNAS PALABRAS = some words (feminine plural). LOCALES = local.",
     "tags": [
       "travel_phrase",
       "topic_communication",
@@ -1038,7 +1038,7 @@
     "spanish": "El campamento tiene baños.",
     "pattern": "tener + noun",
     "topic": "accommodation",
-    "notes": "Describing camp facilities.",
+    "notes": "TIENE = has (present of tener). BAÑOS = bathrooms (masculine plural). Facility description.",
     "tags": [
       "travel_phrase",
       "topic_accommodation"
@@ -1050,7 +1050,7 @@
     "spanish": "Perdí mi cartera.",
     "pattern": "preterite verb",
     "topic": "emergency",
-    "notes": "Reporting lost items.",
+    "notes": "PERDÍ = I lost (preterite, past completed action). MI CARTERA = my wallet (feminine).",
     "tags": [
       "travel_phrase",
       "topic_emergency"
@@ -1062,7 +1062,7 @@
     "spanish": "¿Puedes ayudarme a empujar la moto?",
     "pattern": "puedes + infinitive + infinitive",
     "topic": "help",
-    "notes": "Asking for physical help.",
+    "notes": "PUEDES AYUDARME = can you help me (indirect object ME). A EMPUJAR = to push (preposition A required).",
     "tags": [
       "travel_phrase",
       "topic_help",
@@ -1075,7 +1075,7 @@
     "spanish": "La puesta de sol desde aquí es increíble.",
     "pattern": "ser + adjective",
     "topic": "travel",
-    "notes": "Appreciating scenic views.",
+    "notes": "LA PUESTA DE SOL = the sunset (feminine). DESDE AQUÍ = from here. INCREÍBLE = incredible.",
     "tags": [
       "travel_phrase",
       "topic_travel"
@@ -1087,7 +1087,7 @@
     "spanish": "Necesito una herramienta para arreglarlo.",
     "pattern": "necesito + noun + infinitive",
     "topic": "repairs",
-    "notes": "Requesting tools for repairs.",
+    "notes": "PARA ARREGLARLO = to fix it (infinitive + LO). PURPOSE phrase. UNA HERRAMIENTA = a tool (feminine).",
     "tags": [
       "travel_phrase",
       "topic_repairs",
@@ -1100,7 +1100,7 @@
     "spanish": "El hostal es más barato.",
     "pattern": "ser + comparative",
     "topic": "accommodation",
-    "notes": "Comparing lodging prices.",
+    "notes": "MÁS BARATO = cheaper (comparative using MÁS + adjective). ES not ESTÁ for comparison. Price comparison.",
     "tags": [
       "travel_phrase",
       "topic_accommodation"
@@ -1112,7 +1112,7 @@
     "spanish": "Voy a descansar por dos días.",
     "pattern": "voy a + infinitive",
     "topic": "travel",
-    "notes": "Planning rest stops.",
+    "notes": "VOY A DESCANSAR = I'm going to rest. POR DOS DÍAS = for two days (time duration). Rest stop planning.",
     "tags": [
       "travel_phrase",
       "topic_travel",
@@ -1125,7 +1125,7 @@
     "spanish": "La altitud me está haciendo enfermo.",
     "pattern": "estar + gerund",
     "topic": "medical",
-    "notes": "Altitude sickness.",
+    "notes": "ME ESTÁ HACIENDO = is making me (progressive + indirect object). ENFERMO = sick (masculine). Health problem.",
     "tags": [
       "travel_phrase",
       "topic_medical"
@@ -1137,7 +1137,7 @@
     "spanish": "¿Dónde puedo conseguir seguro para la moto?",
     "pattern": "dónde puedo + infinitive",
     "topic": "legal",
-    "notes": "Insurance requirements.",
+    "notes": "CONSEGUIR = to get/obtain (infinitive). SEGURO = insurance (masculine). PARA LA MOTO = for the motorcycle.",
     "tags": [
       "travel_phrase",
       "topic_legal",
@@ -1150,7 +1150,7 @@
     "spanish": "El camino está sin pavimentar.",
     "pattern": "estar + adjective",
     "topic": "travel",
-    "notes": "Road condition description.",
+    "notes": "ESTÁ SIN PAVIMENTAR = is without pavement (negation + past participle). Condition/state description.",
     "tags": [
       "travel_phrase",
       "topic_travel"
@@ -1162,7 +1162,7 @@
     "spanish": "Quiero conocer otros viajeros.",
     "pattern": "quiero + infinitive",
     "topic": "social",
-    "notes": "Social interaction.",
+    "notes": "CONOCER = to meet/know (infinitive, personal knowledge). OTROS VIAJEROS = other travelers (masculine plural).",
     "tags": [
       "travel_phrase",
       "topic_social",
@@ -1175,7 +1175,7 @@
     "spanish": "El oficial de aduana quiere ver mis documentos.",
     "pattern": "querer + infinitive",
     "topic": "border",
-    "notes": "Border crossing procedure.",
+    "notes": "QUIERE VER = wants to see (present of querer + infinitive). MIS DOCUMENTOS = my documents (masculine plural).",
     "tags": [
       "travel_phrase",
       "topic_border"
@@ -1187,7 +1187,7 @@
     "spanish": "Voy a evitar la autopista.",
     "pattern": "voy a + infinitive",
     "topic": "directions",
-    "notes": "Route planning.",
+    "notes": "EVITAR = to avoid (infinitive). LA AUTOPISTA = the highway (feminine). Safety/route planning.",
     "tags": [
       "travel_phrase",
       "topic_directions",
@@ -1200,7 +1200,7 @@
     "spanish": "La carpa está mojada de la lluvia.",
     "pattern": "estar + adjective",
     "topic": "camping",
-    "notes": "Weather impact on camping.",
+    "notes": "LA CARPA = the tent (feminine). MOJADA = wet (feminine adjective). DE LA LLUVIA = from the rain (causation).",
     "tags": [
       "travel_phrase",
       "topic_camping"
@@ -1212,7 +1212,7 @@
     "spanish": "¿Puedo pagar en cuotas?",
     "pattern": "puedo + infinitive",
     "topic": "payment",
-    "notes": "Payment plan request.",
+    "notes": "EN CUOTAS = in installments/monthly payments. PAGAR = to pay (infinitive). Payment option question.",
     "tags": [
       "travel_phrase",
       "topic_payment"
@@ -1224,7 +1224,7 @@
     "spanish": "Necesito un veterinario para mi perro.",
     "pattern": "necesito + noun",
     "topic": "services",
-    "notes": "Pet emergency services.",
+    "notes": "UN VETERINARIO = a veterinarian (masculine). MI PERRO = my dog (masculine). Pet emergency.",
     "tags": [
       "travel_phrase",
       "topic_services"
@@ -1236,7 +1236,7 @@
     "spanish": "La vista desde esta montaña vale la pena.",
     "pattern": "valer + infinitive",
     "topic": "travel",
-    "notes": "Appreciating scenic effort.",
+    "notes": "VALE LA PENA = is worth it (idiom, literally 'is worth the effort'). DESDE ESTA MONTAÑA = from this mountain.",
     "tags": [
       "travel_phrase",
       "topic_travel"
