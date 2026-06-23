@@ -78,6 +78,24 @@ def cmd_pick_images(args):
     if args.query: cmd += ["--query", args.query]
     run(cmd)
 
+
+def cmd_vocab_update(args):
+    """Update 625 CSV from phrase cards (lemma-aware)."""
+    import shutil, datetime
+    from lib import vocab_update
+    from lib.config import CSV_PATH
+    if args.backup and args.write:
+        ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        bak = CSV_PATH.with_name(f"{CSV_PATH.stem}.bak-{ts}{CSV_PATH.suffix}")
+        shutil.copy2(CSV_PATH, bak)
+        print(f"Backed up CSV to {bak}")
+    count = vocab_update.update_vocab(write_mode=args.write, interactive=args.review, verbose=True)
+    if args.write:
+        print(f"Added {count} rows")
+    else:
+        print("Dry-run complete")
+
+
 def cmd_build(args):
     script = BASE_DIR / "build_cards.py"
     cmd = [sys.executable, str(script)]
@@ -345,6 +363,16 @@ def main():
     pimg.add_argument("--limit", type=int, default=10, help="Batch size")
     pimg.add_argument("--query", type=str, help="Specific word to process (optional)")
     pimg.set_defaults(func=cmd_pick_images)
+
+
+    # 8b. Vocab update
+    pv = sub.add_parser("vocab", help="Vocabulary helpers")
+    vsub = pv.add_subparsers(dest="vcmd", required=True)
+    pu = vsub.add_parser("update", help="Update 625 CSV from phrase cards")
+    pu.add_argument("--review", action="store_true", help="Interactively review unknown tokens")
+    pu.add_argument("--write", action="store_true", help="Append discovered words to CSV")
+    pu.add_argument("--backup", action="store_true", help="Backup CSV before writing")
+    pu.set_defaults(func=cmd_vocab_update)
 
     # 9. Smoke test
     psmoke = sub.add_parser("smoke-test", help="Run non-destructive CLI smoke tests")

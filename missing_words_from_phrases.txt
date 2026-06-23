@@ -1,0 +1,592 @@
+Missing Spanish Words from Phrases
+================================================================================
+
+la (27 phrases)
+  - Tengo que revisar la moto.
+  - Hay un problema con la moto.
+  - Hay un agujero en la cámara.
+  - La cámara tiene un agujero.
+  - Necesito que repare la cámara.
+  - ¿Puede reparar la cámara?
+  - ¿Dónde puedo estacionar la moto?
+  - La moto no arranca.
+  - La llanta está desinflada.
+  - La cadena está floja.
+  - La lluvia es muy fuerte.
+  - La frontera abre a las seis.
+  - La presión de la llanta está muy baja.
+  - La presión de la llanta está muy baja.
+  - ¿Cuántas horas hasta la próxima ciudad?
+  - Quiero probar la comida local.
+  - La policía me detuvo.
+  - El mercado está abierto solo en la mañana.
+  - ¿Puedes ayudarme a empujar la moto?
+  - La puesta de sol desde aquí es increíble.
+  - La altitud me está haciendo enfermo.
+  - ¿Dónde puedo conseguir seguro para la moto?
+  - Voy a evitar la autopista.
+  - La carpa está mojada de la lluvia.
+  - La carpa está mojada de la lluvia.
+  - La vista desde esta montaña vale la pena.
+  - La vista desde esta montaña vale la pena.
+
+está (15 phrases)
+  - ¿Dónde está el hotel?
+  - Está aquí.
+  - Está lejos.
+  - Está cerca.
+  - Mi moto está rota.
+  - La llanta está desinflada.
+  - La cadena está floja.
+  - El sol está muy caliente.
+  - La presión de la llanta está muy baja.
+  - El viento está muy fuerte.
+  - El paso de montaña está cerrado.
+  - El mercado está abierto solo en la mañana.
+  - La altitud me está haciendo enfermo.
+  - El camino está sin pavimentar.
+  - La carpa está mojada de la lluvia.
+
+el (15 phrases)
+  - ¿Dónde está el hotel?
+  - El camino tiene muchos agujeros.
+  - ¿Puedes mostrarme en el mapa?
+  - El sol está muy caliente.
+  - El viento está muy fuerte.
+  - El casco es requerido por ley.
+  - ¿Hay WiFi en el hotel?
+  - El paso de montaña está cerrado.
+  - El ferry sale al mediodía.
+  - El aceite necesita cambiarse.
+  - El mercado está abierto solo en la mañana.
+  - El campamento tiene baños.
+  - El hostal es más barato.
+  - El camino está sin pavimentar.
+  - El oficial de aduana quiere ver mis documentos.
+
+necesito (13 phrases)
+  - Necesito encontrar un hotel.
+  - Necesito cambiar dinero.
+  - Porque necesito descansar.
+  - Necesito que repare la cámara.
+  - Necesito una habitación para una noche.
+  - Necesito gasolina.
+  - Lo necesito.
+  - Necesito aceite.
+  - Necesito mi pasaporte.
+  - Necesito cargar mi teléfono.
+  - Necesito ver un dentista.
+  - Necesito una herramienta para arreglarlo.
+  - Necesito un veterinario para mi perro.
+
+un (13 phrases)
+  - Necesito encontrar un hotel.
+  - Porque hay un hotel aquí.
+  - Busco un mecánico.
+  - Hay un problema con la moto.
+  - Hay un agujero en la cámara.
+  - La cámara tiene un agujero.
+  - ¿Hay un mecánico cerca de aquí?
+  - Busco un cajero automático.
+  - ¿Conoces un buen mecánico?
+  - Estoy buscando un lugar para acampar.
+  - Quiero enviar un paquete.
+  - Necesito ver un dentista.
+  - Necesito un veterinario para mi perro.
+
+aquí (9 phrases)
+  - ¿Puedo estacionar aquí?
+  - Tengo una reservación aquí.
+  - Porque hay un hotel aquí.
+  - ¿Hay estacionamiento aquí?
+  - ¿Hay un mecánico cerca de aquí?
+  - Está aquí.
+  - Voy a esperar aquí.
+  - ¿Puedo dejar mi mochila aquí?
+  - La puesta de sol desde aquí es increíble.
+
+quiero (8 phrases)
+  - Quiero pagar.
+  - Quiero descansar.
+  - Lo quiero.
+  - Quiero tomar una foto.
+  - Quiero enviar un paquete.
+  - Quiero probar la comida local.
+  - Quiero aprender algunas palabras locales.
+  - Quiero conocer otros viajeros.
+
+puedo (8 phrases)
+  - ¿Puedo pagar con tarjeta?
+  - ¿Puedo estacionar aquí?
+  - ¿Dónde puedo estacionar?
+  - ¿Dónde puedo estacionar la moto?
+  - ¿Dónde puedo lavar mi ropa?
+  - ¿Puedo dejar mi mochila aquí?
+  - ¿Dónde puedo conseguir seguro para la moto?
+  - ¿Puedo pagar en cuotas?
+
+a (8 phrases)
+  - Voy a buscar comida.
+  - Voy a salir temprano.
+  - Voy a esperar aquí.
+  - La frontera abre a las seis.
+  - Voy a seguir este río.
+  - ¿Puedes ayudarme a empujar la moto?
+  - Voy a descansar por dos días.
+  - Voy a evitar la autopista.
+
+mi (8 phrases)
+  - Mi moto está rota.
+  - ¿Dónde puedo lavar mi ropa?
+  - Necesito mi pasaporte.
+  - ¿Puedo dejar mi mochila aquí?
+  - Olvidé mi chaqueta.
+  - Necesito cargar mi teléfono.
+  - Perdí mi cartera.
+  - Necesito un veterinario para mi perro.
+
+moto (7 phrases)
+  - Tengo que revisar la moto.
+  - Hay un problema con la moto.
+  - ¿Dónde puedo estacionar la moto?
+  - La moto no arranca.
+  - Mi moto está rota.
+  - ¿Puedes ayudarme a empujar la moto?
+  - ¿Dónde puedo conseguir seguro para la moto?
+
+una (7 phrases)
+  - Tengo una reservación aquí.
+  - Tengo una reserva.
+  - Necesito una habitación para una noche.
+  - Necesito una habitación para una noche.
+  - Quiero tomar una foto.
+  - ¿Puedes recomendar una ruta segura?
+  - Necesito una herramienta para arreglarlo.
+
+hay (7 phrases)
+  - Porque hay un hotel aquí.
+  - ¿Hay estacionamiento aquí?
+  - Hay un problema con la moto.
+  - Hay un agujero en la cámara.
+  - ¿Hay un mecánico cerca de aquí?
+  - ¿Hay estacionamiento seguro?
+  - ¿Hay WiFi en el hotel?
+
+voy (6 phrases)
+  - Voy a buscar comida.
+  - Voy a salir temprano.
+  - Voy a esperar aquí.
+  - Voy a seguir este río.
+  - Voy a descansar por dos días.
+  - Voy a evitar la autopista.
+
+tengo (6 phrases)
+  - Tengo que revisar la moto.
+  - Tengo que comprar agua.
+  - Tengo una reservación aquí.
+  - Porque tengo que salir temprano.
+  - Tengo una reserva.
+  - Lo tengo.
+
+en (6 phrases)
+  - Me estoy quedando en este hotel.
+  - Hay un agujero en la cámara.
+  - ¿Puedes mostrarme en el mapa?
+  - ¿Hay WiFi en el hotel?
+  - El mercado está abierto solo en la mañana.
+  - ¿Puedo pagar en cuotas?
+
+por (6 phrases)
+  - ¿Cuánto cuesta por noche?
+  - ¿Puede revisarla, por favor?
+  - ¿Puede hablar más despacio, por favor?
+  - Llénalo, por favor.
+  - El casco es requerido por ley.
+  - Voy a descansar por dos días.
+
+de (6 phrases)
+  - ¿Hay un mecánico cerca de aquí?
+  - La presión de la llanta está muy baja.
+  - El paso de montaña está cerrado.
+  - La puesta de sol desde aquí es increíble.
+  - El oficial de aduana quiere ver mis documentos.
+  - La carpa está mojada de la lluvia.
+
+es (6 phrases)
+  - Es caro.
+  - Es barato.
+  - La lluvia es muy fuerte.
+  - El casco es requerido por ley.
+  - La puesta de sol desde aquí es increíble.
+  - El hostal es más barato.
+
+dónde (5 phrases)
+  - ¿Dónde está el hotel?
+  - ¿Dónde puedo estacionar?
+  - ¿Dónde puedo estacionar la moto?
+  - ¿Dónde puedo lavar mi ropa?
+  - ¿Dónde puedo conseguir seguro para la moto?
+
+para (5 phrases)
+  - Necesito una habitación para una noche.
+  - Estoy buscando un lugar para acampar.
+  - Necesito una herramienta para arreglarlo.
+  - ¿Dónde puedo conseguir seguro para la moto?
+  - Necesito un veterinario para mi perro.
+
+que (4 phrases)
+  - Tengo que revisar la moto.
+  - Tengo que comprar agua.
+  - Porque tengo que salir temprano.
+  - Necesito que repare la cámara.
+
+me (4 phrases)
+  - Me estoy quedando en este hotel.
+  - ¿Me puede ayudar?
+  - La policía me detuvo.
+  - La altitud me está haciendo enfermo.
+
+puede (4 phrases)
+  - ¿Me puede ayudar?
+  - ¿Puede reparar la cámara?
+  - ¿Puede revisarla, por favor?
+  - ¿Puede hablar más despacio, por favor?
+
+muy (4 phrases)
+  - La lluvia es muy fuerte.
+  - El sol está muy caliente.
+  - La presión de la llanta está muy baja.
+  - El viento está muy fuerte.
+
+porque (3 phrases)
+  - Porque hay un hotel aquí.
+  - Porque necesito descansar.
+  - Porque tengo que salir temprano.
+
+mecánico (3 phrases)
+  - Busco un mecánico.
+  - ¿Hay un mecánico cerca de aquí?
+  - ¿Conoces un buen mecánico?
+
+tiene (3 phrases)
+  - La cámara tiene un agujero.
+  - El camino tiene muchos agujeros.
+  - El campamento tiene baños.
+
+favor (3 phrases)
+  - ¿Puede revisarla, por favor?
+  - ¿Puede hablar más despacio, por favor?
+  - Llénalo, por favor.
+
+lo (3 phrases)
+  - Lo necesito.
+  - Lo tengo.
+  - Lo quiero.
+
+puedes (3 phrases)
+  - ¿Puedes mostrarme en el mapa?
+  - ¿Puedes recomendar una ruta segura?
+  - ¿Puedes ayudarme a empujar la moto?
+
+con (2 phrases)
+  - ¿Puedo pagar con tarjeta?
+  - Hay un problema con la moto.
+
+estoy (2 phrases)
+  - Me estoy quedando en este hotel.
+  - Estoy buscando un lugar para acampar.
+
+estacionamiento (2 phrases)
+  - ¿Hay estacionamiento aquí?
+  - ¿Hay estacionamiento seguro?
+
+busco (2 phrases)
+  - Busco un mecánico.
+  - Busco un cajero automático.
+
+más (2 phrases)
+  - ¿Puede hablar más despacio, por favor?
+  - El hostal es más barato.
+
+camino (2 phrases)
+  - El camino tiene muchos agujeros.
+  - El camino está sin pavimentar.
+
+sol (2 phrases)
+  - El sol está muy caliente.
+  - La puesta de sol desde aquí es increíble.
+
+desde (2 phrases)
+  - La puesta de sol desde aquí es increíble.
+  - La vista desde esta montaña vale la pena.
+
+agua (1 phrases)
+  - Tengo que comprar agua.
+
+quedando (1 phrases)
+  - Me estoy quedando en este hotel.
+
+reservación (1 phrases)
+  - Tengo una reservación aquí.
+
+soy (1 phrases)
+  - Soy huésped del hotel.
+
+huésped (1 phrases)
+  - Soy huésped del hotel.
+
+del (1 phrases)
+  - Soy huésped del hotel.
+
+problema (1 phrases)
+  - Hay un problema con la moto.
+
+repare (1 phrases)
+  - Necesito que repare la cámara.
+
+reparar (1 phrases)
+  - ¿Puede reparar la cámara?
+
+reserva (1 phrases)
+  - Tengo una reserva.
+
+cuánto (1 phrases)
+  - ¿Cuánto cuesta por noche?
+
+cuesta (1 phrases)
+  - ¿Cuánto cuesta por noche?
+
+arranca (1 phrases)
+  - La moto no arranca.
+
+revisarla (1 phrases)
+  - ¿Puede revisarla, por favor?
+
+cajero (1 phrases)
+  - Busco un cajero automático.
+
+automático (1 phrases)
+  - Busco un cajero automático.
+
+hablar (1 phrases)
+  - ¿Puede hablar más despacio, por favor?
+
+rota (1 phrases)
+  - Mi moto está rota.
+
+desinflada (1 phrases)
+  - La llanta está desinflada.
+
+floja (1 phrases)
+  - La cadena está floja.
+
+llénalo (1 phrases)
+  - Llénalo, por favor.
+
+muchos (1 phrases)
+  - El camino tiene muchos agujeros.
+
+agujeros (1 phrases)
+  - El camino tiene muchos agujeros.
+
+mostrarme (1 phrases)
+  - ¿Puedes mostrarme en el mapa?
+
+conoces (1 phrases)
+  - ¿Conoces un buen mecánico?
+
+buen (1 phrases)
+  - ¿Conoces un buen mecánico?
+
+foto (1 phrases)
+  - Quiero tomar una foto.
+
+abre (1 phrases)
+  - La frontera abre a las seis.
+
+las (1 phrases)
+  - La frontera abre a las seis.
+
+pasaporte (1 phrases)
+  - Necesito mi pasaporte.
+
+dejar (1 phrases)
+  - ¿Puedo dejar mi mochila aquí?
+
+mochila (1 phrases)
+  - ¿Puedo dejar mi mochila aquí?
+
+baja (1 phrases)
+  - La presión de la llanta está muy baja.
+
+buscando (1 phrases)
+  - Estoy buscando un lugar para acampar.
+
+cuántas (1 phrases)
+  - ¿Cuántas horas hasta la próxima ciudad?
+
+horas (1 phrases)
+  - ¿Cuántas horas hasta la próxima ciudad?
+
+hasta (1 phrases)
+  - ¿Cuántas horas hasta la próxima ciudad?
+
+próxima (1 phrases)
+  - ¿Cuántas horas hasta la próxima ciudad?
+
+requerido (1 phrases)
+  - El casco es requerido por ley.
+
+olvidé (1 phrases)
+  - Olvidé mi chaqueta.
+
+segura (1 phrases)
+  - ¿Puedes recomendar una ruta segura?
+
+wifi (1 phrases)
+  - ¿Hay WiFi en el hotel?
+
+local (1 phrases)
+  - Quiero probar la comida local.
+
+policía (1 phrases)
+  - La policía me detuvo.
+
+detuvo (1 phrases)
+  - La policía me detuvo.
+
+ferry (1 phrases)
+  - El ferry sale al mediodía.
+
+sale (1 phrases)
+  - El ferry sale al mediodía.
+
+al (1 phrases)
+  - El ferry sale al mediodía.
+
+mediodía (1 phrases)
+  - El ferry sale al mediodía.
+
+necesita (1 phrases)
+  - El aceite necesita cambiarse.
+
+cambiarse (1 phrases)
+  - El aceite necesita cambiarse.
+
+solo (1 phrases)
+  - El mercado está abierto solo en la mañana.
+
+algunas (1 phrases)
+  - Quiero aprender algunas palabras locales.
+
+palabras (1 phrases)
+  - Quiero aprender algunas palabras locales.
+
+locales (1 phrases)
+  - Quiero aprender algunas palabras locales.
+
+baños (1 phrases)
+  - El campamento tiene baños.
+
+perdí (1 phrases)
+  - Perdí mi cartera.
+
+cartera (1 phrases)
+  - Perdí mi cartera.
+
+ayudarme (1 phrases)
+  - ¿Puedes ayudarme a empujar la moto?
+
+empujar (1 phrases)
+  - ¿Puedes ayudarme a empujar la moto?
+
+puesta (1 phrases)
+  - La puesta de sol desde aquí es increíble.
+
+increíble (1 phrases)
+  - La puesta de sol desde aquí es increíble.
+
+herramienta (1 phrases)
+  - Necesito una herramienta para arreglarlo.
+
+arreglarlo (1 phrases)
+  - Necesito una herramienta para arreglarlo.
+
+hostal (1 phrases)
+  - El hostal es más barato.
+
+dos (1 phrases)
+  - Voy a descansar por dos días.
+
+días (1 phrases)
+  - Voy a descansar por dos días.
+
+altitud (1 phrases)
+  - La altitud me está haciendo enfermo.
+
+haciendo (1 phrases)
+  - La altitud me está haciendo enfermo.
+
+enfermo (1 phrases)
+  - La altitud me está haciendo enfermo.
+
+conseguir (1 phrases)
+  - ¿Dónde puedo conseguir seguro para la moto?
+
+sin (1 phrases)
+  - El camino está sin pavimentar.
+
+pavimentar (1 phrases)
+  - El camino está sin pavimentar.
+
+otros (1 phrases)
+  - Quiero conocer otros viajeros.
+
+viajeros (1 phrases)
+  - Quiero conocer otros viajeros.
+
+oficial (1 phrases)
+  - El oficial de aduana quiere ver mis documentos.
+
+aduana (1 phrases)
+  - El oficial de aduana quiere ver mis documentos.
+
+quiere (1 phrases)
+  - El oficial de aduana quiere ver mis documentos.
+
+mis (1 phrases)
+  - El oficial de aduana quiere ver mis documentos.
+
+documentos (1 phrases)
+  - El oficial de aduana quiere ver mis documentos.
+
+evitar (1 phrases)
+  - Voy a evitar la autopista.
+
+autopista (1 phrases)
+  - Voy a evitar la autopista.
+
+carpa (1 phrases)
+  - La carpa está mojada de la lluvia.
+
+mojada (1 phrases)
+  - La carpa está mojada de la lluvia.
+
+cuotas (1 phrases)
+  - ¿Puedo pagar en cuotas?
+
+veterinario (1 phrases)
+  - Necesito un veterinario para mi perro.
+
+vista (1 phrases)
+  - La vista desde esta montaña vale la pena.
+
+esta (1 phrases)
+  - La vista desde esta montaña vale la pena.
+
+vale (1 phrases)
+  - La vista desde esta montaña vale la pena.
+
+pena (1 phrases)
+  - La vista desde esta montaña vale la pena.
+
