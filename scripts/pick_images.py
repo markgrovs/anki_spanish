@@ -34,6 +34,28 @@ def open_image_viewer(path: Path):
         # Linux/Windows fallback
         subprocess.run(["xdg-open", str(path)])
 
+def show_manual_fallback(spanish, english, search_term):
+    """Show the manual fallback menu when Pixabay fails or returns nothing."""
+    print(f"  Pixabay failed for '{search_term}'. Manual fallback:")
+    print("  [o]   = Open Google Images")
+    print("  [s]   = Skip")
+    print("  [q]   = Quit")
+    while True:
+        ans = input("  > ").strip().lower()
+        if ans == 'q':
+            print("Quitting.")
+            if TMP_DIR.exists():
+                shutil.rmtree(TMP_DIR)
+            sys.exit(0)
+        if ans == 's':
+            return
+        if ans == 'o':
+            import webbrowser
+            from urllib.parse import quote
+            webbrowser.open_new_tab(f"https://www.google.com/search?tbm=isch&q={quote(search_term)}")
+            return
+        print("Invalid command.")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=10)
@@ -47,7 +69,7 @@ def main():
     rows = read_rows(CSV_PATH)
     TMP_DIR.mkdir(parents=True, exist_ok=True)
     
-    # Identify missing
+    # Identify missing - now stores tuples of (spanish, english)
     missing = []
     
     # Helper to check if image exists
@@ -60,14 +82,16 @@ def main():
 
     if args.query:
         # Just one specific word
-        # Find it in CSV to get proper casing if possible, else use raw
         found = False
         for r in rows:
             if (r.get("spanish") or "").strip().lower() == args.query.lower():
-                missing.append(r.get("spanish"))
+                spanish = (r.get("spanish") or "").strip()
+                english = (r.get("english") or "").strip()
+                missing.append((spanish, english))
                 found = True
                 break
-        if not found: missing.append(args.query)
+        if not found: 
+            missing.append((args.query, ""))
     else:
         # Scan CSV
         count = 0
@@ -75,21 +99,27 @@ def main():
             s = (r.get("spanish") or "").strip()
             if not s: continue
             if not has_image(s):
-                missing.append(s)
+                e = (r.get("english") or "").strip()
+                missing.append((s, e))
                 count += 1
             if args.limit and count >= args.limit: break
     
     print(f"Found {len(missing)} words needing images.")
     if not missing: return
 
-    for i, word in enumerate(missing, 1):
-        print(f"\n[{i}/{len(missing)}] Processing: '{word}'")
+    for i, (spanish, english) in enumerate(missing, 1):
+        # Display Spanish and English translation
+        display_text = f"'{spanish}'" if not english else f"'{spanish}' ({english})"
+        print(f"\n[{i}/{len(missing)}] Processing: {display_text}")
+        
+        # Use English for Pixabay search if available (usually better results)
+        search_term = english if english else spanish
         
         # 1. Search
-        urls = search_pixabay(word, per_page=4)
+        urls = search_pixabay(search_term, per_page=4)
         if not urls:
-            print("  No results from Pixabay.")
-            # Fallback?
+            print(f"  No results from Pixabay for '{search_term}'.")
+            show_manual_fallback(spanish, english, search_term)
             continue
             
         # 2. Download candidates
@@ -100,7 +130,8 @@ def main():
                 candidates.append(dest)
         
         if not candidates:
-            print("  Failed to download candidates.")
+            print("  Failed to download candidates from Pixabay.")
+            show_manual_fallback(spanish, english, search_term)
             continue
             
         # 3. Create Collage
@@ -110,9 +141,11 @@ def main():
             open_image_viewer(collage_path)
         else:
             print("  Could not create collage (Pillow missing?).")
+            show_manual_fallback(spanish, english, search_term)
+            continue
             
         # 5. Ask
-        print(f"  Candidates shown for '{word}'. Pick 1-{len(candidates)}:")
+        print(f"  Candidates shown for {display_text}. Pick 1-{len(candidates)}:")
         print("  [1-4] = Select image")
         print("  [s]   = Skip")
         print("  [o]   = Open Google Images (manual)")
@@ -129,7 +162,7 @@ def main():
             if ans == 'o':
                 import webbrowser
                 from urllib.parse import quote
-                webbrowser.open_new_tab(f"https://www.google.com/search?tbm=isch&q={quote(word)}")
+                webbrowser.open_new_tab(f"https://www.google.com/search?tbm=isch&q={quote(search_term)}")
                 break
             
             if ans.isdigit():
@@ -137,7 +170,7 @@ def main():
                 if 1 <= choice <= len(candidates):
                     # Winner!
                     winner_src = candidates[choice-1]
-                    slug = slugify(word)
+                    slug = slugify(spanish)
                     final_dest = IMAGES_DIR / f"{slug}.jpg"
                     
                     # Move winner to media/images
