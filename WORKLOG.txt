@@ -232,3 +232,15 @@ Current state (2026-02-06):
 --- 2026-03-30 (Zsh Autocomplete) ---
 - Installed argcomplete package
 - Added PYTHON_ARGCOMPLETE_OK and argcomplete initialization to anki_flow.py
+--- 2026-08-31 (Image Override: push-image) ---
+- Added scripts/push_image.py + 'anki push-image <word>' subcommand
+- Reads the note's Image field <img src> as the canonical filename, then pushes
+  the newest local image (media/images/<slug>.*) into Anki via storeMediaFile,
+  which overwrites collection.media in place — no note edit needed
+- Collages only count as candidates when the note itself references one
+  (they are derived artifacts, not user replacements)
+- Renames the local file to match the note's reference (old file archived to
+  tmp/, never deleted) so the repo stays canonical for rebuilds; --no-rename opts out
+- Extended lib/anki_client.py store_media_file() with optional path= param (backward compatible)
+- Added 'push-image --help' to scripts/smoke_test.py
+- Motivated by manual verano.jpg override (poor Pixabay pick replaced locally as .jpeg)

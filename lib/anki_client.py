@@ -38,8 +38,13 @@ class AnkiClient:
             note_ids = [note_ids]
         return self.invoke("addTags", notes=note_ids, tags=tags)
     
-    def store_media_file(self, filename, data_base64):
-        return self.invoke("storeMediaFile", filename=filename, data=data_base64)
+    def store_media_file(self, filename, data_base64=None, path=None):
+        params = {"filename": filename}
+        if data_base64 is not None:
+            params["data"] = data_base64
+        if path is not None:
+            params["path"] = path
+        return self.invoke("storeMediaFile", **params)
     
     def delete_notes(self, note_ids):
         return self.invoke("deleteNotes", notes=note_ids)

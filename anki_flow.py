@@ -79,6 +79,13 @@ def cmd_pick_images(args):
     run(cmd)
 
 
+def cmd_push_image(args):
+    script = BASE_DIR / "scripts" / "push_image.py"
+    cmd = [sys.executable, str(script), args.word]
+    if args.no_rename: cmd.append("--no-rename")
+    cmd += ["--deck", args.deck, "--model", args.model]
+    run(cmd)
+
 def cmd_vocab_update(args):
     """Update 625 CSV from phrase cards (lemma-aware)."""
     import shutil, datetime
@@ -373,6 +380,14 @@ def main():
     pu.add_argument("--write", action="store_true", help="Append discovered words to CSV")
     pu.add_argument("--backup", action="store_true", help="Backup CSV before writing")
     pu.set_defaults(func=cmd_vocab_update)
+
+    # 8c. Push Image (override a card's image with a local replacement)
+    ppi = sub.add_parser("push-image", help="Override a card's image with a local replacement")
+    ppi.add_argument("word", help="Spanish word on the card (Word field), e.g. verano")
+    ppi.add_argument("--no-rename", action="store_true", help="Don't rename the local file to the note's referenced filename")
+    ppi.add_argument("--deck", default=DECK_NAME)
+    ppi.add_argument("--model", default=MODEL_NAME)
+    ppi.set_defaults(func=cmd_push_image)
 
     # 9. Smoke test
     psmoke = sub.add_parser("smoke-test", help="Run non-destructive CLI smoke tests")

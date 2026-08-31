@@ -20,6 +20,7 @@ TESTS = [
     [str(PY), str(FLOW), "sentences", "--help"],
     [str(PY), str(FLOW), "sentences", "known", "--mode", "learned"],
     [str(PY), str(FLOW), "build", "--dry-run", "--limit", "1"],
+    [str(PY), str(FLOW), "push-image", "--help"],
 ]
 
 
