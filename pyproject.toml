@@ -6,7 +6,8 @@ requires-python = ">=3.10"
 dependencies = [
     "requests",
     "Pillow",
-    "PyYAML"
+    "PyYAML",
+    "ddgs"
 ]
 
 [project.optional-dependencies]
