@@ -1,6 +1,6 @@
 english,sense,pos,spanish,gender,ipa,notes
 actor,,noun,actor,m,/aktˈɔɾ/,
-black,,adjective ,negro,m,/nˈeɣɾo/,
+black,,"adjective ",negro,m,/nˈeɣɾo/,
 clay,,noun,arcilla,f,/aɾθˈiʎa/,
 disease,,noun,enfermedad,f,/ˌɛmfɛɾmeðˈad/,
 adjective,,noun,adjetivo,m,/ˌaðxetˈiβo/,
@@ -54,7 +54,7 @@ drug,,noun,droga,f,/dɾˈoɣa/,
 art,,noun,arte,m,/ˈaɾte/,
 bread,,noun,pan,m,/pˈan/,
 contract,,noun,contrato,m,/kɔntɾˈato/,
-dry,,adjective ,seco,,/sˈeko/,
+dry,,"adjective ",seco,,/sˈeko/,
 artist,,noun,artista,f,/aɾtˈista/,
 break,,verb,romper,,/rɔmpˈɛɾ/,
 cook,,verb,cocinar,,/kˌoθinˈaɾ/,
@@ -606,17 +606,17 @@ woman,,noun,mujer,f,/muˈxeɾ/,
 zero,,noun,cero,m,/ˈθeɾo/,
 rest,,verb,descansar,,/deskanˈsaɾ/,
 park,,verb,estacionar,,/estaθjoˈnaɾ/,
-want,to want / desire,verb,querer,,/keˈɾeɾ/,High-frequency travel support verb.
-be able to,to be able to / can,verb,poder,,/poˈdeɾ/,High-frequency travel support verb.
-need,to need / require,verb,necesitar,,/neθesiˈtaɾ/,High-frequency travel support verb.
-go,to go,verb,ir,,/b/,High-frequency travel support verb.
-have,to have / possess,verb,tener,,/teˈneɾ/,High-frequency travel support verb.
-look for,to search / look for,verb,buscar,,/busˈkaɾ/,High-frequency travel support verb.
-change,to change / exchange,verb,cambiar,,/kamˈbjaɾ/,High-frequency travel support verb.
-check,to check / inspect,verb,revisar,,/rebiˈsaɾ/,High-frequency travel support verb.
-repair,to fix / repair,verb,arreglar,,/areˈɡlaɾ/,High-frequency travel support verb.
-leave,to leave / depart,verb,salir,,/saˈliɾ/,High-frequency travel support verb.
-arrive,to arrive / reach,verb,llegar,,/ʝeˈɡaɾ/,High-frequency travel support verb.
+want,to want / desire,verb,querer,,/keˈɾeɾ/,
+be able to,to be able to / can,verb,poder,,/poˈdeɾ/,
+need,to need / require,verb,necesitar,,/neθesiˈtaɾ/,
+go,to go,verb,ir,,/b/,
+have,to have / possess,verb,tener,,/teˈneɾ/,
+look for,to search / look for,verb,buscar,,/busˈkaɾ/,
+change,to change / exchange,verb,cambiar,,/kamˈbjaɾ/,
+check,to check / inspect,verb,revisar,,/rebiˈsaɾ/,
+repair,to fix / repair,verb,arreglar,,/areˈɡlaɾ/,
+leave,to leave / depart,verb,salir,,/saˈliɾ/,
+arrive,to arrive / reach,verb,llegar,,/ʝeˈɡaɾ/,
 early,,adjective,temprano,,/temˈpɾano/,
 stay,lodging / temporary stay,verb,quedarse,,/keðˈaɾse/,Useful for hotels: Me estoy quedando en este hotel.
 help,,verb,ayudar,,/ajudaɾ/,
@@ -720,3 +720,11 @@ coffee maker,,noun,cafetera,f,/kafeˈteɾa/,
 medicine,,noun,medicina,f,/mediˈθina/,
 while,,conjunction,mientras,,/ˈmjentɾas/,
 later,,adverb,luego,,/ˈlweɡo/,
+from / since,,preposition,desde,,/ˈdesde/,
+darken,to darken,verb,oscurecer,,/oskuɾeˈθeɾ/,
+during,over a period of time,preposition,durante,,/duˈɾante/,
+last,,adjective,último,,/ˈultimo/,
+prepare,to prepare,verb,preparar,,/pɾepaˈɾaɾ/,
+travel,to travel,verb,viajar,,/bjaˈxaɾ/,
+continue,to continue,verb,continuar
+careful,be careful,noun,cuidado,m
