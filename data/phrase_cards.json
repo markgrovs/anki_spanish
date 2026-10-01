@@ -1946,5 +1946,237 @@
       "pattern_cuando"
     ],
     "audio": true
+  },
+  {
+    "english": "I'll check my documents while you look at the motorcycle.",
+    "spanish": "Voy a revisar mis documentos mientras tú miras la moto.",
+    "pattern": "voy a + infinitive; mientras + clause",
+    "topic": "border",
+    "notes": "MIENTRAS = while. KEY: MIENTRAS shows two simultaneous actions. TÚ = you (informal).",
+    "tags": [
+      "travel_phrase",
+      "topic_border",
+      "pattern_mientras",
+      "pattern_simultaneity"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I need to rest because the altitude is affecting me.",
+    "spanish": "Necesito descansar porque la altitud me está afectando.",
+    "pattern": "necesito + infinitive; porque + present progressive",
+    "topic": "medical",
+    "notes": "PORQUE = because. KEY: PORQUE explains the reason. Use present tense for reason.",
+    "tags": [
+      "travel_phrase",
+      "topic_medical",
+      "pattern_porque",
+      "pattern_reason"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The hotel is more expensive than the hostel.",
+    "spanish": "El hotel es más caro que el hostal.",
+    "pattern": "ser + comparative + que",
+    "topic": "accommodation",
+    "notes": "MÁS CARO QUE = more expensive than. KEY: MÁS + adjective + QUE forms comparatives. Use ES for permanent qualities.",
+    "tags": [
+      "travel_phrase",
+      "topic_accommodation",
+      "pattern_comparative"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I cannot leave until I find a mechanic.",
+    "spanish": "No puedo salir hasta que encuentre un mecánico.",
+    "pattern": "no puedo + infinitive; hasta que + subjunctive",
+    "topic": "repairs",
+    "notes": "HASTA QUE = until. ENCUENTRE = subjunctive 'I find'. KEY: HASTA QUE signals a time limit or boundary condition.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_hasta_que",
+      "pattern_temporal",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The customs officer told me to open my backpack.",
+    "spanish": "El oficial de aduana me dijo que abriera la mochila.",
+    "pattern": "dijo + que + subjunctive",
+    "topic": "border",
+    "notes": "DIJO = told (past). QUE + subjunctive follows indirect commands. ABRIERA = subjunctive 'open'.",
+    "tags": [
+      "travel_phrase",
+      "topic_border",
+      "pattern_dijo_que"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I prefer to travel during the day.",
+    "spanish": "Prefiero viajar durante el día.",
+    "pattern": "prefiero + infinitive",
+    "topic": "travel",
+    "notes": "PREFIERO = I prefer (present of preferir). DURANTE = during (preposition). Route-planning statement.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_prefiero"
+    ],
+    "audio": true
+  },
+  {
+    "english": "As long as there is gasoline, I can go on.",
+    "spanish": "Mientras haya gasolina, puedo continuar.",
+    "pattern": "mientras + subjunctive; puedo + infinitive",
+    "topic": "fuel",
+    "notes": "HAYA = subjunctive 'there is'. KEY: MIENTRAS + subjunctive for a condition to keep acting.",
+    "tags": [
+      "travel_phrase",
+      "topic_fuel",
+      "pattern_mientras",
+      "pattern_conditional_subjunctive",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'm tired from riding, but I want to reach the next town.",
+    "spanish": "Estoy cansado de conducir, pero quiero llegar al próximo pueblo.",
+    "pattern": "estar + adjective + de + gerund; pero + quiero",
+    "topic": "travel",
+    "notes": "CANSADO DE CONDUCIR = tired from riding. AL PRÓXIMO = to the next (al + el próximo). Fatigue + determination.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_cansado_de",
+      "pattern_contrast",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'll come back when the road is safer.",
+    "spanish": "Voy a volver cuando la carretera esté más segura.",
+    "pattern": "voy a + infinitive; cuando + subjunctive",
+    "topic": "safety",
+    "notes": "CUANDO = when. ESTÉ = subjunctive 'is' (future condition). KEY: CUANDO + subjunctive for future time.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_cuando",
+      "pattern_temporal_subjunctive"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Do you know whether the border is open?",
+    "spanish": "¿Sabes si la frontera está abierta?",
+    "pattern": "sabes + si + está",
+    "topic": "border",
+    "notes": "SI (conjunct.) = whether. SABES = do you know (tú form of saber). Practical yes/no information request.",
+    "tags": [
+      "travel_phrase",
+      "topic_border",
+      "pattern_sabes"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The mechanic said the motorcycle will be ready tomorrow.",
+    "spanish": "El mecánico dijo que la moto estará lista mañana.",
+    "pattern": "dijo + que + future",
+    "topic": "repairs",
+    "notes": "ESTARÁ = will be (future of estar). LISTA = ready (feminine). Timeline confirmation.",
+    "tags": [
+      "travel_phrase",
+      "topic_repairs",
+      "pattern_dijo_que",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I would like to camp here if it is allowed.",
+    "spanish": "Me gustaría acampar aquí si es permitido.",
+    "pattern": "me gustaría + infinitive; si + condition",
+    "topic": "camping",
+    "notes": "ME GUSTARÍA = I would like (polite conditional). PERMITIDO = allowed (past participle as adjective).",
+    "tags": [
+      "travel_phrase",
+      "topic_camping",
+      "pattern_gustaría"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The roads here are better than in the mountains.",
+    "spanish": "Los caminos aquí son mejores que en las montañas.",
+    "pattern": "ser + irregular comparative + que",
+    "topic": "travel",
+    "notes": "MEJORES = better (irregular form, not 'más buenos'). QUE = than. AQUÍ/EN = location contrast.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_mejor_que"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I'll stay here unless the weather gets worse.",
+    "spanish": "Me quedaré aquí a menos que empeore el tiempo.",
+    "pattern": "me quedaré + infinitive; a menos que + subjunctive",
+    "topic": "weather",
+    "notes": "A MENOS QUE = unless. EMPEORE = subjunctive 'gets worse'. KEY: Negation with condition.",
+    "tags": [
+      "travel_phrase",
+      "topic_weather",
+      "pattern_a_menos_que"
+    ],
+    "audio": true
+  },
+  {
+    "english": "I've been riding for six hours straight.",
+    "spanish": "He estado conduciendo durante seis horas sin parar.",
+    "pattern": "he estado + gerund; durante + time",
+    "topic": "travel",
+    "notes": "HE ESTADO = I have been (present perfect). SIN PARAR = without stopping. Duration expression.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_he_estado",
+      "motorcycle"
+    ],
+    "audio": true
+  },
+  {
+    "english": "Whatever happens, I want to reach the coast.",
+    "spanish": "Pase lo que pase, quiero llegar a la costa.",
+    "pattern": "pase lo que pase + statement",
+    "topic": "travel",
+    "notes": "PASE LO QUE PASE = whatever happens (fixed expression). COSTA = coast. Determination statement.",
+    "tags": [
+      "travel_phrase",
+      "topic_travel",
+      "pattern_pase_lo_que_pase"
+    ],
+    "audio": true
+  },
+  {
+    "english": "The longer we wait, the more expensive the fuel will become.",
+    "spanish": "Cuanto más esperemos, más cara se volverá la gasolina.",
+    "pattern": "cuanto más + verb, más + adjective",
+    "topic": "fuel",
+    "notes": "CUANTO MÁS...MÁS = the more...the more (proportional comparison). GASOLINA CARA = expensive gasoline.",
+    "tags": [
+      "travel_phrase",
+      "topic_fuel",
+      "pattern_cuanto_mas"
+    ],
+    "audio": true
   }
 ]
