@@ -1,6 +1,6 @@
 english,sense,pos,spanish,gender,ipa,notes
 actor,,noun,actor,m,/aktˈɔɾ/,
-black,,adjective ,negro,m,/nˈeɣɾo/,
+black,,"adjective ",negro,m,/nˈeɣɾo/,
 clay,,noun,arcilla,f,/aɾθˈiʎa/,
 disease,,noun,enfermedad,f,/ˌɛmfɛɾmeðˈad/,
 adjective,,noun,adjetivo,m,/ˌaðxetˈiβo/,
@@ -54,7 +54,7 @@ drug,,noun,droga,f,/dɾˈoɣa/,
 art,,noun,arte,m,/ˈaɾte/,
 bread,,noun,pan,m,/pˈan/,
 contract,,noun,contrato,m,/kɔntɾˈato/,
-dry,,adjective ,seco,,/sˈeko/,
+dry,,"adjective ",seco,,/sˈeko/,
 artist,,noun,artista,f,/aɾtˈista/,
 break,,verb,romper,,/rɔmpˈɛɾ/,
 cook,,verb,cocinar,,/kˌoθinˈaɾ/,
@@ -733,4 +733,8 @@ strange,,adjective,extraño,,/e(ɡ)sˈtɾaɲo/,
 stop,to stop,verb,parar,,/paˈɾaɾ/,
 although,,conjunction,aungue,,/ˈaʊŋɡe/,
 because,,conjunction,porque,,/ˈpoɾke/,
-then,then / so ,adverb,entonces,,/enˈtonθes/,
+then,"then / so ",adverb,entonces,,/enˈtonθes/,
+too as well,,adverb,también
+simple,straightforward,adjective,sencillo
+single,,noun,sencillo,m
+hunger,,noun,hambre,f
